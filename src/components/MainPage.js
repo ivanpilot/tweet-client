@@ -4,7 +4,7 @@ import TweetList from './TweetList'
 class MainPage extends React.Component {
   render(){
     return (
-      <div className="ui centered grid">
+      <div className="ui center aligned grid">
         <TweetList />
       </div>
     )

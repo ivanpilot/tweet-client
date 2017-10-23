@@ -11,15 +11,13 @@ class MessageInput extends React.Component {
     this.setState({
       [evt.target.name]: evt.target.value
     })
-    // console.log('title is: ' + this.state.title)
-    // console.log('description is: ' + this.state.description)
   }
 
   render(){
     return(
       <div className='ui form'>
         <div className="field">
-          <label style={{textAlign: 'left'}}>Title</label>
+          <label>Title</label>
           <input
             type="text"
             name='title'
@@ -28,7 +26,7 @@ class MessageInput extends React.Component {
           />
         </div>
         <div className="field">
-          <label style={{textAlign: 'left'}}>Description</label>
+          <label>Description</label>
           <textarea
             rows='3'
             type='text'
@@ -39,7 +37,7 @@ class MessageInput extends React.Component {
           </textarea>
         </div>
         <button className='ui medium blue button'>
-          Submit
+          Publish
         </button>
       </div>
     )

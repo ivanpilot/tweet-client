@@ -1,20 +1,15 @@
 import React from 'react';
 import MessageInput from './MessageInput'
+import '../styles/VerticalMenu.css'
 
 class VerticalMenu extends React.Component {
   render(){
     return(
-      <div className='ui secondary vertical menu centered grid'>
-        <div className='ui header item'>
+      <div className='vertical-menu'>
+        <div className='ui header item center aligned'>
           Tweets
         </div>
-        <div className="ui form">
-          <div className="field">
-
-              <MessageInput />
-
-          </div>
-        </div>
+        <MessageInput />
       </div>
     )
   }
