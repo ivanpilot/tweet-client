@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-import Tweet from './components/tweets'
-import logo from './logo.svg';
-import './App.css';
+import Navbar from './components/Navbar'
+import MainContainer from './components/MainContainer'
+import './styles/App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Tweet/>
+      <div className='ui grid container'>
+        <div className='sixteen wide column'>
+          <Navbar />
+          <div className='ui divider'></div>
+          <MainContainer/>
+        </div>
       </div>
     );
   }
