@@ -9,6 +9,7 @@ class TweetContainer extends React.Component {
         <ThreadTabs
           activeThreadId={this.props.activeThreadId}
           threads={this.props.threads}
+          onTabClick={this.props.onTabClick}
         />
         <TweetList
           activeThreadId={this.props.activeThreadId}

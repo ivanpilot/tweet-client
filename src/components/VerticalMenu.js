@@ -7,7 +7,7 @@ class VerticalMenu extends React.Component {
     return(
       <div className='vertical-menu'>
         <div className='ui header item center aligned'>
-          Tweets
+          Tweet
         </div>
         <MessageInput />
       </div>

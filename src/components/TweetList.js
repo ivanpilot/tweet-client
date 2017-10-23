@@ -1,42 +1,19 @@
 import React from 'react';
+import Tweet from './Tweet';
+import '../styles/TweetList.css';
 
 class TweetList extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      tweets: [
-        {
-          title: "First tweet",
-          description: "This is the first tweet"
-        },
-        {
-          title: "Second tweet",
-          description: "This is the second tweet"
-        },
-        {
-          title: "Thirs tweet",
-          description: "This is the third tweet"
-        },
-      ]
-    }
-  }
 
   render(){
-
-    const tweets = this.state.tweets.map( (tweet, index) => (
-      <div key={index} className="ui cards">
-        <div className="card">
-          <div className="content">
-            <div className="header">{tweet.title}</div>
-            <div className="description">{tweet.description}</div>
-          </div>
-        </div>
-      </div>
-    ))
+    const activeThreadId = this.props.activeThreadId
+    const activeThread = this.props.threads.find((thread) => thread.id === activeThreadId)
+    const tweets = activeThread.tweets
 
     return(
-      <div className='ui center aligned grid'>
-        <ul>{tweets}</ul>
+      <div className='tweet-list'>
+      <div className='ui center aligned grid '>
+        <Tweet tweets={tweets} />
+      </div>
       </div>
     )
   }

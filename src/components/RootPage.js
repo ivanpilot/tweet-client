@@ -53,6 +53,13 @@ class RootPage extends React.Component {
     ]
   }
 
+  onTabClick = (threadId) => {
+    this.setState({
+      activeThreadId: threadId,
+      threads: [...this.state.threads]
+    })
+  }
+
   render(){
     return (
       <div className='ui two column stackable divided grid'>
@@ -64,6 +71,7 @@ class RootPage extends React.Component {
             <TweetContainer
               activeThreadId={this.state.activeThreadId}
               threads={this.state.threads}
+              onTabClick={this.onTabClick}
             />
           </div>
         </div>
