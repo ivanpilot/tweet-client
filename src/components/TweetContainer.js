@@ -6,8 +6,14 @@ class TweetContainer extends React.Component {
   render(){
     return (
       <div className="ui center aligned">
-        <ThreadTabs />
-        <TweetList />
+        <ThreadTabs
+          activeThreadId={this.props.activeThreadId}
+          threads={this.props.threads}
+        />
+        <TweetList
+          activeThreadId={this.props.activeThreadId}
+          threads={this.props.threads}
+        />
       </div>
     )
   }

@@ -62,7 +62,7 @@ class RootPage extends React.Component {
           </div>
           <div className='ui twelve wide column'>
             <TweetContainer
-              activeThreadId={this.state.activeThreadId},
+              activeThreadId={this.state.activeThreadId}
               threads={this.state.threads}
             />
           </div>
