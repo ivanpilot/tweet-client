@@ -35,14 +35,11 @@ class TweetList extends React.Component {
     ))
 
     return(
-      <div>
+      <div className='ui center aligned grid'>
         <ul>{tweets}</ul>
       </div>
     )
   }
-
-
-
 }
 
 export default TweetList;
