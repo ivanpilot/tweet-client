@@ -1,4 +1,5 @@
 import React from 'react';
+import {client} from './../Client'
 
 class Tweet extends React.Component {
 
@@ -10,8 +11,21 @@ class Tweet extends React.Component {
     this.props.handleEditClick(this.props.tweet.id)
   }
 
+  // componentWillMount(){
+  //   this.getCurrentUser()
+  // }
+  //
+  // getCurrentUser = () => {
+  //   client.currentUser()
+  // }
+
+
+
   render () {
     const tweet = this.props.tweet
+
+    const user = client.currentUser()
+// debugger
 
     return(
       <div className="ui cards">
@@ -19,19 +33,22 @@ class Tweet extends React.Component {
           <div className="content">
             <div className="header">{tweet.title}</div>
             <div className="description">{tweet.description}</div>
-            <div className='extra content'>
-              <span
-                className='right floated trash icon'
-                onClick={this.onTrashClick}
-              >
-                <a><i className='trash icon' /></a>
-              </span>
-              <span
-                className='right floated edit icon'
-                onClick={this.onEditClick}>
-                <a><i className='edit icon' /></a>
-              </span>
-            </div>
+            {(user.id == tweet.user_id) ? (
+                <div className='extra content'>
+                  <span
+                    className='right floated trash icon'
+                    onClick={this.onTrashClick}
+                  >
+                    <a><i className='trash icon' /></a>
+                  </span>
+                  <span
+                    className='right floated edit icon'
+                    onClick={this.onEditClick}>
+                    <a><i className='edit icon' /></a>
+                  </span>
+                </div>
+              ) : (null)
+            }
           </div>
         </div>
       </div>

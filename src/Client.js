@@ -4,7 +4,6 @@ class Client {
     if(this.useLocalStorage){
       localStorage.getItem  ('Authorization')
     }
-    // debugger
   }
 
   setToken(token) {
@@ -15,6 +14,13 @@ class Client {
     }
   }
 
+  currentUser() {
+    if (this.useLocalStorage) {
+      this.token = localStorage.getItem('Authorization');
+    }
+    return JSON.parse(this.token)
+  }
+
   removeToken() {
     this.token = null;
 
@@ -23,13 +29,14 @@ class Client {
     }
   }
 
-  currentUser(){
-    if(this.token) return JSON.parse(this.token)
-  }
+  // currentUser(){
+  //   debugger
+  //   if(this.token) return getToken()
+  // }
 
-  isLoggedIn(){
-    !!this.token
-  }
+  // isLoggedIn(){
+  //   !!this.token
+  // }
 }
 
 export const client = new Client();
