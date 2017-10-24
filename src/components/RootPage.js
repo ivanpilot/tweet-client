@@ -3,6 +3,7 @@ import VerticalMenu from './VerticalMenu';
 import TweetContainer from './TweetContainer';
 
 
+
 class RootPage extends React.Component {
 
   state = {
