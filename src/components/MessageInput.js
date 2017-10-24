@@ -13,6 +13,14 @@ class MessageInput extends React.Component {
     })
   }
 
+  onSubmitForm = () => {
+    this.props.onSubmitForm(this.state)
+    this.setState({
+      title: '',
+      description: ''
+    })
+  }
+
   render(){
     return(
       <div className='ui form'>
@@ -36,7 +44,10 @@ class MessageInput extends React.Component {
           >
           </textarea>
         </div>
-        <button className='ui medium blue button'>
+        <button
+          className='ui medium blue button'
+          onClick={this.onSubmitForm}
+        >
           Publish
         </button>
       </div>

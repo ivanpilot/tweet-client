@@ -9,7 +9,9 @@ class VerticalMenu extends React.Component {
         <div className='ui header item center aligned'>
           Tweet
         </div>
-        <MessageInput />
+        <MessageInput
+          onSubmitForm={this.props.onSubmitForm}
+        />
       </div>
     )
   }

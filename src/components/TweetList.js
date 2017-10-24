@@ -3,7 +3,6 @@ import Tweet from './Tweet';
 import '../styles/TweetList.css';
 
 class TweetList extends React.Component {
-
   render(){
     const activeThreadId = this.props.activeThreadId
     const activeThread = this.props.threads.find((thread) => thread.id === activeThreadId)

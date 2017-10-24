@@ -60,12 +60,35 @@ class RootPage extends React.Component {
     })
   }
 
+  addMessage = (message) => {
+    const activeThreadId = this.state.activeThreadId
+    const threadIndex = this.state.threads.findIndex(thread => thread.id === activeThreadId)
+    const oldThread = this.state.threads[threadIndex]
+    const newThread = {
+      ...oldThread,
+      tweets: [
+        message,
+        ...oldThread.tweets
+      ]
+    }
+    this.setState({
+      activeThreadId: this.state.activeThreadId,
+      threads: [
+        ...this.state.threads.slice(0, threadIndex),
+        newThread,
+        ...this.state.threads.slice(threadIndex + 1, this.state.threads.length)
+      ]
+    })
+  }
+
   render(){
     return (
       <div className='ui two column stackable divided grid'>
         <div className="row">
           <div className='ui four wide column'>
-            <VerticalMenu />
+            <VerticalMenu
+              onSubmitForm={this.addMessage}
+            />
           </div>
           <div className='ui twelve wide column'>
             <TweetContainer
