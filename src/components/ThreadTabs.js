@@ -6,6 +6,7 @@ class ThreadTabs extends React.Component {
     const activethreadId = this.props.activeThreadId
     const tabs = this.props.threads.map((thread, index) => (
       <a
+        key={index}
         className={thread.id === activethreadId ? 'active item' : 'item'}
         onClick={() => this.props.onTabClick(thread.id)}
       >

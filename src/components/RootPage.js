@@ -81,6 +81,25 @@ class RootPage extends React.Component {
     })
   }
 
+  deleteMessage = (id) => {
+    const threadIndex = this.state.threads.findIndex((thread) => (
+      thread.tweets.find((tweet) => tweet.id === id)
+    ))
+    const oldThread = this.state.threads[threadIndex]
+    const newThread = {
+      ...oldThread,
+      tweets: oldThread.tweets.filter(t => t.id !== id)
+    }
+    this.setState({
+      activeThreadId: this.state.activeThreadId,
+      threads: [
+        ...this.state.threads.slice(0, threadIndex),
+        newThread,
+        ...this.state.threads.slice(threadIndex + 1, this.state.threads.length)
+      ]
+    })
+  }
+
   render(){
     return (
       <div className='ui two column stackable divided grid'>
@@ -95,6 +114,7 @@ class RootPage extends React.Component {
               activeThreadId={this.state.activeThreadId}
               threads={this.state.threads}
               onTabClick={this.onTabClick}
+              handleTrashClick={this.deleteMessage}
             />
           </div>
         </div>

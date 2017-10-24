@@ -11,7 +11,10 @@ class TweetList extends React.Component {
     return(
       <div className='tweet-list'>
       <div className='ui center aligned grid '>
-        <Tweet tweets={tweets} />
+        <Tweet
+          tweets={tweets}
+          handleTrashClick={this.props.handleTrashClick}
+        />
       </div>
       </div>
     )

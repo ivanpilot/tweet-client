@@ -14,6 +14,7 @@ class TweetContainer extends React.Component {
         <TweetList
           activeThreadId={this.props.activeThreadId}
           threads={this.props.threads}
+          handleTrashClick={this.props.handleTrashClick}
         />
       </div>
     )
