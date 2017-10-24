@@ -81,10 +81,13 @@ class RootPage extends React.Component {
     })
   }
 
+  editMessage = (message, id) => {
+    return this.state
+  }
+
   deleteMessage = (id) => {
-    const threadIndex = this.state.threads.findIndex((thread) => (
-      thread.tweets.find((tweet) => tweet.id === id)
-    ))
+    const activeThreadId = this.state.activeThreadId
+    const threadIndex = this.state.threads.findIndex(thread => thread.id === activeThreadId)
     const oldThread = this.state.threads[threadIndex]
     const newThread = {
       ...oldThread,
@@ -115,6 +118,7 @@ class RootPage extends React.Component {
               threads={this.state.threads}
               onTabClick={this.onTabClick}
               handleTrashClick={this.deleteMessage}
+              onSubmitForm={this.editMessage}
             />
           </div>
         </div>

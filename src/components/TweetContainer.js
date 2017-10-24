@@ -1,5 +1,5 @@
 import React from 'react';
-import TweetList from './TweetList'
+import EditableTweetList from './EditableTweetList'
 import ThreadTabs from './ThreadTabs'
 
 class TweetContainer extends React.Component {
@@ -11,10 +11,11 @@ class TweetContainer extends React.Component {
           threads={this.props.threads}
           onTabClick={this.props.onTabClick}
         />
-        <TweetList
+        <EditableTweetList
           activeThreadId={this.props.activeThreadId}
           threads={this.props.threads}
           handleTrashClick={this.props.handleTrashClick}
+          onSubmitForm={this.props.onSubmitForm}
         />
       </div>
     )
