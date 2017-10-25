@@ -10,6 +10,7 @@ class VerticalMenu extends React.Component {
           Tweet
         </div>
         <MessageInput
+          store={this.props.store}
           onSubmitForm={this.props.onSubmitForm}
         />
       </div>

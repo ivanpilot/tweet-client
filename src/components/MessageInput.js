@@ -14,7 +14,12 @@ class MessageInput extends React.Component {
   }
 
   onSubmitForm = () => {
-    this.props.onSubmitForm(this.state, this.props.id)
+    // this.props.onSubmitForm(this.state, this.props.id)
+    this.props.store.dispatch({
+      type: 'ADD_TWEET',
+      title: this.state.title,
+      body: this.state.body
+    })
     this.setState({
       title: '',
       body: ''
