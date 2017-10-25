@@ -31,9 +31,35 @@ export function reducer(state, action){
       }
     }
 
-    case 'EDIT_TWEET':
-      return state
+    case 'EDIT_TWEET': {
+      const activeThreadId = state.activeThreadId
+      const threadIndex = state.threads.findIndex(thread => thread.id === activeThreadId)
+      const oldThread = state.threads[threadIndex]
+      const messageIndex = oldThread.tweets.findIndex(tweet => tweet.id === action.tweet.id)
+      const oldMessage = oldThread.tweets[messageIndex]
+      const newMessage = {
+        ...oldMessage,
+        title: action.tweet.title,
+        body: action.tweet.body
+      }
+      const newThread = {
+        ...oldThread,
+        tweets: [
+          ...oldThread.tweets.slice(0, messageIndex),
+          newMessage,
+          ...oldThread.tweets.slice(messageIndex + 1, oldThread.tweets.length)
+        ]
+      }
 
+      return {
+        activeThreadId: state.activeThreadId,
+        threads: [
+          ...state.threads.slice(0, threadIndex),
+          newThread,
+          ...state.threads.slice(threadIndex + 1, state.threads.length)
+        ]
+      }
+    }
     case 'DELETE_TWEET': {
       const activeThreadId = state.activeThreadId
       const threadIndex = state.threads.findIndex(thread => thread.id === activeThreadId)

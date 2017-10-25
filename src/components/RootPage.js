@@ -95,52 +95,52 @@ class RootPage extends React.Component {
   //   })
   // }
 
-  editMessage = (message, id) => {
-    const activeThreadId = this.state.activeThreadId
-    const threadIndex = this.state.threads.findIndex(thread => thread.id === activeThreadId)
-    const oldThread = this.state.threads[threadIndex]
-    const messageIndex = oldThread.tweets.findIndex(tweet => tweet.id === id)
-    const oldMessage = oldThread.tweets[messageIndex]
-    const newMessage = {
-      ...oldMessage,
-      title: message.title,
-      body: message.body
-    }
-    const newThread = {
-      ...oldThread,
-      tweets: [
-        ...oldThread.tweets.slice(0, messageIndex),
-        newMessage,
-        ...oldThread.tweets.slice(messageIndex + 1, oldThread.tweets.length)
-      ]
-    }
-    this.setState({
-      activeThreadId: this.state.activeThreadId,
-      threads: [
-        ...this.state.threads.slice(0, threadIndex),
-        newThread,
-        ...this.state.threads.slice(threadIndex + 1, this.state.threads.length)
-      ]
-    })
-  }
+  // editMessage = (message, id) => {
+  //   const activeThreadId = this.state.activeThreadId
+  //   const threadIndex = this.state.threads.findIndex(thread => thread.id === activeThreadId)
+  //   const oldThread = this.state.threads[threadIndex]
+  //   const messageIndex = oldThread.tweets.findIndex(tweet => tweet.id === id)
+  //   const oldMessage = oldThread.tweets[messageIndex]
+  //   const newMessage = {
+  //     ...oldMessage,
+  //     title: message.title,
+  //     body: message.body
+  //   }
+  //   const newThread = {
+  //     ...oldThread,
+  //     tweets: [
+  //       ...oldThread.tweets.slice(0, messageIndex),
+  //       newMessage,
+  //       ...oldThread.tweets.slice(messageIndex + 1, oldThread.tweets.length)
+  //     ]
+  //   }
+  //   this.setState({
+  //     activeThreadId: this.state.activeThreadId,
+  //     threads: [
+  //       ...this.state.threads.slice(0, threadIndex),
+  //       newThread,
+  //       ...this.state.threads.slice(threadIndex + 1, this.state.threads.length)
+  //     ]
+  //   })
+  // }
 
-  deleteMessage = (id) => {
-    const activeThreadId = this.state.activeThreadId
-    const threadIndex = this.state.threads.findIndex(thread => thread.id === activeThreadId)
-    const oldThread = this.state.threads[threadIndex]
-    const newThread = {
-      ...oldThread,
-      tweets: oldThread.tweets.filter(t => t.id !== id)
-    }
-    this.setState({
-      activeThreadId: this.state.activeThreadId,
-      threads: [
-        ...this.state.threads.slice(0, threadIndex),
-        newThread,
-        ...this.state.threads.slice(threadIndex + 1, this.state.threads.length)
-      ]
-    })
-  }
+  // deleteMessage = (id) => {
+  //   const activeThreadId = this.state.activeThreadId
+  //   const threadIndex = this.state.threads.findIndex(thread => thread.id === activeThreadId)
+  //   const oldThread = this.state.threads[threadIndex]
+  //   const newThread = {
+  //     ...oldThread,
+  //     tweets: oldThread.tweets.filter(t => t.id !== id)
+  //   }
+  //   this.setState({
+  //     activeThreadId: this.state.activeThreadId,
+  //     threads: [
+  //       ...this.state.threads.slice(0, threadIndex),
+  //       newThread,
+  //       ...this.state.threads.slice(threadIndex + 1, this.state.threads.length)
+  //     ]
+  //   })
+  // }
 
   render(){
     return (

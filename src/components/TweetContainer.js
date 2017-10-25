@@ -12,6 +12,7 @@ class TweetContainer extends React.Component {
           onTabClick={this.props.onTabClick}
         />
         <EditableTweetList
+          store={this.props.store}
           activeThreadId={this.props.activeThreadId}
           threads={this.props.threads}
           handleTrashClick={this.props.handleTrashClick}

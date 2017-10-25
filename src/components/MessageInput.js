@@ -16,11 +16,18 @@ class MessageInput extends React.Component {
     this.setState({tweet})
   }
 
-  onSubmitForm = () => {
-    // this.props.onSubmitForm(this.state, this.props.id)
+  onEditForm = (tweet) => {
+    this.props.store.dispatch({
+      type: 'EDIT_TWEET',
+      tweet: tweet
+    })
+    this.props.onCloseForm();
+  }
+
+  onSubmitForm = (tweet) => {
     this.props.store.dispatch({
       type: 'ADD_TWEET',
-      tweet: this.state.tweet
+      tweet: tweet
     })
     this.setState({
       tweet: {
@@ -57,22 +64,31 @@ class MessageInput extends React.Component {
                 >
                 </textarea>
               </div>
-              <button
-                className='ui medium blue button'
-                onClick={this.onSubmitForm}
-              >
-                {(this.props.id) ? ('Edit') : ('Publish')}
-              </button>
+
               {(this.props.id) ? (
-                <button
-                  className='ui medium red button'
-                  onClick={this.props.onCloseForm}
-                >
-                  Close
-                </button>
+                <div>
+                  <button
+                    className='ui medium blue button'
+                    onClick={() => this.onEditForm(this.state.tweet)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className='ui medium red button'
+                    onClick={this.props.onCloseForm}
+                  >
+                    Close
+                  </button>
+                </div>
               ) : (
-                null
+                <button
+                  className='ui medium blue button'
+                  onClick={() => this.onSubmitForm(this.state.tweet)}
+                >
+                  Publish
+                </button>
               )}
+
             </div>
           </div>
         </div>
