@@ -1,7 +1,8 @@
 import React from 'react';
 import VerticalMenu from './VerticalMenu';
 import TweetContainer from './TweetContainer';
-
+import uuid from 'uuid'
+import {client} from '../Client'
 
 
 class RootPage extends React.Component {
@@ -62,13 +63,19 @@ class RootPage extends React.Component {
   }
 
   addMessage = (message) => {
+    const newMessage = {
+      id: uuid.v4(),
+      title: message.title,
+      description: message.description,
+      user_id: client.currentUser().id
+    }
     const activeThreadId = this.state.activeThreadId
     const threadIndex = this.state.threads.findIndex(thread => thread.id === activeThreadId)
     const oldThread = this.state.threads[threadIndex]
     const newThread = {
       ...oldThread,
       tweets: [
-        message,
+        newMessage,
         ...oldThread.tweets
       ]
     }
