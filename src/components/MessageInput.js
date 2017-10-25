@@ -14,7 +14,7 @@ class MessageInput extends React.Component {
   }
 
   onSubmitForm = () => {
-    this.props.onSubmitForm(this.state)
+    this.props.onSubmitForm(this.state, this.props.id)
     this.setState({
       title: '',
       description: ''

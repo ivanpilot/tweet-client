@@ -11,21 +11,9 @@ class Tweet extends React.Component {
     this.props.handleEditClick(this.props.tweet.id)
   }
 
-  // componentWillMount(){
-  //   this.getCurrentUser()
-  // }
-  //
-  // getCurrentUser = () => {
-  //   client.currentUser()
-  // }
-
-
-
   render () {
     const tweet = this.props.tweet
-
     const user = client.currentUser()
-// debugger
 
     return(
       <div className="ui cards">
@@ -33,7 +21,7 @@ class Tweet extends React.Component {
           <div className="content">
             <div className="header">{tweet.title}</div>
             <div className="description">{tweet.description}</div>
-            {(user.id == tweet.user_id) ? (
+            {(user.id === tweet.user_id) ? (
                 <div className='extra content'>
                   <span
                     className='right floated trash icon'

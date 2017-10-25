@@ -21,6 +21,11 @@ class EditableTweet extends React.Component {
     })
   }
 
+  onSubmitForm = (message, id) => {
+    this.props.onSubmitForm(message, id);
+    this.onCloseForm();
+  }
+
   render(){
     if(this.state.editFormOpen){
       return(
@@ -30,7 +35,7 @@ class EditableTweet extends React.Component {
             title={this.props.tweet.title}
             description={this.props.tweet.description}
             onCloseForm={this.onCloseForm}
-            onSubmitForm={this.props.onSubmitForm}
+            onSubmitForm={this.onSubmitForm}
           />
         </div>
       )

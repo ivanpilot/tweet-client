@@ -18,13 +18,13 @@ class RootPage extends React.Component {
             id: 1,
             title: "First tweet",
             description: "This is the first tweet",
-            user_id: 1
+            user_id: "1"
           },
           {
             id: 2,
             title: "Second tweet",
             description: "This is the second tweet",
-            user_id: 1
+            user_id: "1"
           },
         ]
       },
@@ -36,19 +36,19 @@ class RootPage extends React.Component {
             id: 1,
             title: "First tweet",
             description: "This is the first tweet",
-            user_id: 1
+            user_id: "1"
           },
           {
             id: 2,
             title: "Second tweet",
             description: "This is the second tweet",
-            user_id: 1
+            user_id: "1"
           },
           {
             id: 3,
             title: "Third tweet",
             description: "This is the third tweet",
-            user_id: 2
+            user_id: "2"
           },
         ]
       }
@@ -62,7 +62,7 @@ class RootPage extends React.Component {
     })
   }
 
-  addMessage = (message) => {
+  addMessage = (message, id = null) => {
     const newMessage = {
       id: uuid.v4(),
       title: message.title,
@@ -90,7 +90,32 @@ class RootPage extends React.Component {
   }
 
   editMessage = (message, id) => {
-    return this.state
+    const activeThreadId = this.state.activeThreadId
+    const threadIndex = this.state.threads.findIndex(thread => thread.id === activeThreadId)
+    const oldThread = this.state.threads[threadIndex]
+    const messageIndex = oldThread.tweets.findIndex(tweet => tweet.id === id)
+    const oldMessage = oldThread.tweets[messageIndex]
+    const newMessage = {
+      ...oldMessage,
+      title: message.title,
+      description: message.description
+    }
+    const newThread = {
+      ...oldThread,
+      tweets: [
+        ...oldThread.tweets.slice(0, messageIndex),
+        newMessage,
+        ...oldThread.tweets.slice(messageIndex + 1, oldThread.tweets.length)
+      ]
+    }
+    this.setState({
+      activeThreadId: this.state.activeThreadId,
+      threads: [
+        ...this.state.threads.slice(0, threadIndex),
+        newThread,
+        ...this.state.threads.slice(threadIndex + 1, this.state.threads.length)
+      ]
+    })
   }
 
   deleteMessage = (id) => {
