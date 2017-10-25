@@ -15,7 +15,7 @@ class App extends Component {
         <div className='ui divider'></div>
         <div className='ui grid container'>
           <div className='ui sixteen wide column'>
-            <BodyContainer/>
+            <BodyContainer />
           </div>
         </div>
       </div>

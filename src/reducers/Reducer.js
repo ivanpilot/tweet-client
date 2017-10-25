@@ -20,7 +20,7 @@ export function reducer(state, action){
           ...oldThread.tweets
         ]
       }
-      debugger
+      // debugger
       return {
         activeThreadId: state.activeThreadId,
         threads: [

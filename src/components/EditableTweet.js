@@ -27,6 +27,7 @@ class EditableTweet extends React.Component {
   }
 
   render(){
+    // debugger
     if(this.state.editFormOpen){
       return(
         <div className='editable-tweet'>
