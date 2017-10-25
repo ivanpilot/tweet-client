@@ -45,6 +45,7 @@ class EditableTweet extends React.Component {
       return(
         <div className='editable-tweet'>
           <Tweet
+            store={this.props.store}
             tweet={this.props.tweet}
             handleTrashClick={this.props.handleTrashClick}
             handleEditClick={this.handleEditClick}

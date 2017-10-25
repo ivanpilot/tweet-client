@@ -4,7 +4,10 @@ import {client} from './../Client'
 class Tweet extends React.Component {
 
   onTrashClick = () => {
-    this.props.handleTrashClick(this.props.tweet.id)
+    this.props.store.dispatch({
+      type: 'DELETE_TWEET',
+      id: this.props.tweet.id
+    })
   }
 
   onEditClick = () => {
