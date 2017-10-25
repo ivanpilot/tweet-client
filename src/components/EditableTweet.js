@@ -32,6 +32,7 @@ class EditableTweet extends React.Component {
       return(
         <div className='editable-tweet'>
           <MessageInput
+            store={this.props.store}
             id={this.props.tweet.id}
             title={this.props.tweet.title}
             body={this.props.tweet.body}

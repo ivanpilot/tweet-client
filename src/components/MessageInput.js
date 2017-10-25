@@ -3,26 +3,31 @@ import React from 'react';
 class MessageInput extends React.Component {
 
   state = {
-    title: this.props.title || '',
-    body: this.props.body || ''
+    tweet: {
+      id: this.props.id || '',
+      title: this.props.title || '',
+      body: this.props.body || ''
+    }
   }
 
   onChange = (evt) => {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    })
+    const tweet = this.state.tweet
+    tweet[evt.target.name] = evt.target.value
+    this.setState({tweet})
   }
 
   onSubmitForm = () => {
     // this.props.onSubmitForm(this.state, this.props.id)
     this.props.store.dispatch({
       type: 'ADD_TWEET',
-      title: this.state.title,
-      body: this.state.body
+      tweet: this.state.tweet
     })
     this.setState({
-      title: '',
-      body: ''
+      tweet: {
+        id: '',
+        title: '',
+        body: ''
+      }
     })
   }
 
@@ -37,7 +42,7 @@ class MessageInput extends React.Component {
                 <input
                   type="text"
                   name='title'
-                  value={this.state.title}
+                  value={this.state.tweet.title}
                   onChange={this.onChange}
                 />
               </div>
@@ -47,7 +52,7 @@ class MessageInput extends React.Component {
                   rows='3'
                   type='text'
                   name='body'
-                  value={this.state.body}
+                  value={this.state.tweet.body}
                   onChange={this.onChange}
                 >
                 </textarea>

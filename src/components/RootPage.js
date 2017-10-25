@@ -154,6 +154,7 @@ class RootPage extends React.Component {
           </div>
           <div className='ui twelve wide column'>
             <TweetContainer
+              store={store}
               activeThreadId={store.getState().activeThreadId}
               threads={store.getState().threads}
               onTabClick={this.onTabClick}
