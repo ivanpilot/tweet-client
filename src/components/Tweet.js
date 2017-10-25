@@ -20,7 +20,7 @@ class Tweet extends React.Component {
         <div className="card">
           <div className="content">
             <div className="header">{tweet.title}</div>
-            <div className="description">{tweet.description}</div>
+            <div className="description">{tweet.body}</div>
             {(user.id === tweet.user_id) ? (
                 <div className='extra content'>
                   <span

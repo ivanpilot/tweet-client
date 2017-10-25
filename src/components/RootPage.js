@@ -17,13 +17,13 @@ class RootPage extends React.Component {
           {
             id: 1,
             title: "First tweet",
-            description: "This is the first tweet",
+            body: "This is the first tweet",
             user_id: "1"
           },
           {
             id: 2,
             title: "Second tweet",
-            description: "This is the second tweet",
+            body: "This is the second tweet",
             user_id: "1"
           },
         ]
@@ -35,19 +35,19 @@ class RootPage extends React.Component {
           {
             id: 1,
             title: "First tweet",
-            description: "This is the first tweet",
+            body: "This is the first tweet",
             user_id: "1"
           },
           {
             id: 2,
             title: "Second tweet",
-            description: "This is the second tweet",
+            body: "This is the second tweet",
             user_id: "1"
           },
           {
             id: 3,
             title: "Third tweet",
-            description: "This is the third tweet",
+            body: "This is the third tweet",
             user_id: "2"
           },
         ]
@@ -66,7 +66,7 @@ class RootPage extends React.Component {
     const newMessage = {
       id: uuid.v4(),
       title: message.title,
-      description: message.description,
+      body: message.body,
       user_id: client.currentUser().id
     }
     const activeThreadId = this.state.activeThreadId
@@ -98,7 +98,7 @@ class RootPage extends React.Component {
     const newMessage = {
       ...oldMessage,
       title: message.title,
-      description: message.description
+      body: message.body
     }
     const newThread = {
       ...oldThread,

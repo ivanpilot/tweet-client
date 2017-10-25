@@ -33,7 +33,7 @@ class EditableTweet extends React.Component {
           <MessageInput
             id={this.props.tweet.id}
             title={this.props.tweet.title}
-            description={this.props.tweet.description}
+            body={this.props.tweet.body}
             onCloseForm={this.onCloseForm}
             onSubmitForm={this.onSubmitForm}
           />

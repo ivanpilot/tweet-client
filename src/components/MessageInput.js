@@ -4,7 +4,7 @@ class MessageInput extends React.Component {
 
   state = {
     title: this.props.title || '',
-    description: this.props.description || ''
+    body: this.props.body || ''
   }
 
   onChange = (evt) => {
@@ -17,7 +17,7 @@ class MessageInput extends React.Component {
     this.props.onSubmitForm(this.state, this.props.id)
     this.setState({
       title: '',
-      description: ''
+      body: ''
     })
   }
 
@@ -41,8 +41,8 @@ class MessageInput extends React.Component {
                 <textarea
                   rows='3'
                   type='text'
-                  name='description'
-                  value={this.state.description}
+                  name='body'
+                  value={this.state.body}
                   onChange={this.onChange}
                 >
                 </textarea>
