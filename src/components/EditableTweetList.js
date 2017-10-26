@@ -15,8 +15,6 @@ class EditableTweetList extends React.Component {
           store={this.props.store}
           key={index}
           tweet={tweet}
-          handleTrashClick={this.props.handleTrashClick}
-          onSubmitForm={this.props.onSubmitForm}
         />
       </div>
     ))

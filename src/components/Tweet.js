@@ -10,8 +10,8 @@ class Tweet extends React.Component {
     })
   }
 
-  onEditClick = () => {
-    this.props.handleEditClick(this.props.tweet.id)
+  onOpenFormClick = () => {
+    this.props.onOpenForm(this.props.tweet.id)
   }
 
   render () {
@@ -34,7 +34,7 @@ class Tweet extends React.Component {
                   </span>
                   <span
                     className='right floated edit icon'
-                    onClick={this.onEditClick}>
+                    onClick={this.onOpenFormClick}>
                     <a><i className='edit icon' /></a>
                   </span>
                 </div>

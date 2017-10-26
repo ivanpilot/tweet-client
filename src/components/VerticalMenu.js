@@ -11,7 +11,6 @@ class VerticalMenu extends React.Component {
         </div>
         <MessageInput
           store={this.props.store}
-          onSubmitForm={this.props.onSubmitForm}
         />
       </div>
     )

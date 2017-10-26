@@ -9,7 +9,7 @@ class EditableTweet extends React.Component {
     editFormOpen: false
   }
 
-  handleEditClick = () => {
+  onOpenForm = () => {
     this.setState({
       editFormOpen: true
     })
@@ -21,23 +21,14 @@ class EditableTweet extends React.Component {
     })
   }
 
-  onSubmitForm = (message, id) => {
-    this.props.onSubmitForm(message, id);
-    this.onCloseForm();
-  }
-
   render(){
-    // debugger
     if(this.state.editFormOpen){
       return(
         <div className='editable-tweet'>
           <MessageInput
             store={this.props.store}
-            id={this.props.tweet.id}
-            title={this.props.tweet.title}
-            body={this.props.tweet.body}
+            tweet={this.props.tweet}
             onCloseForm={this.onCloseForm}
-            onSubmitForm={this.onSubmitForm}
           />
         </div>
       )
@@ -47,8 +38,7 @@ class EditableTweet extends React.Component {
           <Tweet
             store={this.props.store}
             tweet={this.props.tweet}
-            handleTrashClick={this.props.handleTrashClick}
-            handleEditClick={this.handleEditClick}
+            onOpenForm={this.onOpenForm}
           />
         </div>
       )

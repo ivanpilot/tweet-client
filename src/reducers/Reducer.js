@@ -80,7 +80,10 @@ export function reducer(state, action){
     }
 
     case 'OPEN_THREAD':
-      return state
+      return {
+        ...state,
+        activeThreadId: action.threadId,
+      }
 
     default:
       return state

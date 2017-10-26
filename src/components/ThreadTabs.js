@@ -8,7 +8,12 @@ class ThreadTabs extends React.Component {
       <a
         key={index}
         className={thread.id === activethreadId ? 'active item' : 'item'}
-        onClick={() => this.props.onTabClick(thread.id)}
+        onClick={() => this.props.store.dispatch(
+          {
+            type: 'OPEN_THREAD',
+            threadId: thread.id
+          }
+        )}
       >
         {thread.name}
       </a>

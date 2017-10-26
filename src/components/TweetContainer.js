@@ -7,16 +7,14 @@ class TweetContainer extends React.Component {
     return (
       <div className="ui center aligned">
         <ThreadTabs
+          store={this.props.store}
           activeThreadId={this.props.activeThreadId}
           threads={this.props.threads}
-          onTabClick={this.props.onTabClick}
         />
         <EditableTweetList
           store={this.props.store}
           activeThreadId={this.props.activeThreadId}
           threads={this.props.threads}
-          handleTrashClick={this.props.handleTrashClick}
-          onSubmitForm={this.props.onSubmitForm}
         />
       </div>
     )

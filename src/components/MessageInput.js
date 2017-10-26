@@ -4,9 +4,9 @@ class MessageInput extends React.Component {
 
   state = {
     tweet: {
-      id: this.props.id || '',
-      title: this.props.title || '',
-      body: this.props.body || ''
+      id: this.props.tweet && this.props.tweet.id || '',
+      title: this.props.tweet && this.props.tweet.title || '',
+      body: this.props.tweet && this.props.tweet.body || ''
     }
   }
 
@@ -39,8 +39,11 @@ class MessageInput extends React.Component {
   }
 
   render(){
+
+    const tweet = this.props.tweet
+
     return(
-      <div className={(this.props.id) ? ("ui cards") : null}>
+      <div className={(tweet && tweet.id) ? ("ui cards") : null}>
         <div className="card">
           <div className="content">
             <div className='ui form'>
@@ -65,7 +68,7 @@ class MessageInput extends React.Component {
                 </textarea>
               </div>
 
-              {(this.props.id) ? (
+              {(tweet && tweet.id) ? (
                 <div>
                   <button
                     className='ui medium blue button'
