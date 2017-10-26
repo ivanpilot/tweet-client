@@ -4,9 +4,9 @@ class MessageInput extends React.Component {
 
   state = {
     tweet: {
-      id: this.props.tweet && this.props.tweet.id || '',
-      title: this.props.tweet && this.props.tweet.title || '',
-      body: this.props.tweet && this.props.tweet.body || ''
+      id: (this.props.tweet && this.props.tweet.id) || '',
+      title: (this.props.tweet && this.props.tweet.title) || '',
+      body: (this.props.tweet && this.props.tweet.body) || ''
     }
   }
 

@@ -13,7 +13,6 @@ class EditableTweetList extends React.Component {
       >
         <EditableTweet
           store={this.props.store}
-          key={index}
           tweet={tweet}
         />
       </div>

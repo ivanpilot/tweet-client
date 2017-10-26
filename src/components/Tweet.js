@@ -11,7 +11,7 @@ class Tweet extends React.Component {
   }
 
   onOpenFormClick = () => {
-    this.props.onOpenForm(this.props.tweet.id)
+    this.props.onOpenForm()
   }
 
   render () {

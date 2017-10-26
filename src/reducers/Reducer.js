@@ -1,7 +1,53 @@
 import {client} from '../Client';
 import uuid from 'uuid';
 
-export function reducer(state, action){
+export function reducer(state = {
+  activeThreadId: 'user-v1',
+  threads: [
+    {
+      id: 'user-v1',
+      name: 'My Tweets',
+      tweets: [
+        {
+          id: 1,
+          title: "First tweet",
+          body: "This is the first tweet",
+          user_id: "1"
+        },
+        {
+          id: 2,
+          title: "Second tweet",
+          body: "This is the second tweet",
+          user_id: "1"
+        },
+      ]
+    },
+    {
+      id: 'all',
+      name: 'Wall',
+      tweets: [
+        {
+          id: 1,
+          title: "First tweet",
+          body: "This is the first tweet",
+          user_id: "1"
+        },
+        {
+          id: 2,
+          title: "Second tweet",
+          body: "This is the second tweet",
+          user_id: "1"
+        },
+        {
+          id: 3,
+          title: "Third tweet",
+          body: "This is the third tweet",
+          user_id: "2"
+        },
+      ]
+    }
+  ]
+}, action){
   switch (action.type) {
     case 'ADD_TWEET': {
       const newMessage = {
@@ -83,6 +129,16 @@ export function reducer(state, action){
       return {
         ...state,
         activeThreadId: action.threadId,
+      }
+
+    case 'OPEN_FORM':
+      return {
+        editFormOpen: true
+      }
+
+    case 'CLOSE_FORM':
+      return {
+        editFormOpen: false
       }
 
     default:
