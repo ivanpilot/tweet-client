@@ -6,14 +6,14 @@ class EditableTweetList extends React.Component {
   render(){
     const activeThreadId = this.props.activeThreadId
     const activeThread = this.props.threads.find((thread) => thread.id === activeThreadId)
-    const editableTweets = activeThread.tweets.map((tweet, index) => (
+    const editableTweets = activeThread.editableTweets.map((editableTweet, index) => (
       <div
         className='ui center aligned grid'
         key={index}
       >
         <EditableTweet
           store={this.props.store}
-          tweet={tweet}
+          editableTweet={editableTweet}
         />
       </div>
     ))

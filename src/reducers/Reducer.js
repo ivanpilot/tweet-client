@@ -7,43 +7,63 @@ export function reducer(state = {
     {
       id: 'user-v1',
       name: 'My Tweets',
-      tweets: [
+      editableTweets: [
         {
-          id: 1,
-          title: "First tweet",
-          body: "This is the first tweet",
-          user_id: "1"
+          id: '1',
+          openForm: false,
+          tweet: {
+            id: 1,
+            title: "First tweet",
+            body: "This is the first tweet",
+            user_id: "1"
+          }
         },
         {
-          id: 2,
-          title: "Second tweet",
-          body: "This is the second tweet",
-          user_id: "1"
-        },
+          id: '2',
+          openForm: false,
+          tweet: {
+            id: 2,
+            title: "Second tweet",
+            body: "This is the second tweet",
+            user_id: "1"
+          }
+        }
       ]
     },
     {
       id: 'all',
       name: 'Wall',
-      tweets: [
+      editableTweets: [
         {
-          id: 1,
-          title: "First tweet",
-          body: "This is the first tweet",
-          user_id: "1"
+          id: '3',
+          openForm: false,
+          tweet: {
+            id: 1,
+            title: "First tweet",
+            body: "This is the first tweet",
+            user_id: "1"
+          }
         },
         {
-          id: 2,
-          title: "Second tweet",
-          body: "This is the second tweet",
-          user_id: "1"
+          id: '4',
+          openForm: false,
+          tweet: {
+            id: 2,
+            title: "Second tweet",
+            body: "This is the second tweet",
+            user_id: "1"
+          }
         },
         {
-          id: 3,
-          title: "Third tweet",
-          body: "This is the third tweet",
-          user_id: "2"
-        },
+          id: '5',
+          openForm: false,
+          tweet: {
+            id: 3,
+            title: "Third tweet",
+            body: "This is the third tweet",
+            user_id: "2"
+          }
+        }
       ]
     }
   ]
@@ -56,17 +76,22 @@ export function reducer(state = {
         body: action.tweet.body,
         user_id: client.currentUser().id
       }
+      const newEditableTweet = {
+        id: uuid.v4(),
+        openForm: false,
+        tweet: newMessage
+      }
       const activeThreadId = state.activeThreadId
       const threadIndex = state.threads.findIndex(thread => thread.id === activeThreadId)
       const oldThread = state.threads[threadIndex]
       const newThread = {
         ...oldThread,
-        tweets: [
-          newMessage,
-          ...oldThread.tweets
+        editableTweets: [
+          newEditableTweet,
+          ...oldThread.editableTweets
         ]
       }
-
+      debugger
       return {
         activeThreadId: state.activeThreadId,
         threads: [
