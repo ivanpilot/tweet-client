@@ -70,7 +70,7 @@ export function reducer(state = {
 }, action){
   switch (action.type) {
     case 'ADD_TWEET': {
-      const newMessage = {
+      const newTweet = {
         id: uuid.v4(),
         title: action.tweet.title,
         body: action.tweet.body,
@@ -79,7 +79,7 @@ export function reducer(state = {
       const newEditableTweet = {
         id: uuid.v4(),
         openForm: false,
-        tweet: newMessage
+        tweet: newTweet
       }
       const activeThreadId = state.activeThreadId
       const threadIndex = state.threads.findIndex(thread => thread.id === activeThreadId)
@@ -91,7 +91,6 @@ export function reducer(state = {
           ...oldThread.editableTweets
         ]
       }
-      debugger
       return {
         activeThreadId: state.activeThreadId,
         threads: [
@@ -106,19 +105,24 @@ export function reducer(state = {
       const activeThreadId = state.activeThreadId
       const threadIndex = state.threads.findIndex(thread => thread.id === activeThreadId)
       const oldThread = state.threads[threadIndex]
-      const messageIndex = oldThread.tweets.findIndex(tweet => tweet.id === action.tweet.id)
-      const oldMessage = oldThread.tweets[messageIndex]
-      const newMessage = {
-        ...oldMessage,
-        title: action.tweet.title,
-        body: action.tweet.body
+      const editableTweetIndex = oldThread.editableTweets.findIndex(editableTweet => (
+        editableTweet.tweet.id === action.tweet.id
+      ))
+      const oldEditableTweet = oldThread.editableTweets[editableTweetIndex]
+      const newEditableTweet = {
+        ...oldEditableTweet,
+        tweet: {
+          ...oldEditableTweet.tweet,
+          title: action.tweet.title,
+          body: action.tweet.body
+        }
       }
       const newThread = {
         ...oldThread,
-        tweets: [
-          ...oldThread.tweets.slice(0, messageIndex),
-          newMessage,
-          ...oldThread.tweets.slice(messageIndex + 1, oldThread.tweets.length)
+        editableTweets: [
+          ...oldThread.editableTweets.slice(0, editableTweetIndex),
+          newEditableTweet,
+          ...oldThread.editableTweets.slice(editableTweetIndex + 1, oldThread.editableTweets.length)
         ]
       }
 
@@ -131,6 +135,7 @@ export function reducer(state = {
         ]
       }
     }
+
     case 'DELETE_TWEET': {
       const activeThreadId = state.activeThreadId
       const threadIndex = state.threads.findIndex(thread => thread.id === activeThreadId)
@@ -156,15 +161,69 @@ export function reducer(state = {
         activeThreadId: action.threadId,
       }
 
-    case 'OPEN_FORM':
-      return {
-        editFormOpen: true
+    case 'OPEN_FORM': {
+      const threadIndex = state.threads.findIndex((t) => (
+        t.editableTweets.find((eT) => eT.id === action.editableTweetId)
+      ))
+      const oldThread = state.threads[threadIndex]
+      const editableTweetIndex = oldThread.editableTweets.findIndex(eT => (
+        eT.id === action.editableTweetId
+      ))
+      const oldEditableTweet = oldThread.editableTweets[editableTweetIndex]
+      const newEditableTweet = {
+        ...oldEditableTweet,
+        openForm: true
       }
 
-    case 'CLOSE_FORM':
-      return {
-        editFormOpen: false
+      const newThread = {
+        ...oldThread,
+        editableTweets: [
+          ...oldThread.editableTweets.slice(0, editableTweetIndex),
+          newEditableTweet,
+          ...oldThread.editableTweets.slice(editableTweetIndex + 1, oldThread.editableTweets.length)
+        ]
       }
+
+      return {
+        activeThreadId: state.activeThreadId,
+        threads: [
+          ...state.threads.slice(0, threadIndex),
+          newThread,
+          ...state.threads.slice(threadIndex + 1, state.threads.length)
+        ]
+      }
+    }
+
+    case 'CLOSE_FORM': {
+      const activeThreadId = state.activeThreadId
+      const threadIndex = state.threads.findIndex(thread => thread.id === activeThreadId)
+      const oldThread = state.threads[threadIndex]
+      const editableTweetIndex = oldThread.editableTweets.findIndex(editableTweet => (
+        editableTweet.tweet.id === action.tweet.id
+      ))
+      const oldEditableTweet = oldThread.editableTweets[editableTweetIndex]
+      const newEditableTweet = {
+        ...oldEditableTweet,
+        openForm: false
+      }
+      const newThread = {
+        ...oldThread,
+        editableTweets: [
+          ...oldThread.editableTweets.slice(0, editableTweetIndex),
+          newEditableTweet,
+          ...oldThread.editableTweets.slice(editableTweetIndex + 1, oldThread.editableTweets.length)
+        ]
+      }
+
+      return {
+        activeThreadId: state.activeThreadId,
+        threads: [
+          ...state.threads.slice(0, threadIndex),
+          newThread,
+          ...state.threads.slice(threadIndex + 1, state.threads.length)
+        ]
+      }
+    }
 
     default:
       return state

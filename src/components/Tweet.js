@@ -34,7 +34,11 @@ class Tweet extends React.Component {
                   </span>
                   <span
                     className='right floated edit icon'
-                    onClick={this.onOpenFormClick}>
+                    onClick={() => this.props.store.dispatch({
+                      type: 'OPEN_FORM',
+                      editableTweetId: this.props.editableTweetId
+                    })}
+                  >
                     <a><i className='edit icon' /></a>
                   </span>
                 </div>

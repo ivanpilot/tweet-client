@@ -21,7 +21,10 @@ class MessageInput extends React.Component {
       type: 'EDIT_TWEET',
       tweet: tweet
     })
-    this.props.onCloseForm();
+    this.props.store.dispatch({
+      type: 'CLOSE_FORM',
+      tweet: tweet
+    })
   }
 
   onSubmitForm = (tweet) => {
@@ -39,7 +42,7 @@ class MessageInput extends React.Component {
   }
 
   render(){
-
+    // debugger
     const tweet = this.props.tweet
 
     return(
@@ -78,7 +81,10 @@ class MessageInput extends React.Component {
                   </button>
                   <button
                     className='ui medium red button'
-                    onClick={this.props.onCloseForm}
+                    onClick={() => this.props.store.dispatch({
+                      type: 'CLOSE_FORM',
+                      tweet: tweet
+                    })}
                   >
                     Close
                   </button>

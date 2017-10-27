@@ -5,30 +5,14 @@ import '../styles/EditableTweet.css'
 
 class EditableTweet extends React.Component {
 
-  state = {
-    editFormOpen: false
-  }
-
-  onOpenForm = () => {
-    this.setState({
-      editFormOpen: true
-    })
-  }
-
-  onCloseForm = () => {
-    this.setState({
-      editFormOpen: false
-    })
-  }
-
   render(){
     if(this.props.editableTweet.openForm){
       return(
         <div className='editable-tweet'>
           <MessageInput
             store={this.props.store}
+            editableTweetId={this.props.editableTweet.id}
             tweet={this.props.editableTweet.tweet}
-            onCloseForm={this.onCloseForm}
           />
         </div>
       )
@@ -37,8 +21,8 @@ class EditableTweet extends React.Component {
         <div className='editable-tweet'>
           <Tweet
             store={this.props.store}
+            editableTweetId={this.props.editableTweet.id}
             tweet={this.props.editableTweet.tweet}
-            onOpenForm={this.onOpenForm}
           />
         </div>
       )
