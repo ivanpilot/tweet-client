@@ -174,7 +174,6 @@ export function reducer(state = {
         ...oldEditableTweet,
         openForm: true
       }
-
       const newThread = {
         ...oldThread,
         editableTweets: [
@@ -195,11 +194,12 @@ export function reducer(state = {
     }
 
     case 'CLOSE_FORM': {
-      const activeThreadId = state.activeThreadId
-      const threadIndex = state.threads.findIndex(thread => thread.id === activeThreadId)
+      const threadIndex = state.threads.findIndex((t) => (
+        t.editableTweets.find((eT) => eT.id === action.editableTweetId)
+      ))
       const oldThread = state.threads[threadIndex]
-      const editableTweetIndex = oldThread.editableTweets.findIndex(editableTweet => (
-        editableTweet.tweet.id === action.tweet.id
+      const editableTweetIndex = oldThread.editableTweets.findIndex(eT => (
+        eT.id === action.editableTweetId
       ))
       const oldEditableTweet = oldThread.editableTweets[editableTweetIndex]
       const newEditableTweet = {

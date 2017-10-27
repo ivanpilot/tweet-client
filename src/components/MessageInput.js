@@ -83,7 +83,7 @@ class MessageInput extends React.Component {
                     className='ui medium red button'
                     onClick={() => this.props.store.dispatch({
                       type: 'CLOSE_FORM',
-                      tweet: tweet
+                      editableTweetId: this.props.editableTweetId
                     })}
                   >
                     Close
