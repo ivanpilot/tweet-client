@@ -3,14 +3,6 @@ import {client} from './../Client'
 
 class Tweet extends React.Component {
 
-  // componentWillUnmount(){
-  //   // debugger
-  //   console.log('fuck tweet')
-  //   // this.props.store.dispatch({
-  //   //   type:'CLOSE_FORM',
-  //   //   editableTweetId: this.props.editableTweet.id
-  //   // })
-  // }
   onEditClick = () => {
     this.props.store.dispatch({
       type: 'CLOSE_ALL_FORMS',

@@ -142,7 +142,9 @@ export function reducer(state = {
       const oldThread = state.threads[threadIndex]
       const newThread = {
         ...oldThread,
-        tweets: oldThread.tweets.filter(t => t.id !== action.id)
+        editableTweets: oldThread.editableTweets.filter((eT) => (
+          eT.tweet.id !== action.id
+        ))
       }
 
       return {
