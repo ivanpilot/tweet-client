@@ -3,6 +3,24 @@ import {client} from './../Client'
 
 class Tweet extends React.Component {
 
+  // componentWillUnmount(){
+  //   // debugger
+  //   console.log('fuck tweet')
+  //   // this.props.store.dispatch({
+  //   //   type:'CLOSE_FORM',
+  //   //   editableTweetId: this.props.editableTweet.id
+  //   // })
+  // }
+  onEditClick = () => {
+    this.props.store.dispatch({
+      type: 'CLOSE_ALL_FORMS',
+    })
+    this.props.store.dispatch({
+      type: 'OPEN_FORM',
+      editableTweetId: this.props.editableTweetId
+    })
+  }
+
   onTrashClick = () => {
     this.props.store.dispatch({
       type: 'DELETE_TWEET',
@@ -34,10 +52,7 @@ class Tweet extends React.Component {
                   </span>
                   <span
                     className='right floated edit icon'
-                    onClick={() => this.props.store.dispatch({
-                      type: 'OPEN_FORM',
-                      editableTweetId: this.props.editableTweetId
-                    })}
+                    onClick={this.onEditClick}
                   >
                     <a><i className='edit icon' /></a>
                   </span>
