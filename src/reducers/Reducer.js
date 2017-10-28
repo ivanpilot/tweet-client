@@ -119,6 +119,15 @@ function threadReducer(state, action){
       }
     }
 
+    case 'DELETE_TWEET': {
+      return {
+        ...state,
+        editableTweets: state.editableTweets.filter((eT) => (
+          eT.tweet.id !== action.id
+        ))
+      }
+    }
+
     default:
       return state
   }
@@ -127,40 +136,42 @@ function threadReducer(state, action){
 export function reducer(state = initialState, action){
   switch (action.type) {
 
-    case 'ADD_TWEET': {
+    case 'ADD_TWEET':
+    case 'DELETE_TWEET':
       const threadIndex = findThreadIndex(state)
       const oldThread = state.threads[threadIndex]
-      const newThread = threadReducer(oldThread, action)
+      // const newThread = threadReducer(oldThread, action)
       return {
         ...state,
         threads: [
           ...state.threads.slice(0, threadIndex),
-          newThread,
+          threadReducer(oldThread, action),
           ...state.threads.slice(threadIndex + 1, state.threads.length)
         ]
       }
-    }
 
-    case 'DELETE_TWEET': {
-      const activeThreadId = state.activeThreadId
-      const threadIndex = state.threads.findIndex(thread => thread.id === activeThreadId)
-      const oldThread = state.threads[threadIndex]
-      // debugger
-      const newThread = {
-        ...oldThread,
-        editableTweets: oldThread.editableTweets.filter((eT) => (
-          eT.tweet.id !== action.id
-        ))
-      }
-      debugger
-      return {
-        ...state,
-        threads: [
-          ...state.threads.slice(0, threadIndex),
-          newThread,
-          ...state.threads.slice(threadIndex + 1, state.threads.length)
-        ]
-      }
+
+    // case 'DELETE_TWEET': {
+    //   //const activeThreadId = state.activeThreadId
+    //   const threadIndex = findThreadIndex(state)
+    //   const oldThread = state.threads[threadIndex]
+    //   // debugger
+    //   const newThread = {
+    //     ...oldThread,
+    //     editableTweets: oldThread.editableTweets.filter((eT) => (
+    //       eT.tweet.id !== action.id
+    //     ))
+    //   }
+    //   debugger
+    //   return {
+    //     ...state,
+    //     threads: [
+    //       ...state.threads.slice(0, threadIndex),
+    //       newThread,
+    //       ...state.threads.slice(threadIndex + 1, state.threads.length)
+    //     ]
+    //   }
+    // }
 
     case 'EDIT_TWEET': {
       // const activeThreadId = state.activeThreadId
@@ -199,7 +210,7 @@ export function reducer(state = initialState, action){
     }
 
 
-    }
+
 
     case 'ON_EDITABLE_TWEET_MODE': {
       const activeThreadIdd = state.activeThreadId
