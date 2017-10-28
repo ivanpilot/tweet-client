@@ -3,15 +3,20 @@ import {client} from './../Client'
 
 class Tweet extends React.Component {
 
+  // constructor(props){
+  //   super(props)
+  //   this.onTrashClick = this.onTrashClick.bind(this)
+  // }
+
   onEditClick = () => {
+    debugger
     this.props.store.dispatch({
-      type: 'CLOSE_ALL_FORMS',
-    })
-    this.props.store.dispatch({
-      type: 'OPEN_FORM',
-      editableTweetId: this.props.editableTweetId
+      type: 'ON_EDITABLE_MODE',
+      id: this.props.tweet.id
     })
   }
+
+
 
   onTrashClick = () => {
     this.props.store.dispatch({
@@ -20,14 +25,10 @@ class Tweet extends React.Component {
     })
   }
 
-  onOpenFormClick = () => {
-    this.props.onOpenForm()
-  }
-
   render () {
     const tweet = this.props.tweet
     const user = client.currentUser()
-
+    // debugger
     return(
       <div className="ui cards">
         <div className="card">
@@ -38,13 +39,13 @@ class Tweet extends React.Component {
                 <div className='extra content'>
                   <span
                     className='right floated trash icon'
-                    onClick={this.onTrashClick}
+                    onClick={() => this.onTrashClick()}
                   >
                     <a><i className='trash icon' /></a>
                   </span>
                   <span
                     className='right floated edit icon'
-                    onClick={this.onEditClick}
+                    onClick={() => this.onEditClick()}
                   >
                     <a><i className='edit icon' /></a>
                   </span>

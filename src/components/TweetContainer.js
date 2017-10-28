@@ -9,11 +9,13 @@ class TweetContainer extends React.Component {
         <ThreadTabs
           store={this.props.store}
           activeThreadId={this.props.activeThreadId}
+          activeEditableTweetId={this.props.activeEditableTweetId}
           threads={this.props.threads}
         />
         <EditableTweetList
           store={this.props.store}
           activeThreadId={this.props.activeThreadId}
+          activeEditableTweetId={this.props.activeEditableTweetId}
           threads={this.props.threads}
         />
       </div>

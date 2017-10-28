@@ -4,7 +4,9 @@ import TweetContainer from './TweetContainer';
 import {createStore} from 'redux';
 import {reducer} from '../reducers/Reducer'
 
-const store = createStore(reducer)
+const store = createStore(reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
 class RootPage extends React.Component {
 
@@ -25,6 +27,7 @@ class RootPage extends React.Component {
             <TweetContainer
               store={store}
               activeThreadId={store.getState().activeThreadId}
+              activeEditableTweetId={store.getState().activeEditableTweetId}
               threads={store.getState().threads}
             />
           </div>

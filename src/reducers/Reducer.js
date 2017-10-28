@@ -1,8 +1,9 @@
 import {client} from '../Client';
 import uuid from 'uuid';
 
-export function reducer(state = {
+const initialState = {
   activeThreadId: 'user-v1',
+  activeEditableTweetId: null,
   threads: [
     {
       id: 'user-v1',
@@ -67,8 +68,81 @@ export function reducer(state = {
       ]
     }
   ]
-}, action){
+}
+
+
+export function reducer(state = initialState, action){
+
+// export function reducer(state = {
+//   activeThreadId: 'user-v1',
+//   activeEditableTweetId: null,
+//   threads: [
+//     {
+//       id: 'user-v1',
+//       name: 'My Tweets',
+//       editableTweets: [
+//         {
+//           id: '1',
+//           openForm: false,
+//           tweet: {
+//             id: 1,
+//             title: "First tweet",
+//             body: "This is the first tweet",
+//             user_id: "1"
+//           }
+//         },
+//         {
+//           id: '2',
+//           openForm: false,
+//           tweet: {
+//             id: 2,
+//             title: "Second tweet",
+//             body: "This is the second tweet",
+//             user_id: "1"
+//           }
+//         }
+//       ]
+//     },
+//     {
+//       id: 'all',
+//       name: 'Wall',
+//       editableTweets: [
+//         {
+//           id: '3',
+//           openForm: false,
+//           tweet: {
+//             id: 1,
+//             title: "First tweet",
+//             body: "This is the first tweet",
+//             user_id: "1"
+//           }
+//         },
+//         {
+//           id: '4',
+//           openForm: false,
+//           tweet: {
+//             id: 2,
+//             title: "Second tweet",
+//             body: "This is the second tweet",
+//             user_id: "1"
+//           }
+//         },
+//         {
+//           id: '5',
+//           openForm: false,
+//           tweet: {
+//             id: 3,
+//             title: "Third tweet",
+//             body: "This is the third tweet",
+//             user_id: "2"
+//           }
+//         }
+//       ]
+//     }
+//   ]
+// }, action){
   switch (action.type) {
+
     case 'ADD_TWEET': {
       const newTweet = {
         id: uuid.v4(),
@@ -84,6 +158,7 @@ export function reducer(state = {
       const activeThreadId = state.activeThreadId
       const threadIndex = state.threads.findIndex(thread => thread.id === activeThreadId)
       const oldThread = state.threads[threadIndex]
+      // debugger
       const newThread = {
         ...oldThread,
         editableTweets: [
@@ -91,8 +166,9 @@ export function reducer(state = {
           ...oldThread.editableTweets
         ]
       }
+      debugger
       return {
-        activeThreadId: state.activeThreadId,
+        ...state,
         threads: [
           ...state.threads.slice(0, threadIndex),
           newThread,
@@ -127,7 +203,7 @@ export function reducer(state = {
       }
 
       return {
-        activeThreadId: state.activeThreadId,
+        ...state,
         threads: [
           ...state.threads.slice(0, threadIndex),
           newThread,
@@ -140,15 +216,16 @@ export function reducer(state = {
       const activeThreadId = state.activeThreadId
       const threadIndex = state.threads.findIndex(thread => thread.id === activeThreadId)
       const oldThread = state.threads[threadIndex]
+      debugger
       const newThread = {
         ...oldThread,
         editableTweets: oldThread.editableTweets.filter((eT) => (
           eT.tweet.id !== action.id
         ))
       }
-
+      debugger
       return {
-        activeThreadId: state.activeThreadId,
+        ...state,
         threads: [
           ...state.threads.slice(0, threadIndex),
           newThread,
@@ -157,13 +234,39 @@ export function reducer(state = {
       }
     }
 
-    case 'OPEN_THREAD':
+    case 'ON_EDITABLE_MODE': {
+      const activeThreadIdd = state.activeThreadId
+      const threadIndex = state.threads.findIndex(thread => thread.id === activeThreadIdd)
+      const oldThread = state.threads[threadIndex]
+      debugger
+      const activeEditableTweetId = oldThread.editableTweets.findIndex((eT) => (
+        eT.tweet.id === action.id
+      ))
+      // debugger
+      return {
+        ...state,
+        activeEditableTweetId: activeEditableTweetId
+      }
+    }
+
+    case 'DEACTIVATE_EDITABLE_TWEET': {
+      // debugger
+      return {
+        ...state,
+        activeEditableTweetId: null
+      }
+    }
+
+    case 'OPEN_THREAD':{
       return {
         ...state,
         activeThreadId: action.threadId,
       }
+    }
+
 
     case 'OPEN_FORM': {
+      debugger
       const threadIndex = state.threads.findIndex((t) => (
         t.editableTweets.find((eT) => eT.id === action.editableTweetId)
       ))
@@ -186,7 +289,7 @@ export function reducer(state = {
       }
 
       return {
-        activeThreadId: state.activeThreadId,
+        ...state,
         threads: [
           ...state.threads.slice(0, threadIndex),
           newThread,
@@ -196,7 +299,7 @@ export function reducer(state = {
     }
 
     case 'CLOSE_FORM': {
-      // debugger
+      debugger
       const threadIndex = state.threads.findIndex((t) => (
         t.editableTweets.find((eT) => eT.id === action.editableTweetId)
       ))
@@ -219,7 +322,7 @@ export function reducer(state = {
       }
 
       return {
-        activeThreadId: state.activeThreadId,
+        ...state,
         threads: [
           ...state.threads.slice(0, threadIndex),
           newThread,
@@ -228,31 +331,33 @@ export function reducer(state = {
       }
     }
 
-    case 'CLOSE_ALL_FORMS': {
-      const activeThreadId = state.activeThreadId
-      const threadIndex = state.threads.findIndex(thread => thread.id === activeThreadId)
-      const oldThread = state.threads[threadIndex]
-      const newEditableTweets = oldThread.editableTweets.map((eT) => {
-        if(eT.tweet.user_id === client.currentUser().id){
-          return {...eT, openForm: false}
-        } else {
-          return {...eT}
-        }
-      })
-      const newThread = {
-        ...oldThread,
-        editableTweets: newEditableTweets
-      }
+    // case 'CLOSE_ALL_FORMS': {
+    //   const activeThreadId = state.activeThreadId
+    //   const threadIndex = state.threads.findIndex(thread => thread.id === activeThreadId)
+    //   const oldThread = state.threads[threadIndex]
+    //   const newEditableTweets = oldThread.editableTweets.map((eT) => {
+    //     if(eT.tweet.user_id === client.currentUser().id){
+    //       return {...eT, openForm: false}
+    //     } else {
+    //       return {...eT}
+    //     }
+    //   })
+    //   const newThread = {
+    //     ...oldThread,
+    //     editableTweets: newEditableTweets
+    //   }
+    //
+    //   return {
+    //     activeThreadId: state.activeThreadId,
+    //     threads: [
+    //       ...state.threads.slice(0, threadIndex),
+    //       newThread,
+    //       ...state.threads.slice(threadIndex + 1, state.threads.length)
+    //     ]
+    //   }
+    // }
 
-      return {
-        activeThreadId: state.activeThreadId,
-        threads: [
-          ...state.threads.slice(0, threadIndex),
-          newThread,
-          ...state.threads.slice(threadIndex + 1, state.threads.length)
-        ]
-      }
-    }
+
 
     default:
       return state
