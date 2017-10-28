@@ -9,9 +9,8 @@ class Tweet extends React.Component {
   // }
 
   onEditClick = () => {
-    debugger
     this.props.store.dispatch({
-      type: 'ON_EDITABLE_MODE',
+      type: 'ON_EDITABLE_TWEET_MODE',
       id: this.props.tweet.id
     })
   }

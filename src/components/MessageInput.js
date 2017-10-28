@@ -27,7 +27,7 @@ class MessageInput extends React.Component {
     //   editableTweetId: this.props.editableTweetId
     // })
     this.props.store.dispatch({
-      type: 'DEACTIVATE_EDITABLE_TWEET'
+      type: 'OFF_EDITABLE_TWEET_MODE'
     })
   }
 
@@ -36,7 +36,7 @@ class MessageInput extends React.Component {
     //   type: 'CLOSE_ALL_FORMS',
     // })
     this.props.store.dispatch({
-      type: 'DEACTIVATE_EDITABLE_TWEET'
+      type: 'OFF_EDITABLE_TWEET_MODE'
     })
     this.props.store.dispatch({
       type: 'ADD_TWEET',
@@ -92,7 +92,7 @@ class MessageInput extends React.Component {
                   <button
                     className='ui medium red button'
                     onClick={() => this.props.store.dispatch({
-                      type: 'DEACTIVATE_EDITABLE_TWEET'
+                      type: 'OFF_EDITABLE_TWEET_MODE'
                     })}
                   >
                     Close
