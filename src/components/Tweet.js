@@ -3,19 +3,12 @@ import {client} from './../Client'
 
 class Tweet extends React.Component {
 
-  // constructor(props){
-  //   super(props)
-  //   this.onTrashClick = this.onTrashClick.bind(this)
-  // }
-
   onEditClick = () => {
     this.props.store.dispatch({
       type: 'ON_EDITABLE_TWEET_MODE',
       id: this.props.editableTweetId
     })
   }
-
-
 
   onTrashClick = () => {
     this.props.store.dispatch({
@@ -27,7 +20,7 @@ class Tweet extends React.Component {
   render () {
     const tweet = this.props.tweet
     const user = client.currentUser()
-    // debugger
+
     return(
       <div className="ui cards">
         <div className="card">

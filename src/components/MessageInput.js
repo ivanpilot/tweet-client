@@ -47,7 +47,6 @@ class MessageInput extends React.Component {
   }
 
   render(){
-    // debugger
     const tweet = this.props.tweet
 
     return(

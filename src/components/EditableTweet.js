@@ -6,10 +6,7 @@ import '../styles/EditableTweet.css'
 class EditableTweet extends React.Component {
 
   render(){
-    // debugger
-    // if(this.props.editableTweet.openForm){
     if(this.props.editableTweet.id === this.props.activeEditableTweetId){
-      // debugger
       return(
         <div className='editable-tweet'>
           <MessageInput
@@ -21,7 +18,6 @@ class EditableTweet extends React.Component {
         </div>
       )
     } else {
-      // debugger
       return(
         <div className='editable-tweet'>
           <Tweet
