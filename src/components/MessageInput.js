@@ -1,4 +1,5 @@
 import React from 'react';
+import {addTweet} from '../creators/Tweet'
 
 class MessageInput extends React.Component {
 
@@ -28,15 +29,11 @@ class MessageInput extends React.Component {
     })
   }
 
-  onSubmitForm = (tweet) => {
+  onSubmitForm = (tweet, activeThreadId) => {
     this.props.store.dispatch({
       type: 'OFF_EDITABLE_TWEET_MODE'
     })
-    this.props.store.dispatch({
-      type: 'ADD_TWEET',
-      tweet: tweet,
-      threadId: this.props.activeThreadId
-    })
+    this.props.store.dispatch(addTweet(tweet, activeThreadId))
     this.setState({
       tweet: {
         id: '',
@@ -95,7 +92,7 @@ class MessageInput extends React.Component {
               ) : (
                 <button
                   className='ui medium blue button'
-                  onClick={() => this.onSubmitForm(this.state.tweet)}
+                  onClick={() => this.onSubmitForm(this.state.tweet, this.props.activeThreadId)}
                 >
                   Publish
                 </button>

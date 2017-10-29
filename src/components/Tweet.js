@@ -6,7 +6,7 @@ class Tweet extends React.Component {
   onEditClick = () => {
     this.props.store.dispatch({
       type: 'ON_EDITABLE_TWEET_MODE',
-      id: this.props.editableTweetId
+      editableTweetId: this.props.editableTweetId
     })
   }
 
