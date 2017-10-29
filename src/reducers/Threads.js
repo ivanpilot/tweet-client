@@ -1,16 +1,15 @@
 import {findThreadIndex} from './FindThreadIndex'
 import {editableTweetsReducer} from './EditableTweetsReducer'
-export function threadsReducer(state = [
+
+export function threads(state = [
   {
     id: 'user-v1',
     name: 'My Tweets',
-    // editableTweets: editableTweetsReducer(state, action = {})
     editableTweets: []  ///////editableTweetsReducer(state, action = {})
   },
   {
     id: 'all',
     name: 'Wall',
-    // editableTweets: editableTweetsReducer(state, action = {})
     editableTweets: []  ///////editableTweetsReducer(state, action = {})
   }], action) {
   switch (action.type) {

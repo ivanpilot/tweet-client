@@ -1,4 +1,4 @@
-export function findThreadIndex(threads, action){
+export function findThreadIndex(threads = null, action){
   switch (action.type) {
     case 'ADD_TWEET':
       return threads.findIndex((t) => t.id === action.threadId)

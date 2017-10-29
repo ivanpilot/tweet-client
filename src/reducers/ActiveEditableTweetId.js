@@ -1,4 +1,4 @@
-export function activeEditableTweetIdReducer(state = null, action){
+export function activeEditableTweetId(state = '', action){
   switch (action.type) {
     case 'ON_EDITABLE_TWEET_MODE':
       return action.editableTweetId

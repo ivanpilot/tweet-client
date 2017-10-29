@@ -3,10 +3,10 @@ import uuid from 'uuid';
 
 
 export function tweetReducer(state = {
-  id: 1,
-  title: 'Hey I am first',
-  body: 'I am the first tweet ever typed in here',
-  userId: '1'
+  // id: 1,
+  // title: 'Hey I am first',
+  // body: 'I am the first tweet ever typed in here',
+  // userId: '1'
 }, action) {
   switch (action.type) {
     case 'ADD_TWEET': {

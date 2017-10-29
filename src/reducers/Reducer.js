@@ -1,11 +1,10 @@
-import {activeThreadIdReducer} from './ActiveThreadIdReducer'
-import {activeEditableTweetIdReducer} from './ActiveEditableTweetIdReducer'
-import {threadsReducer} from './ThreadsReducer'
+import {combineReducers} from 'redux';
+import {activeThreadId} from './ActiveThreadId'
+import {activeEditableTweetId} from './ActiveEditableTweetId'
+import {threads} from './Threads'
 
-export function reducer(state = {}, action){
-  return {
-    activeThreadId: activeThreadIdReducer(state.activeThreadId, action),
-    activeEditableTweetId: activeEditableTweetIdReducer(state.activeEditableTweetId, action),
-    threads: threadsReducer(state.threads, action)
-  }
-}
+export const reducer = combineReducers({
+  activeThreadId,
+  activeEditableTweetId,
+  threads
+})
