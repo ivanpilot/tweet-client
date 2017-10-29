@@ -1,6 +1,6 @@
 import React from 'react';
-import {addTweet, editTweet} from '../creators/Tweet'
-import {offEditableTweetMode} from '../creators/EditableTweet'
+import {addTweet, editTweet} from '../actions/Tweet'
+import {offEditableTweetMode} from '../actions/EditableTweet'
 
 class MessageInput extends React.Component {
 

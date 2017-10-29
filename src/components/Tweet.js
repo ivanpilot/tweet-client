@@ -1,7 +1,7 @@
 import React from 'react';
 import {client} from './../Client'
-import {onEditableTweetMode} from '../creators/EditableTweet'
-import {deleteTweet} from '../creators/Tweet'
+import {onEditableTweetMode} from '../actions/EditableTweet'
+import {deleteTweet} from '../actions/Tweet'
 
 class Tweet extends React.Component {
 

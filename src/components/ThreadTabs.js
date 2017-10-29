@@ -1,6 +1,6 @@
 import React from 'react'
-import {offEditableTweetMode} from '../creators/EditableTweet'
-import {openThread} from '../creators/Thread'
+import {offEditableTweetMode} from '../actions/EditableTweet'
+import {openThread} from '../actions/Thread'
 
 class ThreadTabs extends React.Component {
   render(){
