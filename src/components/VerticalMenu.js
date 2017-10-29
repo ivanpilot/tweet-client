@@ -11,6 +11,7 @@ class VerticalMenu extends React.Component {
         </div>
         <MessageInput
           store={this.props.store}
+          activeThreadId={this.props.activeThreadId}
         />
       </div>
     )

@@ -22,25 +22,20 @@ class MessageInput extends React.Component {
       editableTweetId: this.props.editableTweetId,
       tweet: tweet
     })
-    // this.props.store.dispatch({
-    //   type: 'CLOSE_FORM',
-    //   editableTweetId: this.props.editableTweetId
-    // })
+
     this.props.store.dispatch({
       type: 'OFF_EDITABLE_TWEET_MODE'
     })
   }
 
   onSubmitForm = (tweet) => {
-    // this.props.store.dispatch({
-    //   type: 'CLOSE_ALL_FORMS',
-    // })
     this.props.store.dispatch({
       type: 'OFF_EDITABLE_TWEET_MODE'
     })
     this.props.store.dispatch({
       type: 'ADD_TWEET',
-      tweet: tweet
+      tweet: tweet,
+      threadId: this.props.activeThreadId
     })
     this.setState({
       tweet: {

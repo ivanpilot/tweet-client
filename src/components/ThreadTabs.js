@@ -10,7 +10,7 @@ class ThreadTabs extends React.Component {
         className={thread.id === activethreadId ? 'active item' : 'item'}
         onClick={() => {
           this.props.store.dispatch({
-            type: 'DEACTIVATE_EDITABLE_TWEET'
+            type: 'OFF_EDITABLE_TWEET_MODE'
           })
           this.props.store.dispatch({
             type: 'OPEN_THREAD',

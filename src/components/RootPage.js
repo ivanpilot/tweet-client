@@ -21,6 +21,7 @@ class RootPage extends React.Component {
           <div className='ui four wide column'>
             <VerticalMenu
               store={store}
+              activeThreadId={store.getState().activeThreadId}
             />
           </div>
           <div className='ui twelve wide column'>

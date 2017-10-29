@@ -11,7 +11,7 @@ class Tweet extends React.Component {
   onEditClick = () => {
     this.props.store.dispatch({
       type: 'ON_EDITABLE_TWEET_MODE',
-      id: this.props.tweet.id
+      id: this.props.editableTweetId
     })
   }
 
@@ -20,7 +20,7 @@ class Tweet extends React.Component {
   onTrashClick = () => {
     this.props.store.dispatch({
       type: 'DELETE_TWEET',
-      id: this.props.tweet.id
+      editableTweetId: this.props.editableTweetId
     })
   }
 
@@ -34,7 +34,7 @@ class Tweet extends React.Component {
           <div className="content">
             <div className="header">{tweet.title}</div>
             <div className="description">{tweet.body}</div>
-            {(user.id === tweet.user_id) ? (
+            {(user.id === tweet.userId) ? (
                 <div className='extra content'>
                   <span
                     className='right floated trash icon'
