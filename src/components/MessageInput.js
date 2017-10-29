@@ -1,5 +1,6 @@
 import React from 'react';
-import {addTweet} from '../creators/Tweet'
+import {addTweet, editTweet} from '../creators/Tweet'
+import {offEditableTweetMode} from '../creators/EditableTweet'
 
 class MessageInput extends React.Component {
 
@@ -17,22 +18,13 @@ class MessageInput extends React.Component {
     this.setState({tweet})
   }
 
-  onEditForm = (tweet) => {
-    this.props.store.dispatch({
-      type: 'EDIT_TWEET',
-      editableTweetId: this.props.editableTweetId,
-      tweet: tweet
-    })
-
-    this.props.store.dispatch({
-      type: 'OFF_EDITABLE_TWEET_MODE'
-    })
+  onEditForm = (tweet, editableTweetId) => {
+    this.props.store.dispatch(editTweet(tweet, editableTweetId))
+    this.props.store.dispatch(offEditableTweetMode())
   }
 
   onSubmitForm = (tweet, activeThreadId) => {
-    this.props.store.dispatch({
-      type: 'OFF_EDITABLE_TWEET_MODE'
-    })
+    this.props.store.dispatch(offEditableTweetMode())
     this.props.store.dispatch(addTweet(tweet, activeThreadId))
     this.setState({
       tweet: {
@@ -76,15 +68,13 @@ class MessageInput extends React.Component {
                 <div>
                   <button
                     className='ui medium blue button'
-                    onClick={() => this.onEditForm(this.state.tweet)}
+                    onClick={() => this.onEditForm(this.state.tweet, this.props.editableTweetId)}
                   >
                     Edit
                   </button>
                   <button
                     className='ui medium red button'
-                    onClick={() => this.props.store.dispatch({
-                      type: 'OFF_EDITABLE_TWEET_MODE'
-                    })}
+                    onClick={() => this.props.store.dispatch(offEditableTweetMode())}
                   >
                     Close
                   </button>

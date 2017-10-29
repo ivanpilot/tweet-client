@@ -1,4 +1,6 @@
 import React from 'react'
+import {offEditableTweetMode} from '../creators/EditableTweet'
+import {openThread} from '../creators/Thread'
 
 class ThreadTabs extends React.Component {
   render(){
@@ -9,13 +11,8 @@ class ThreadTabs extends React.Component {
         key={index}
         className={thread.id === activethreadId ? 'active item' : 'item'}
         onClick={() => {
-          this.props.store.dispatch({
-            type: 'OFF_EDITABLE_TWEET_MODE'
-          })
-          this.props.store.dispatch({
-            type: 'OPEN_THREAD',
-            threadId: thread.id
-          })
+          this.props.store.dispatch(offEditableTweetMode())
+          this.props.store.dispatch(openThread(thread.id))
         }}
       >
         {thread.name}

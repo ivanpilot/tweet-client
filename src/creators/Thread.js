@@ -1,6 +1,6 @@
 export function openThread(threadId){
   return {
-      type: 'OPEN_TWEET',
+      type: 'OPEN_THREAD',
       threadId: threadId
   }
 }

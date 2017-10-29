@@ -1,20 +1,16 @@
 import React from 'react';
 import {client} from './../Client'
+import {onEditableTweetMode} from '../creators/EditableTweet'
+import {deleteTweet} from '../creators/Tweet'
 
 class Tweet extends React.Component {
 
-  onEditClick = () => {
-    this.props.store.dispatch({
-      type: 'ON_EDITABLE_TWEET_MODE',
-      editableTweetId: this.props.editableTweetId
-    })
+  onEditClick = (editableTweetId) => {
+    this.props.store.dispatch(onEditableTweetMode(editableTweetId))
   }
 
-  onTrashClick = () => {
-    this.props.store.dispatch({
-      type: 'DELETE_TWEET',
-      editableTweetId: this.props.editableTweetId
-    })
+  onTrashClick = (editableTweetId) => {
+    this.props.store.dispatch(deleteTweet(editableTweetId))
   }
 
   render () {
@@ -31,13 +27,13 @@ class Tweet extends React.Component {
                 <div className='extra content'>
                   <span
                     className='right floated trash icon'
-                    onClick={() => this.onTrashClick()}
+                    onClick={() => this.onTrashClick(this.props.editableTweetId)}
                   >
                     <a><i className='trash icon' /></a>
                   </span>
                   <span
                     className='right floated edit icon'
-                    onClick={() => this.onEditClick()}
+                    onClick={() => this.onEditClick(this.props.editableTweetId)}
                   >
                     <a><i className='edit icon' /></a>
                   </span>
