@@ -8,7 +8,9 @@ class BodyContainer extends React.Component {
   render(){
     return(
       <div className="body-container">
-        <RootPage />
+        <RootPage
+          store={this.props.store}
+        />
       </div>
     )
   }

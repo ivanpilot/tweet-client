@@ -6,6 +6,11 @@ import './styles/App.css';
 
 class App extends Component {
 
+  componentDidMount(){
+    this.props.store.subscribe(() => this.forceUpdate())
+  }
+
+
   render() {
     return (
       <div>
@@ -15,7 +20,9 @@ class App extends Component {
         <div className='ui divider'></div>
         <div className='ui grid container'>
           <div className='ui sixteen wide column'>
-            <BodyContainer />
+            <BodyContainer
+              store={this.props.store}
+            />
           </div>
         </div>
       </div>
