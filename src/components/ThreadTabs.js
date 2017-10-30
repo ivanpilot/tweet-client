@@ -1,28 +1,36 @@
 import React from 'react'
 import {offEditableTweetMode} from '../actions/EditableTweet'
 import {openThread} from '../actions/Thread'
+import {store} from '../store'
+import {Tabs} from './Tabs'
 
 class ThreadTabs extends React.Component {
-  render(){
 
-    const activethreadId = this.props.activeThreadId
-    const tabs = this.props.threads.map((thread, index) => (
-      <a
-        key={index}
-        className={thread.id === activethreadId ? 'active item' : 'item'}
-        onClick={() => {
-          this.props.store.dispatch(offEditableTweetMode())
-          this.props.store.dispatch(openThread(thread.id))
-        }}
-      >
-        {thread.name}
-      </a>
+  componentDidMount(){
+    store.subscribe(() => this.forceUpdate())
+  }
+
+  handleClickTab = (threadId) => {
+    store.dispatch(offEditableTweetMode())
+    store.dispatch(openThread(threadId))
+  }
+
+  render(){
+    const state = store.getState()
+    const activeThreadId = state.activeThreadId
+    const tabs = state.threads.map(t => (
+      {
+        id: t.id,
+        name: t.name,
+        active: t.id === activeThreadId
+      }
     ))
 
     return(
-      <div className="ui tabular menu">
-        {tabs}
-      </div>
+      <Tabs
+        tabs={tabs}
+        handleClickTab={this.handleClickTab}
+      />
     )
   }
 }

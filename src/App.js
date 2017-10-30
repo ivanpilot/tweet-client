@@ -6,9 +6,9 @@ import './styles/App.css';
 
 class App extends Component {
 
-  componentDidMount(){
-    this.props.store.subscribe(() => this.forceUpdate())
-  }
+  // componentDidMount(){
+  //   this.props.store.subscribe(() => this.forceUpdate())
+  // }
 
 
   render() {
