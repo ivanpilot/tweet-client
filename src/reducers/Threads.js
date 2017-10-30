@@ -5,12 +5,12 @@ export function threads(state = [
   {
     id: 'user-v1',
     name: 'My Tweets',
-    editableTweets: []  ///////editableTweetsReducer(state, action = {})
+    editableTweets: []
   },
   {
     id: 'all',
     name: 'Wall',
-    editableTweets: []  ///////editableTweetsReducer(state, action = {})
+    editableTweets: []
   }], action) {
   switch (action.type) {
     case 'ADD_TWEET':

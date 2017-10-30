@@ -1,17 +1,6 @@
 import {editableTweetReducer} from './EditableTweetReducer'
 
-export function editableTweetsReducer(state = [
-  // {
-  //   id: '1',
-  //   // tweet: tweetReducer(state, {})
-  //   tweet: {}  //////tweetReducer(state, {})
-  // },
-  // {
-  //   id: '2',
-  //   // tweet: tweetReducer(state, {})
-  //   tweet: {}  //////tweetReducer(state, {})
-  // }
-], action) {
+export function editableTweetsReducer(state = [], action) {
   switch (action.type) {
     case 'ADD_TWEET': {
       return [

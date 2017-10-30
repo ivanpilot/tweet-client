@@ -2,12 +2,7 @@ import {client} from '../Client';
 import uuid from 'uuid';
 
 
-export function tweetReducer(state = {
-  // id: 1,
-  // title: 'Hey I am first',
-  // body: 'I am the first tweet ever typed in here',
-  // userId: '1'
-}, action) {
+export function tweetReducer(state = {}, action) {
   switch (action.type) {
     case 'ADD_TWEET': {
       const currentUserId = client.currentUser().id
