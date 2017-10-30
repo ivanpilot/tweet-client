@@ -8,16 +8,3 @@ export const TweetContainer = (props) => (
     <EditableTweetList />
   </div>
 )
-
-// class TweetContainer extends React.Component {
-//   render(){
-//     return (
-//       <div className="ui center aligned">
-//         <ThreadTabs />
-//         <EditableTweetList />
-//       </div>
-//     )
-//   }
-// }
-//
-// export default TweetContainer

@@ -96,46 +96,4 @@ class MessageInput extends React.Component {
   }
 }
 
-// class MessageInput extends React.Component {
-//
-//   componentDidMount(){
-//     store.subscribe(() => this.forceUpdate())
-//   }
-//
-//   offEditableTweetMode = () => {
-//     store.dispatch(offEditableTweetMode())
-//   }
-//
-//   // onEditForm = (tweet, editableTweetId) => {
-//   //   const editableTweetId =
-//   //   store.dispatch(editTweet(tweet, editableTweetId))
-//   //   offEditableTweetMode()
-//   // }
-//
-//   onSubmitForm = (tweet, activeThreadId) => {
-//     offEditableTweetMode()
-//     store.dispatch(addTweet(tweet, activeThreadId))
-//     // this.setState({
-//     //   tweet: {
-//     //     id: '',
-//     //     title: '',
-//     //     body: ''
-//     //   }
-//     // })
-//   }
-//
-//   render(){
-//     return(
-//       <div>
-//         <MessageInput
-//           tweet={tweet}
-//           offEditableTweetMode={this.offEditableTweetMode}
-//           onSubmitForm={this.onSubmitForm}
-//           onEditForm={this.onEditForm}
-//         />
-//       </div>
-//     )
-//   }
-// }
-//
 export default MessageInput
