@@ -25,6 +25,7 @@ class EditableTweetList extends React.Component {
   }
 
   onSubmitForm = (tweet) => {
+    debugger
     const activeEditableTweetId = store.getState().activeEditableTweetId
     store.dispatch(editTweet(tweet, activeEditableTweetId))
     this.offEditableTweetMode()

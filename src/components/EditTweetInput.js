@@ -1,9 +1,9 @@
 import React from 'react';
-import TextFieldSubmit from './TextFieldSubmit';
+import FormTweet from './FormTweet';
 
 export const EditTweetInput = (props) => (
   <div>
-    <TextFieldSubmit
+    <FormTweet
       tweet={props.tweet}
       offEditableTweetMode={props.offEditableTweetMode}
       onSubmitForm={props.onSubmitForm}

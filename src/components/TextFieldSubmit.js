@@ -62,7 +62,16 @@ class TextFieldSubmit extends React.Component{
                 ) : (
                   <button
                     className='ui medium blue button'
-                    onClick={() => this.props.onSubmitForm(this.state.tweet)}
+                    onClick={() => {
+                      this.props.onSubmitForm(this.state.tweet);
+                      this.setState({
+                        tweet: {
+                          id: '',
+                          title: '',
+                          body: ''
+                        }
+                      })
+                    }}
                   >
                     Publish
                   </button>

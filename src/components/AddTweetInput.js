@@ -1,8 +1,9 @@
 import React from 'react';
-import TextFieldSubmit from './TextFieldSubmit';
-import {addTweet} from '../actions/Tweet'
-import {offEditableTweetMode} from '../actions/EditableTweet'
-import { store } from '../store'
+// import TextFieldSubmit from './TextFieldSubmit';
+import FormTweet from './FormTweet';
+import {addTweet} from '../actions/Tweet';
+import {offEditableTweetMode} from '../actions/EditableTweet';
+import { store } from '../store';
 
 class AddTweetInput extends React.Component {
 
@@ -14,20 +15,12 @@ class AddTweetInput extends React.Component {
     const activeThreadId = store.getState().activeThreadId
     store.dispatch(offEditableTweetMode())
     store.dispatch(addTweet(tweet, activeThreadId))
-    // this.setState({
-    //   tweet: {
-    //     id: '',
-    //     title: '',
-    //     body: ''
-    //   }
-    // })
   }
 
   render(){
     return(
       <div>
-        <TextFieldSubmit
-          offEditableTweetMode={this.offEditableTweetMode}
+        <FormTweet
           onSubmitForm={this.onSubmitForm}
         />
       </div>
@@ -36,3 +29,8 @@ class AddTweetInput extends React.Component {
 }
 
 export default AddTweetInput
+
+// <TextFieldSubmit
+//   offEditableTweetMode={this.offEditableTweetMode}
+//   onSubmitForm={this.onSubmitForm}
+// />
