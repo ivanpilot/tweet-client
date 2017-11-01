@@ -7,9 +7,9 @@ import { store } from '../store';
 
 class AddTweetInput extends React.Component {
 
-  componentDidMount(){
-    store.subscribe(() => this.forceUpdate())
-  }
+  // componentDidMount(){
+  //   store.subscribe(() => this.forceUpdate())
+  // }
 
   onSubmitForm = (tweet) => {
     const activeThreadId = store.getState().activeThreadId
@@ -29,8 +29,3 @@ class AddTweetInput extends React.Component {
 }
 
 export default AddTweetInput
-
-// <TextFieldSubmit
-//   offEditableTweetMode={this.offEditableTweetMode}
-//   onSubmitForm={this.onSubmitForm}
-// />
