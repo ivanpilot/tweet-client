@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Navbar from './components/Navbar'
-import BodyContainer from './components/BodyContainer'
+import { Navbar } from './components/Navbar';
+import BodyContainer from './components/BodyContainer';
 
 import './styles/App.css';
 
