@@ -16,7 +16,7 @@ class FormTweet extends React.Component{
     const fieldErrors = this.state.fieldErrors;
     tweet[name] = value;
     fieldErrors[name] = error;
-    this.setState({value, fieldErrors})
+    this.setState({tweet, fieldErrors})
   }
 
   validate(){

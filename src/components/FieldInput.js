@@ -26,6 +26,7 @@ class FieldInput extends React.Component {
         {
           (this.props.format === 'input') ? (
             <input
+              type={this.props.type}
               value={this.state.value}
               onChange={this.onChange}
             />
