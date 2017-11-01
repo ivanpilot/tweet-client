@@ -2,7 +2,7 @@ class Client {
   constructor(){
     this.useLocalStorage = (typeof localStorage !== 'undefined');
     if(this.useLocalStorage){
-      localStorage.getItem  ('Authorization')
+      this.token = localStorage.getItem  ('Authorization')
     }
   }
 
@@ -29,14 +29,13 @@ class Client {
     }
   }
 
-  // currentUser(){
-  //   debugger
-  //   if(this.token) return getToken()
-  // }
+  isLoggedIn(){
+    return !!this.token
+  }
 
-  // isLoggedIn(){
-  //   !!this.token
-  // }
+  logout(){
+    this.removeToken();
+  }
 }
 
 export const client = new Client();
