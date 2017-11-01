@@ -16,6 +16,12 @@ class Navbar extends React.Component {
         <div className="right menu">
         <Link
           className="ui item"
+          to='/signup'
+        >
+          Sign up
+        </Link>
+        <Link
+          className="ui item"
           to='/login'
         >
           Login
