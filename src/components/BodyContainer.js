@@ -1,5 +1,3 @@
-//will have router and routes to select the page like login / signup / root
-
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { RootPage } from './RootPage';
