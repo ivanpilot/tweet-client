@@ -1,0 +1,24 @@
+.not_found {
+  background: url('../images/not_found.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 600px;
+  width: 100%;
+}
+
+.not_found_message {
+  text-align: center;
+}
+
+.not_found_message h1 {
+  font-size:120px;
+  color: #FFF;
+  padding-top: 130px;
+}
+
+.not_found_message h3 {
+  font-size:40px;
+  color: #FFF;
+  padding-top: 160px;
+}
