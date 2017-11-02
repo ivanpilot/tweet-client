@@ -2,10 +2,8 @@ import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute'
 import { RootPage } from './RootPage';
-// import Login from './Login';
 import Authenticating from './Authenticating';
 import Logout from './Logout';
-// import { SignUp } from './SignUp';
 import { NotFound } from './NotFound';
 import { Boo } from './Boo';
 import '../styles/BodyContainer.css';

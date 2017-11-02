@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { client } from '../Client';
 import '../styles/Navbar.css'
 
@@ -15,6 +15,18 @@ export const Navbar = (props) => (
     { client.isLoggedIn() ?
       (
         <div className="right menu">
+          <NavLink
+            className="ui item"
+            to='/houston'
+          >
+            Houston
+          </NavLink>
+          <NavLink
+            className="ui item"
+            to='/boo'
+          >
+            Boo
+          </NavLink>
           <Link
             className="ui item"
             to='/logout'
@@ -24,18 +36,18 @@ export const Navbar = (props) => (
         </div>
       ) : (
         <div className="right menu">
-          <Link
+          <NavLink
             className="ui item"
             to='/signup'
           >
             Sign up
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             className="ui item"
             to='/login'
           >
             Login
-          </Link>
+          </NavLink>
         </div>
       )
     }

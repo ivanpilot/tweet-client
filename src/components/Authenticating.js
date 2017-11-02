@@ -1,6 +1,6 @@
 import React from 'react';
-import { LoginBis } from './LoginBis';
-import { SignUpBis } from './SignUpBis';
+import { Login } from './Login';
+import { SignUp } from './SignUp';
 import { client } from '../Client';
 
 class Authenticating extends React.Component{
@@ -36,7 +36,7 @@ class Authenticating extends React.Component{
   render(){
     if(this.props.location.pathname === '/login'){
       return(
-        <LoginBis
+        <Login
           onSubmitForm={this.onSubmitForm}
           redirectPath={this.redirectPath()}
           loginInProgress={this.state.loginInProgress}
@@ -45,7 +45,7 @@ class Authenticating extends React.Component{
       )
     } else if (this.props.location.pathname === '/signup'){
       return(
-        <SignUpBis
+        <SignUp
           onSubmitForm={this.onSubmitForm}
           loginInProgress={this.state.loginInProgress}
           shouldRedirect={this.state.shouldRedirect}
