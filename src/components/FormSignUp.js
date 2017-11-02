@@ -34,10 +34,10 @@ class FormSignUp extends React.Component{
   }
 
   onSubmitForm = () => {
-    // const user = this.state.user;
+    const user = this.state.user;
     if(this.validate()) return;
 
-    // this.props.onSubmitForm(user);
+    this.props.onSubmitForm(user);
     console.log("email = " + this.state.user.email + " | password = " + this.state.user.password)
     this.setState({
       user: {
@@ -100,7 +100,7 @@ class FormSignUp extends React.Component{
                   </button>
                 </div>
                 <div className='login-member'>
-                  <p>Already a member?<span> </span> 
+                  <p>Already a member?<span> </span>
                     <Link
                       to='/login'
                     >

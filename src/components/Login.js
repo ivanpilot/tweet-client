@@ -33,6 +33,7 @@ class Login extends React.Component{
 
 
   render(){
+    // debugger
     if(client.isLoggedIn() || this.state.shouldRedirect){
       return(
         <Redirect to={this.redirectPath()} />
