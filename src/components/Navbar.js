@@ -12,7 +12,6 @@ export const Navbar = (props) => (
     >
       Fake Tweeter
     </Link>
-
     { client.isLoggedIn() ?
       (
         <div className="right menu">
@@ -40,7 +39,6 @@ export const Navbar = (props) => (
         </div>
       )
     }
-    
   </div>
 )
 
