@@ -1,8 +1,8 @@
-import React from 'react';
+// import React from 'react';
 import { offEditableTweetMode } from '../actions/EditableTweet';
 import { openThread } from '../actions/Thread';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { Tabs } from './Tabs';
 
 const MapStateToTabsProps = (state) => {
@@ -30,10 +30,10 @@ const MapStateToTabsProps = (state) => {
 // }
 const MapDispatchToTabsProps = (dispatch) => (
   {
-    handleClickTab: (threadId) => (
-      dispatch(offEditableTweetMode()),
+    handleClickTab: (threadId) => {
+      dispatch(offEditableTweetMode())
       dispatch(openThread(threadId))
-    )
+    }
   }
 )
 

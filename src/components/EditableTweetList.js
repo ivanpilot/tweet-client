@@ -1,13 +1,13 @@
-import React from 'react';
+// import React from 'react';
 import { connect } from 'react-redux';
-import { store } from '../store';
+// import { store } from '../store';
 import { client } from './../Client';
 import { EditableTweet } from './EditableTweet';
 import { onEditableTweetMode, offEditableTweetMode } from '../actions/EditableTweet';
 import { editTweet, deleteTweet } from '../actions/Tweet';
 import '../styles/EditableTweetList.css';
 
-const MapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   const currentUserId = client.currentUser().id
   const activeThreadId = state.activeThreadId
   const activeEditableTweetId = state.activeEditableTweetId
@@ -21,20 +21,18 @@ const MapStateToProps = (state) => {
   }
 }
 
-const MapDispatchToProps = (dispatch) => {
-  return {
-    onEditClick: (editableTweetId) => (
-      dispatch(onEditableTweetMode(editableTweetId))
-    ),
-    onTrashClick: (editableTweetId) => (
-      dispatch(deleteTweet(editableTweetId))
-    ),
-    offEditableTweetMode: () => (
-      dispatch(offEditableTweetMode())
-    ),
-    dispatch: dispatch
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  onEditClick: (editableTweetId) => (
+    dispatch(onEditableTweetMode(editableTweetId))
+  ),
+  onTrashClick: (editableTweetId) => (
+    dispatch(deleteTweet(editableTweetId))
+  ),
+  offEditableTweetMode: () => (
+    dispatch(offEditableTweetMode())
+  ),
+  dispatch: dispatch
+})
 
 const mergeEditableTweetProps = (stateProps, dispatchProps) => {
   return {
@@ -48,8 +46,8 @@ const mergeEditableTweetProps = (stateProps, dispatchProps) => {
 }
 
 export const EditableTweetList = connect(
-  MapStateToProps,
-  MapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
   mergeEditableTweetProps
 )(EditableTweet)
 
