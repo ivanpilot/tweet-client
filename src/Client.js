@@ -7,8 +7,8 @@ class Client {
   }
 
   setToken(token) {
-    this.token = JSON.stringify(token);
-
+    this.token = token;
+    // debugger
     if (this.useLocalStorage) {
       localStorage.setItem('Authorization', this.token);
     }

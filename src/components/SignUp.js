@@ -6,11 +6,14 @@ import '../styles/Style.css'
 import '../styles/SignUp.css'
 
 export const SignUp = (props) => {
+  // debugger
   if(client.isLoggedIn() || props.shouldRedirect){
+    // debugger
     return(
       <Redirect to='/tweets' />
     )
   } else {
+    // debugger
     return(
       <div className='enclosing-frame'>
         <div className='title-frame'>

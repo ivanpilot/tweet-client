@@ -8,7 +8,7 @@ import { editTweet, deleteTweet } from '../actions/Tweet';
 import '../styles/EditableTweetList.css';
 
 const mapStateToProps = (state) => {
-  const currentUserId = client.currentUser().id
+  const currentUserId = "1"//client.currentUser().id
   const activeThreadId = state.activeThreadId
   const activeEditableTweetId = state.activeEditableTweetId
   const activeThread = state.threads.find((thread) => thread.id === activeThreadId)

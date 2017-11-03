@@ -11,13 +11,14 @@ class Authenticating extends React.Component{
 
   onSubmitForm = (user) => {
     this.setState({loginInProgress: true})
-    this.login(user);
-    this.setState({shouldRedirect: true})
+    client.login(user).then(() => (
+      this.setState({shouldRedirect: true})
+    ));
   }
 
-  login = (user) => {
-    client.login(user)
-  }
+  // login = (user) => {
+  //   client.login(user)
+  // }
 
   clientIsLoggedIn = () => {
     return client.isLoggedIn()
@@ -30,6 +31,7 @@ class Authenticating extends React.Component{
   }
 
   render(){
+    // debugger
     if(this.props.location.pathname === '/login'){
       return(
         <Login
