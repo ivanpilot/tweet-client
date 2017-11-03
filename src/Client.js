@@ -4,6 +4,7 @@ class Client {
     if(this.useLocalStorage){
       this.token = localStorage.getItem  ('Authorization')
     }
+    this.route = 'http://localhost:3000'
   }
 
   setToken(token) {
@@ -30,18 +31,15 @@ class Client {
   }
 
   login(user) {
-    const newUser = {
-      username: user.username,
-      email: user.email,
-      password: user.password,
-      password_confirmation: user.passwordConfirmation
-    }
-    return fetch('http://localhost:3000/signup', {
+    const path = Object.keys(user).length === 2 ? '/auth/login' : '/signup'
+    const url = this.route + path
+    // debugger
+    return fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newUser)
+      body: JSON.stringify(user)
     }).then(this.checkStatus)
       .then(this.parseJson)
       .then((json) => this.setToken(json.auth_token))

@@ -16,10 +16,6 @@ class Authenticating extends React.Component{
     ));
   }
 
-  // login = (user) => {
-  //   client.login(user)
-  // }
-
   clientIsLoggedIn = () => {
     return client.isLoggedIn()
   }

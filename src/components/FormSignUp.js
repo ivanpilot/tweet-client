@@ -9,7 +9,7 @@ class FormSignUp extends React.Component{
       username: '',
       email: '',
       password: '',
-      passwordConfirmation: '',
+      password_confirmation: '',
     },
     fieldErrors: {}
   }
@@ -30,7 +30,7 @@ class FormSignUp extends React.Component{
     if(!user.username) return true;
     if(!user.email) return true;
     if(!user.password) return true;
-    if(!user.passwordConfirmation) return true;
+    if(!user.password_confirmation) return true;
     if(errMessages.length) return true;
     return false;
   }
@@ -46,7 +46,7 @@ class FormSignUp extends React.Component{
         username: '',
         email: '',
         password: '',
-        passwordConfirmation: '',
+        password_confirmation: '',
       },
       fieldErrors: {}
     })
@@ -95,10 +95,10 @@ class FormSignUp extends React.Component{
               <div className="field">
                 <label>Password Confirmation</label>
                 <FieldInput
-                  name='passwordConfirmation'
+                  name='password_confirmation'
                   type='password'
                   format='input'
-                  value={this.state.user.passwordConfirmation}
+                  value={this.state.user.password_confirmation}
                   onChange={this.onInputChange}
                   validate={(value) => (value ? false : 'Password Confirmation is required')}
                 />
