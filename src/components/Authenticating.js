@@ -16,11 +16,7 @@ class Authenticating extends React.Component{
   }
 
   login = (user) => {
-    client.setToken({
-      id:'1',
-      email: user.email,
-      password: user.password
-    })
+    client.login(user)
   }
 
   clientIsLoggedIn = () => {

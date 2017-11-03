@@ -10,7 +10,9 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14",
     "redux": "^3.7.2",
-    "uuid-v4": "^0.1.0"
+    "redux-thunk": "^2.2.0",
+    "uuid-v4": "^0.1.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -21,6 +23,7 @@
   "devDependencies": {
     "babel-preset-stage-1": "^6.24.1",
     "react-scripts": "^1.0.14",
+    "redux-thunk": "^2.2.0",
     "uuid-v4": "^0.1.0"
   }
 }

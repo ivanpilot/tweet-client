@@ -6,6 +6,7 @@ import '../styles/FormLogin.css'
 class FormSignUp extends React.Component{
   state = {
     user: {
+      username: '',
       email: '',
       password: '',
       passwordConfirmation: '',
@@ -26,6 +27,7 @@ class FormSignUp extends React.Component{
     const fieldErrors = this.state.fieldErrors;
     const errMessages = Object.keys(fieldErrors).filter((k) => fieldErrors[k]);
 
+    if(!user.username) return true;
     if(!user.email) return true;
     if(!user.password) return true;
     if(!user.passwordConfirmation) return true;
@@ -41,6 +43,7 @@ class FormSignUp extends React.Component{
     console.log("email = " + this.state.user.email + " | password = " + this.state.user.password)
     this.setState({
       user: {
+        username: '',
         email: '',
         password: '',
         passwordConfirmation: '',
@@ -56,6 +59,17 @@ class FormSignUp extends React.Component{
         <div className="card">
           <div className="content">
             <div className='ui form'>
+              <div className="field">
+                <label>Username</label>
+                <FieldInput
+                  name='username'
+                  type='text'
+                  format='input'
+                  value={this.state.user.username}
+                  onChange={this.onInputChange}
+                  validate={(value) => (value ? false : 'Username is required')}
+                />
+              </div>
               <div className="field">
                 <label>Email</label>
                 <FieldInput
