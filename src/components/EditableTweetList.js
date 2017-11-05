@@ -1,14 +1,62 @@
-// import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 // import { store } from '../store';
+import { connect } from 'react-redux';
 import { client } from './../Client';
+import { apiTweet } from '../api/ApiTweet';
 import { EditableTweet } from './EditableTweet';
 import { onEditableTweetMode, offEditableTweetMode } from '../actions/EditableTweet';
-import { editTweet, deleteTweet } from '../actions/Tweet';
+import { addTweet, editTweet, deleteTweet } from '../actions/Tweet';
 import '../styles/EditableTweetList.css';
 
+class EditableTweetList extends React.Component {
+  state = {
+    isLoading:false,
+    isLoaded: false
+  }
+
+  componentDidMount(){
+    this.setState({isLoading: true})
+    apiTweet.loadTweets((tweets) => {
+      tweets.map(tweet => {
+        const item = {
+          id: tweet.id,
+          title: tweet.title,
+          body: tweet.body,
+          userId: tweet.user_id
+        }
+        this.props.preloadTweets(item)
+      })
+      this.setState({isLoading: false, isLoaded: true})
+    })
+
+  }
+
+  render(){
+    if(this.state.isLoading){
+      return(
+        <div className='ui active centered inline loader' />
+      )
+    } else {
+      return(
+        <div>
+          <EditableTweet
+            editableTweets={this.props.editableTweets}
+            activeEditableTweetId={this.props.activeEditableTweetId}
+            currentUserId={this.props.currentUserId}
+            onSubmitForm={this.onSubmitForm}
+            offEditableTweetMode={this.offEditableTweetMode}
+            onEditClick={this.onEditClick}
+            onTrashClick={this.onTrashClick}
+          />
+        </div>
+      )
+    }
+  }
+}
+
+
 const mapStateToProps = (state) => {
-  const currentUserId = "1"//client.currentUser().id
+  const currentUserId = client.currentUser().id
   const activeThreadId = state.activeThreadId
   const activeEditableTweetId = state.activeEditableTweetId
   const activeThread = state.threads.find((thread) => thread.id === activeThreadId)
@@ -16,6 +64,7 @@ const mapStateToProps = (state) => {
 
   return {
     editableTweets,
+    activeThreadId,
     activeEditableTweetId,
     currentUserId
   }
@@ -41,15 +90,15 @@ const mergeEditableTweetProps = (stateProps, dispatchProps) => {
     onSubmitForm: (tweet) => {
       dispatchProps.dispatch(editTweet(tweet, stateProps.activeEditableTweetId))
       dispatchProps.dispatch(offEditableTweetMode())
+    },
+    preloadTweets: (tweet) => {
+      // debugger
+      dispatchProps.dispatch(addTweet(tweet, stateProps.activeThreadId))
     }
   }
 }
 
-export const EditableTweetList = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  mergeEditableTweetProps
-)(EditableTweet)
+export default connect(mapStateToProps, mapDispatchToProps, mergeEditableTweetProps)(EditableTweetList)
 
 // class EditableTweetList extends React.Component {
 //

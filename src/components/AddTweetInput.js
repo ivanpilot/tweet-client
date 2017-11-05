@@ -2,6 +2,8 @@
 import { connect } from 'react-redux';
 import FormTweet from './FormTweet';
 import { addTweet } from '../actions/Tweet';
+import { apiTweet } from '../api/ApiTweet';
+
 import { offEditableTweetMode } from '../actions/EditableTweet';
 // import { store } from '../store';
 
@@ -19,6 +21,7 @@ const mergeProps = (stateProps, dispatchProps) => ({
   onSubmitForm: (tweet) => {
     dispatchProps.dispatch(offEditableTweetMode())
     dispatchProps.dispatch(addTweet(tweet, stateProps.activeThreadId))
+    apiTweet.addNewTweet(tweet)
   }
 })
 

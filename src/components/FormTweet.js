@@ -1,5 +1,7 @@
 import React from 'react';
 import FieldInput from './FieldInput';
+// import { client } from '../Cient';
+import { client } from './../Client';
 
 class FormTweet extends React.Component{
   state = {
@@ -31,7 +33,7 @@ class FormTweet extends React.Component{
   }
 
   onSubmitForm = () => {
-    const tweet = this.state.tweet;
+    const tweet = {...this.state.tweet, userId: client.currentUser().id};
     if(this.validate()) return;
     this.props.onSubmitForm(tweet);
     this.setState({

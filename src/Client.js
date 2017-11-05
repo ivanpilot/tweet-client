@@ -16,10 +16,13 @@ class Client {
   }
 
   currentUser() {
-    if (this.useLocalStorage) {
-      this.token = localStorage.getItem('Authorization');
+    // if (this.useLocalStorage) {
+    //   this.token = localStorage.getItem('Authorization');
+    // }
+    // return JSON.parse(this.token)
+    return{
+      id: 1
     }
-    return JSON.parse(this.token)
   }
 
   removeToken() {

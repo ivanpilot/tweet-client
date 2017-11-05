@@ -5,12 +5,14 @@ import uuid from 'uuid';
 export function tweetReducer(state = {}, action) {
   switch (action.type) {
     case 'ADD_TWEET': {
-      const currentUserId = client.currentUser().id
+      // const currentUserId = client.currentUser().id
+      // debugger
       return {
-        id: uuid.v4(),
+        id: action.tweet.id,
         title: action.tweet.title,
         body: action.tweet.body,
-        userId: currentUserId
+        // userId: currentUserId
+        userId: action.tweet.userId
       }
     }
 

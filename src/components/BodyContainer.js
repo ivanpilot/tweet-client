@@ -13,8 +13,8 @@ class BodyContainer extends React.Component {
     return(
       <div className="body-container">
         <Switch>
-          <PrivateRoute exact path='/tweets' component={RootPage} />
-          <PrivateRoute exact path='/boo' component={Boo} />
+          <Route exact path='/tweets' component={RootPage} />
+          <Route exact path='/boo' component={Boo} />
           <Route exact path='/login' component={Authenticating} />
           <Route exact path='/signup' component={Authenticating} />
           <Route exact path='/logout' component={Logout} />
