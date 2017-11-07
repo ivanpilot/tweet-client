@@ -1,5 +1,5 @@
 import React from 'react';
-import { AddTweetInput } from './AddTweetInput';
+import { AddTweetInput } from '../containers/AddTweetInput';
 import '../styles/VerticalMenu.css';
 
 export const VerticalMenu = (props) => (

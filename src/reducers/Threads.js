@@ -1,17 +1,8 @@
-import {findThreadIndex} from './FindThreadIndex'
-import {editableTweetsReducer} from './EditableTweetsReducer'
+import { initialState } from './InitialState';
+import {findThreadIndex} from './FindThreadIndex';
+import {editableTweetsReducer} from './EditableTweetsReducer';
 
-export function threads(state = [
-  {
-    id: 'user-v1',
-    name: 'My Tweets',
-    editableTweets: []
-  },
-  {
-    id: 'all',
-    name: 'Wall',
-    editableTweets: []
-  }], action) {
+export function threads(state = initialState.threads, action) {
   switch (action.type) {
     case 'ADD_TWEET':
     case 'EDIT_TWEET':

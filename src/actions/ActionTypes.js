@@ -1,0 +1,6 @@
+export const ADD_TWEET = 'ADD_TWEET';
+export const EDIT_TWEET = 'EDIT_TWEET';
+export const DELETE_TWEET = 'DELETE_TWEET';
+export const OPEN_THREAD = 'OPEN_THREAD';
+export const ON_EDITABLE_TWEET_MODE = 'ON_EDITABLE_TWEET_MODE';
+export const OFF_EDITABLE_TWEET_MODE = 'OFF_EDITABLE_TWEET_MODE';

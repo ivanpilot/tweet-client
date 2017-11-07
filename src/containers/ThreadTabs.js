@@ -3,7 +3,7 @@ import { offEditableTweetMode } from '../actions/EditableTweet';
 import { openThread } from '../actions/Thread';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
-import { Tabs } from './Tabs';
+import { Tabs } from '../components/Tabs';
 
 const MapStateToTabsProps = (state) => {
   const tabs = state.threads.map(t => (

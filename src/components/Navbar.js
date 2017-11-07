@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { client } from '../Client';
+import { client } from '../client/Client';
 import '../styles/Navbar.css'
 
 

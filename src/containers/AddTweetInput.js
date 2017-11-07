@@ -1,8 +1,8 @@
 // import React from 'react';
 import { connect } from 'react-redux';
-import FormTweet from './FormTweet';
+import FormTweet from '../components/FormTweet';
 import { addTweet } from '../actions/Tweet';
-import { apiTweet } from '../api/ApiTweet';
+import { apiTweet } from '../client/ApiTweet';
 
 import { offEditableTweetMode } from '../actions/EditableTweet';
 // import { store } from '../store';

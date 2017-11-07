@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { client } from '../Client';
+import { client } from '../client/Client';
 
 class Logout extends React.Component {
   constructor(props){

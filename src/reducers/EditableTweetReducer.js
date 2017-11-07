@@ -1,7 +1,8 @@
-import {tweetReducer} from './TweetReducer'
+import { initialState } from './InitialState';
+import { tweetReducer } from './TweetReducer';
 import uuid from 'uuid';
 
-export function editableTweetReducer(state = {}, action) {
+export function editableTweetReducer(state = initialState.editableTweet, action) {
   switch (action.type) {
     case 'ADD_TWEET': {
       return {

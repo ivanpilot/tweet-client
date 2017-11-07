@@ -1,6 +1,8 @@
+import * as types from './ActionTypes';
+
 export function addTweet(tweet, threadId){
   return {
-      type: 'ADD_TWEET',
+      type: types.ADD_TWEET,
       tweet: tweet,
       threadId: threadId
   }
@@ -8,7 +10,7 @@ export function addTweet(tweet, threadId){
 
 export function editTweet(tweet, editableTweetId){
   return {
-      type: 'EDIT_TWEET',
+      type: types.EDIT_TWEET,
       tweet: tweet,
       editableTweetId: editableTweetId
   }
@@ -16,7 +18,7 @@ export function editTweet(tweet, editableTweetId){
 
 export function deleteTweet(editableTweetId){
   return {
-      type: 'DELETE_TWEET',
+      type: types.DELETE_TWEET,
       editableTweetId: editableTweetId
   }
 }

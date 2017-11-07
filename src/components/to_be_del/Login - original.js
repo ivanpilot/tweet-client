@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import FormLogin from './FormLogin';
-import { client } from '../Client';
+import { client } from '../client/Client';
 import '../styles/Style.css'
 import '../styles/Login.css'
 

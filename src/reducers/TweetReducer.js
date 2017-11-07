@@ -1,12 +1,12 @@
-import {client} from '../Client';
+import { initialState } from './InitialState';
+// import { client } from '../client/Client';
 import uuid from 'uuid';
 
 
-export function tweetReducer(state = {}, action) {
+export function tweetReducer(state = initialState.tweet, action) {
   switch (action.type) {
     case 'ADD_TWEET': {
       // const currentUserId = client.currentUser().id
-      // debugger
       return {
         id: action.tweet.id,
         title: action.tweet.title,

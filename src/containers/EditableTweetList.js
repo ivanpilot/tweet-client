@@ -1,44 +1,53 @@
 import React from 'react';
 // import { store } from '../store';
 import { connect } from 'react-redux';
-import { client } from './../Client';
-import { apiTweet } from '../api/ApiTweet';
-import { EditableTweet } from './EditableTweet';
+import thunk from 'redux-thunk';
+import { client } from '../client/Client';
+// import { apiTweet } from '../client/ApiTweet';
+import { EditableTweet } from '../components/EditableTweet';
 import { onEditableTweetMode, offEditableTweetMode } from '../actions/EditableTweet';
 import { addTweet, editTweet, deleteTweet } from '../actions/Tweet';
 import '../styles/EditableTweetList.css';
+// import { fetchTweet } from '../actions/FetchTweet';
 
 class EditableTweetList extends React.Component {
-  state = {
-    isLoading:false,
-    isLoaded: false
+
+  constructor(props){
+    super(props)
+    this.state = {
+      isLoading:false,
+      isLoaded: false
+    }
+    // debugger
+    // this.props.fetchTweet()
   }
 
-  componentDidMount(){
-    this.setState({isLoading: true})
-    apiTweet.loadTweets((tweets) => {
-      tweets.map(tweet => {
-        const item = {
-          id: tweet.id,
-          title: tweet.title,
-          body: tweet.body,
-          userId: tweet.user_id
-        }
-        this.props.preloadTweets(item)
-      })
-      this.setState({isLoading: false, isLoaded: true})
-    })
 
+
+
+  handleClick = () =>{
+    // debugger
+    // store.dispatch(fetchTweet())
+    this.props.fetchTweet()
+    // this.props.dispatch(fetchTweet)
+  }
+
+
+  componentDidMount(){
+   this.props.fetchTweet()
   }
 
   render(){
-    if(this.state.isLoading){
-      return(
-        <div className='ui active centered inline loader' />
-      )
-    } else {
-      return(
-        <div>
+    return(
+      <div>
+        <button
+          onClick={this.handleClick}
+        >
+          TWEETA
+        </button>
+        {this.state.isLoading ? (
+          <div className='ui active centered inline loader' />
+        ) : (
           <EditableTweet
             editableTweets={this.props.editableTweets}
             activeEditableTweetId={this.props.activeEditableTweetId}
@@ -48,9 +57,58 @@ class EditableTweetList extends React.Component {
             onEditClick={this.onEditClick}
             onTrashClick={this.onTrashClick}
           />
-        </div>
-      )
-    }
+        )}
+      </div>
+    )
+  }
+
+
+
+  // render(){
+  //   if(this.state.isLoading){
+  //     return(
+  //       <div className='ui active centered inline loader' />
+  //     )
+  //   } else {
+  //     return(
+  //       <div>
+  //         <EditableTweet
+  //           editableTweets={this.props.editableTweets}
+  //           activeEditableTweetId={this.props.activeEditableTweetId}
+  //           currentUserId={this.props.currentUserId}
+  //           onSubmitForm={this.onSubmitForm}
+  //           offEditableTweetMode={this.offEditableTweetMode}
+  //           onEditClick={this.onEditClick}
+  //           onTrashClick={this.onTrashClick}
+  //         />
+  //       </div>
+  //     )
+  //   }
+  // }
+}
+
+function fetchTweet(){
+  // debugger
+
+  return (dispatch) => {
+    // debugger
+    return fetch('http://localhost:3000/api/posts/1')
+    .then(response => response.json())
+    .then(json => {
+      // debugger
+      const newTweet = {
+        id: json.id,
+        title: json.title,
+        body: json.body,
+        userId: json.user_id
+      }
+
+      return dispatch({
+        type: 'ADD_TWEET',
+        tweet: newTweet,
+        threadId: 'user-v1'
+      })
+    })
   }
 }
 
@@ -70,20 +128,25 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  onEditClick: (editableTweetId) => (
-    dispatch(onEditableTweetMode(editableTweetId))
-  ),
-  onTrashClick: (editableTweetId) => (
-    dispatch(deleteTweet(editableTweetId))
-  ),
-  offEditableTweetMode: () => (
-    dispatch(offEditableTweetMode())
-  ),
-  dispatch: dispatch
-})
+const mapDispatchToProps = (dispatch) => {
+  // debugger
+  return {
+    onEditClick: (editableTweetId) => (
+      dispatch(onEditableTweetMode(editableTweetId))
+    ),
+    onTrashClick: (editableTweetId) => (
+      dispatch(deleteTweet(editableTweetId))
+    ),
+    offEditableTweetMode: () => (
+      dispatch(offEditableTweetMode())
+    ),
+    fetchTweet: () => dispatch(fetchTweet()),
+    dispatch: dispatch,
+  }
+}
 
 const mergeEditableTweetProps = (stateProps, dispatchProps) => {
+  // debugger
   return {
     ...stateProps,
     ...dispatchProps,
@@ -94,11 +157,16 @@ const mergeEditableTweetProps = (stateProps, dispatchProps) => {
     preloadTweets: (tweet) => {
       // debugger
       dispatchProps.dispatch(addTweet(tweet, stateProps.activeThreadId))
-    }
+    },
+    // fetchTweet: fetchTweet,
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeEditableTweetProps)(EditableTweetList)
+export default connect (
+  mapStateToProps,
+  mapDispatchToProps,
+  // mergeEditableTweetProps
+)(EditableTweetList)
 
 // class EditableTweetList extends React.Component {
 //

@@ -1,7 +1,6 @@
 import React from 'react';
 import FieldInput from './FieldInput';
-// import { client } from '../Cient';
-import { client } from './../Client';
+import { client } from '../client/Client';
 
 class FormTweet extends React.Component{
   state = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Login } from './Login';
 import { SignUp } from './SignUp';
-import { client } from '../Client';
+import { client } from '../client/Client';
 
 class Authenticating extends React.Component{
   state = {
