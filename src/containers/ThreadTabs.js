@@ -2,22 +2,62 @@
 import { offEditableTweetMode } from '../actions/EditableTweet';
 import { openThread } from '../actions/Thread';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
+import { allThreads, activeThread } from '../reducers/ThreadsById';
 import { Tabs } from '../components/Tabs';
 
-const MapStateToTabsProps = (state) => {
-  const tabs = state.threads.map(t => (
-    {
-      id: t.id,
-      name: t.name,
-      active: t.id === state.activeThreadId
-    }
-  ))
+// const MapStateToTabsProps = (state) => {
+//   const tabs = state.threads.map(t => (
+//     {
+//       id: t.id,
+//       name: t.name,
+//       active: t.id === state.activeThreadId
+//     }
+//   ))
+//
+//   return {
+//     tabs
+//   }
+//
+// }
 
+const MapStateToProps = (state) => {
+  // debugger
   return {
-    tabs
+    tabs: allThreads(state.threadsById),
+    activeThreadId: activeThread(state.threadsById)
   }
 }
+
+const MapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    handleClickTab: handleClickTab
+  }, dispatch)
+}
+
+// function handleClickTab(id){
+//   debugger
+//   return {
+//     type: 'TRIGGER_THREAD',
+//     id: id
+//   }
+// }
+
+function handleClickTab(id, activeThreadId){
+  return (dispatch) => {
+    dispatch({
+      type: 'TRIGGER_THREAD',
+      id: id
+    })
+    dispatch({
+      type: 'TRIGGER_THREAD',
+      id: activeThreadId
+    })
+  }
+}
+
+
+
 
 // const MapDispatchToTabsProps = (dispatch, threadId) => {
 //   // debugger
@@ -28,16 +68,19 @@ const MapStateToTabsProps = (state) => {
 //     }, dispatch)
 //   )
 // }
-const MapDispatchToTabsProps = (dispatch) => (
-  {
-    handleClickTab: (threadId) => {
-      dispatch(offEditableTweetMode())
-      dispatch(openThread(threadId))
-    }
-  }
-)
+// const MapDispatchToTabsProps = (dispatch) => (
+//   {
+//     handleClickTab: (threadId) => {
+//       dispatch(offEditableTweetMode())
+//       dispatch(openThread(threadId))
+//     }
+//   }
+// )
 
-export const ThreadTabs = connect(MapStateToTabsProps, MapDispatchToTabsProps)(Tabs)
+export const ThreadTabs = connect (
+  MapStateToProps,
+  MapDispatchToProps
+)(Tabs)
 
 // class ThreadTabs extends React.Component {
 //

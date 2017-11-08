@@ -17,3 +17,21 @@ export const initialState = {
   editableTweet: {},
   tweet: {}
 }
+
+//full state //////
+// state = {
+//   tweetsById:{
+//     '1': {
+//       title: '',
+//       body: '',
+//       userId: '',
+//       active: false
+//     },
+//   },
+//   threadsById:{
+//     '1': {
+//       name: '',
+//       active: true
+//     }
+//   }
+// }
