@@ -22,3 +22,10 @@ export function deleteTweet(editableTweetId){
       editableTweetId: editableTweetId
   }
 }
+
+export function triggerEditable(id){
+  return {
+    type: types.TRIGGER_EDITABLE,
+    id: id
+  }
+}

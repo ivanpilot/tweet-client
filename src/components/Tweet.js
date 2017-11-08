@@ -1,6 +1,8 @@
 import React from 'react';
 
-export const Tweet = (props) => (
+export const Tweet = (props) => {
+  // debugger
+return (
   <div className="ui cards">
     <div className="card">
       <div className="content">
@@ -17,7 +19,7 @@ export const Tweet = (props) => (
               </span>
               <span
                 className='right floated edit icon'
-                onClick={() => props.onEditClick(props.tweet.id)}
+                onClick={() => props.onEditClick(props.tweet.id, props.editableTweet)}
               >
                 <a><i className='edit icon' /></a>
               </span>
@@ -28,3 +30,4 @@ export const Tweet = (props) => (
     </div>
   </div>
 )
+}

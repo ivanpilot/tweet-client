@@ -43,8 +43,16 @@ export function tweetsById(state = {
       }
     }
 
-    case 'TRIGGER_TWEET': {
-      return state
+    case 'TRIGGER_EDITABLE': {
+      const oldEditable = state[action.id]
+      const newEditable = {
+        ...oldEditable,
+        editable: !oldEditable.editable
+      }
+      return {
+        ...state,
+        [action.id]: newEditable
+      }
     }
 
     case 'LOAD_TWEETS': {
@@ -62,9 +70,14 @@ export const allTweets = (state) => {
     title: state[id].title,
     body: state[id].body,
     userId: state[id].user_id,
-    editable: false,
+    editable: state[id].editable || false,
     ownership: true,
     // ownership: state[id].user_id === client.currentUser().id
   })
   )
+}
+
+export const editableTweet = (state) => {
+  // debugger
+  return Object.keys(state).find(id => state[id].editable)
 }

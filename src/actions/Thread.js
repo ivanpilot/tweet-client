@@ -6,10 +6,3 @@ export function triggerThread(threadId){
       id: threadId
   }
 }
-
-// export function closeThread(threadId){
-//   return {
-//       type: types.CLOSE_THREAD,
-//       threadId: threadId
-//   }
-// }

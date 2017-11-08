@@ -13,7 +13,7 @@ const MapStateToProps = (state) => {
 
 const MapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    handleClickTab: handleClickTab
+    handleClickTab,
   }, dispatch)
 }
 
