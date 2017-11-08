@@ -11,7 +11,7 @@ import { threadsById } from './ThreadsById';
 // })
 
 export const reducer = combineReducers({
-  // tweetsById,
+  tweetsById,
   threadsById,
 })
 

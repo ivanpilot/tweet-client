@@ -11,6 +11,7 @@ export function threadsById(state = {
   }
 }, action){
   switch (action.type) {
+
     case 'TRIGGER_THREAD':
       const oldThread = state[action.id]
       const newThread = {
@@ -36,5 +37,5 @@ export const allThreads = (state) => {
 }
 
 export const activeThread = (state) => {
-  return _.keys(_.pickBy(state, (id) => id.active))
+  return Object.keys(state).find(id => state[id].active)
 }

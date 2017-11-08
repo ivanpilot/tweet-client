@@ -20,4 +20,8 @@ let result = Object.keys(state).map(id => ({
 
 let activeThread = Object.keys(state).find(id => state[id].active)
 
-console.log(activeThread)
+// let filter = Object.keys(state).filter(id => id !== )
+let copy = Object.assign({}, state)
+let newState = delete copy['1']
+
+console.log(state)

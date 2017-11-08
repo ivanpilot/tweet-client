@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { triggerThread } from '../actions/Thread'
 import { allThreads, activeThread } from '../reducers/ThreadsById';
 import { Tabs } from '../components/Tabs';
 
@@ -16,16 +17,11 @@ const MapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
+//can dispatch several action only because of redux-thunk
 function handleClickTab(id, activeThreadId){
   return (dispatch) => {
-    dispatch({
-      type: 'TRIGGER_THREAD',
-      id: id
-    })
-    dispatch({
-      type: 'TRIGGER_THREAD',
-      id: activeThreadId
-    })
+    dispatch(triggerThread(activeThreadId))
+    dispatch(triggerThread(id))
   }
 }
 

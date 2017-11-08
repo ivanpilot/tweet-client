@@ -1,15 +1,16 @@
 import * as types from './ActionTypes';
 
-export function openThread(threadId){
+export function triggerThread(threadId){
+  // debugger
   return {
-      type: types.OPEN_THREAD,
-      threadId: threadId
+      type: types.TRIGGER_THREAD,
+      id: threadId
   }
 }
 
-export function closeThread(threadId){
-  return {
-      type: types.CLOSE_THREAD,
-      threadId: threadId
-  }
-}
+// export function closeThread(threadId){
+//   return {
+//       type: types.CLOSE_THREAD,
+//       threadId: threadId
+//   }
+// }
