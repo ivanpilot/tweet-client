@@ -5,6 +5,6 @@ import { ThreadTabs } from '../containers/ThreadTabs'
 export const TweetContainer = (props) => (
   <div className="ui center aligned">
     <ThreadTabs />
-    
+    <EditableTweetList />
   </div>
 )

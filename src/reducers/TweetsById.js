@@ -1,21 +1,23 @@
+import _ from 'lodash';
+
 export function tweetsById(state = {
   '1': {
     title: 'First Tweet',
     body: 'Hi I am the first',
-    userId: '1',
-    active: false
+    user_id: '1',
+    editable: false
   },
   '2': {
-    title: 'First Tweet',
-    body: 'Hi I am the first',
-    userId: '1',
-    active: false
+    title: 'Second Tweet',
+    body: 'Hi I am the second',
+    user_id: '1',
+    editable: false
   }
 }, action){
   switch (action.type) {
     case 'ADD_TWEET': {
       return {
-        action.tweet,
+        [action.tweet.id]: action.tweet,
         ...state
       }
     }
@@ -41,7 +43,28 @@ export function tweetsById(state = {
       }
     }
 
+    case 'TRIGGER_TWEET': {
+      return state
+    }
+
+    case 'LOAD_TWEETS': {
+      return state
+    }
+
     default:
       return state
   }
+}
+
+export const allTweets = (state) => {
+  return _.keys(state).map(id => ({
+    id: id,
+    title: state[id].title,
+    body: state[id].body,
+    userId: state[id].user_id,
+    editable: false,
+    ownership: true,
+    // ownership: state[id].user_id === client.currentUser().id
+  })
+  )
 }

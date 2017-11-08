@@ -1,7 +1,6 @@
 import * as types from './ActionTypes';
 
 export function triggerThread(threadId){
-  // debugger
   return {
       type: types.TRIGGER_THREAD,
       id: threadId

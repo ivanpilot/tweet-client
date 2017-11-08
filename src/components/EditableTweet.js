@@ -5,25 +5,20 @@ import '../styles/EditableTweet.css';
 
 
 export const EditableTweet = (props) => {
-  return props.editableTweets.map((editableTweet, index) => {
+  // debugger
+  return props.tweets.map((tweet, index) => {
     return (
     <div key={index} className='tweet-list'>
       <div className='ui center aligned grid'>
           {
-            (editableTweet.id === props.activeEditableTweetId) ? (
+            (tweet.editable) ? (
               <div className='editable-tweet'>
-                <EditTweetInput
-                  tweet={editableTweet.tweet}
-                  offEditableTweetMode={props.offEditableTweetMode}
-                  onSubmitForm={props.onSubmitForm}
-                />
+
               </div>
             ) : (
               <div className='editable-tweet'>
                 <Tweet
-                  tweet={editableTweet.tweet}
-                  editableTweetId={editableTweet.id}
-                  currentUserId={props.currentUserId}
+                  tweet={tweet}
                   onEditClick={props.onEditClick}
                   onTrashClick={props.onTrashClick}
                 />
@@ -36,6 +31,11 @@ export const EditableTweet = (props) => {
   })
 }
 
+// <EditTweetInput
+//   tweet={editableTweet.tweet}
+//   offEditableTweetMode={props.offEditableTweetMode}
+//   onSubmitForm={props.onSubmitForm}
+// />
 
 // export const EditableTweet = (props) => //{
 //   // debugger

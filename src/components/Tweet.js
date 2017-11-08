@@ -7,17 +7,17 @@ export const Tweet = (props) => (
         <div className="header">{props.tweet.title}</div>
         <div className="description">{props.tweet.body}</div>
         {
-          (props.currentUserId === props.tweet.userId) ? (
+          (props.tweet.ownership) ? (
             <div className='extra content'>
               <span
                 className='right floated trash icon'
-                onClick={() => props.onTrashClick(props.editableTweetId)}
+                onClick={() => props.onTrashClick(props.tweet.id)}
               >
                 <a><i className='trash icon' /></a>
               </span>
               <span
                 className='right floated edit icon'
-                onClick={() => props.onEditClick(props.editableTweetId)}
+                onClick={() => props.onEditClick(props.tweet.id)}
               >
                 <a><i className='edit icon' /></a>
               </span>
