@@ -1,20 +1,28 @@
 // import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { getEditableTweet } from '../reducers/TweetsById';
+import { addTweet, triggerEditable } from '../actions/Tweet';
 import FormTweet from '../components/FormTweet';
-import { addTweet } from '../actions/Tweet';
+
 // import { apiTweet } from '../client/ApiTweet';
 
-
-// const mapStateToProps = (state) => ({
-//   activeThreadId: state.activeThreadId
-// })
-
-function onSubmitForm(tweet){
-  return (dispatch) => {
-    dispatch(addTweet(tweet))
+function onSubmitForm(tweet, editableId){
+  if(editableId){
+    return (dispatch) => {
+      dispatch(triggerEditable(editableId))
+      dispatch(addTweet(tweet))
+    }
+  } else {
+    return (dispatch) => {
+      dispatch(addTweet(tweet))
+    }
   }
 }
+
+const mapStateToProps = (state) => ({
+  editableTweet: getEditableTweet(state.tweetsById)
+})
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
@@ -23,6 +31,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export const AddTweetInput = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 ) (FormTweet)

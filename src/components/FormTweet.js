@@ -33,7 +33,7 @@ class FormTweet extends React.Component{
   onSubmitForm = () => {
     const tweet = {...this.state.tweet};
     if(this.validate()) return;
-    this.props.onSubmitForm(tweet);
+    this.props.onSubmitForm(tweet, this.props.editableTweet);
     this.setState({
       tweet: {
         id: '',
