@@ -16,10 +16,10 @@ export function editTweet(tweet, editableTweetId){
   }
 }
 
-export function deleteTweet(editableTweetId){
+export function deleteTweet(id){
   return {
       type: types.DELETE_TWEET,
-      editableTweetId: editableTweetId
+      id: id
   }
 }
 

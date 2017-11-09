@@ -36,11 +36,9 @@ export function tweetsById(state = {
     }
 
     case 'DELETE_TWEET': {
-      const stateCopy = Object.assign({}, state)
-      delete stateCopy[action.id]
-      return {
-        stateCopy
-      }
+      const newState = Object.assign({}, state)
+      delete newState[action.id]
+      return Object.assign({}, newState)
     }
 
     case 'TRIGGER_EDITABLE': {
