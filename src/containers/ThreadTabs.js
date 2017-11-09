@@ -1,13 +1,16 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { triggerThread } from '../actions/Thread'
-import { allThreads, activeThread } from '../reducers/ThreadsById';
+import { triggerEditable } from '../actions/Tweet'
+import { getAllThreads, getActiveThread } from '../reducers/ThreadsById';
+import { getEditableTweet } from '../reducers/TweetsById';
 import { Tabs } from '../components/Tabs';
 
 const mapStateToProps = (state) => {
   return {
-    tabs: allThreads(state.threadsById),
-    activeThreadId: activeThread(state.threadsById)
+    tabs: getAllThreads(state.threadsById),
+    activeThreadId: getActiveThread(state.threadsById),
+    editableTweet: getEditableTweet(state.tweetsById)
   }
 }
 
@@ -18,10 +21,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 //can dispatch several action only because of redux-thunk
-function handleClickTab(id, activeThreadId){
+function handleClickTab(id, activeThreadId, editableId){
   return (dispatch) => {
     dispatch(triggerThread(activeThreadId))
     dispatch(triggerThread(id))
+    dispatch(triggerEditable(editableId))
   }
 }
 

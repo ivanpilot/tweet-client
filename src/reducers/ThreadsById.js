@@ -19,7 +19,7 @@ export function threadsById(state = initialState.threadsById, action){
   }
 }
 
-export const allThreads = (state) => {
+export const getAllThreads = (state) => {
   return _.keys(state).map(id => ({
       id: id,
       name: state[id].name,
@@ -28,6 +28,6 @@ export const allThreads = (state) => {
   )
 }
 
-export const activeThread = (state) => {
+export const getActiveThread = (state) => {
   return Object.keys(state).find(id => state[id].active)
 }

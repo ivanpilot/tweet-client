@@ -52,7 +52,7 @@ export function tweetsById(state = initialState.tweetsById, action){
   }
 }
 
-export const allTweets = (state) => {
+export const getAllTweets = (state) => {
   return _.keys(state).map(id => ({
     id: id,
     title: state[id].title,
@@ -65,7 +65,7 @@ export const allTweets = (state) => {
   )
 }
 
-export const editableTweet = (state) => {
+export const getEditableTweet = (state) => {
   return Object.keys(state).find(id => state[id].editable)
 }
 
