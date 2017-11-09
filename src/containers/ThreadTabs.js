@@ -4,14 +4,14 @@ import { triggerThread } from '../actions/Thread'
 import { allThreads, activeThread } from '../reducers/ThreadsById';
 import { Tabs } from '../components/Tabs';
 
-const MapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     tabs: allThreads(state.threadsById),
     activeThreadId: activeThread(state.threadsById)
   }
 }
 
-const MapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     handleClickTab,
   }, dispatch)
@@ -26,6 +26,6 @@ function handleClickTab(id, activeThreadId){
 }
 
 export const ThreadTabs = connect (
-  MapStateToProps,
-  MapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(Tabs)

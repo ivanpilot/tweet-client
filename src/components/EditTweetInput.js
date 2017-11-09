@@ -5,7 +5,7 @@ export const EditTweetInput = (props) => (
   <div>
     <FormTweet
       tweet={props.tweet}
-      offEditableTweetMode={props.offEditableTweetMode}
+      closeEditable={props.closeEditable}
       onSubmitForm={props.onSubmitForm}
     />
   </div>

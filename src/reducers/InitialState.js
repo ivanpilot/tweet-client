@@ -1,37 +1,26 @@
 export const initialState = {
-  activeThreadId: 'user-v1',
-  activeEditableTweetId: '',
-  threads: [
-    {
-      id: 'user-v1',
-      name: 'My Tweets',
-      editableTweets: []
+  tweetsById:{
+    '1': {
+      title: 'First Tweet',
+      body: 'Hi I am the first',
+      user_id: '1',
+      editable: false
     },
-    {
-      id: 'all',
-      name: 'Wall',
-      editableTweets: []
+    '2': {
+      title: 'Second Tweet',
+      body: 'Hi I am the second',
+      user_id: '1',
+      editable: false
     }
-  ],
-  editableTweets: [],
-  editableTweet: {},
-  tweet: {}
+  },
+  threadsById:{
+    '1': {
+      name: 'My Tweets',
+      active: true
+    },
+    '2': {
+      name: 'Wall',
+      active: false
+    }
+  }
 }
-
-//full state //////
-// state = {
-//   tweetsById:{
-//     '1': {
-//       title: '',
-//       body: '',
-//       userId: '',
-//       active: false
-//     },
-//   },
-//   threadsById:{
-//     '1': {
-//       name: '',
-//       active: true
-//     }
-//   }
-// }

@@ -1,23 +1,13 @@
 import _ from 'lodash';
+import uuid from 'uuid';
+import { initialState } from './InitialState';
 
-export function tweetsById(state = {
-  '1': {
-    title: 'First Tweet',
-    body: 'Hi I am the first',
-    user_id: '1',
-    editable: false
-  },
-  '2': {
-    title: 'Second Tweet',
-    body: 'Hi I am the second',
-    user_id: '1',
-    editable: false
-  }
-}, action){
+export function tweetsById(state = initialState.tweetsById, action){
   switch (action.type) {
     case 'ADD_TWEET': {
+      const tempTweet = newTweet(action.tweet)
       return {
-        [action.tweet.id]: action.tweet,
+        [tempTweet.id]: tempTweet.tweet,
         ...state
       }
     }
@@ -76,6 +66,17 @@ export const allTweets = (state) => {
 }
 
 export const editableTweet = (state) => {
-  // debugger
   return Object.keys(state).find(id => state[id].editable)
+}
+
+function newTweet(tweet){
+  return {
+    id: uuid.v4(),
+    tweet: {
+      title: tweet.title,
+      body: tweet.body,
+      editable: false,
+      ownership: true
+    }
+  }
 }

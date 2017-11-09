@@ -1,15 +1,7 @@
 import _ from 'lodash';
+import { initialState } from './InitialState';
 
-export function threadsById(state = {
-  '1': {
-    name: 'My Tweets',
-    active: true
-  },
-  '2': {
-    name: 'Wall',
-    active: false
-  }
-}, action){
+export function threadsById(state = initialState.threadsById, action){
   switch (action.type) {
 
     case 'TRIGGER_THREAD':

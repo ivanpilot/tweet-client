@@ -1,25 +1,23 @@
 import * as types from './ActionTypes';
 
-export function addTweet(tweet, threadId){
+export function addTweet(tweet){
   return {
-      type: types.ADD_TWEET,
-      tweet: tweet,
-      threadId: threadId
+    type: types.ADD_TWEET,
+    tweet: tweet,
   }
 }
 
-export function editTweet(tweet, editableTweetId){
+export function editTweet(tweet){
   return {
-      type: types.EDIT_TWEET,
-      tweet: tweet,
-      editableTweetId: editableTweetId
+    type: types.EDIT_TWEET,
+    tweet: tweet,
   }
 }
 
 export function deleteTweet(id){
   return {
-      type: types.DELETE_TWEET,
-      id: id
+    type: types.DELETE_TWEET,
+    id: id
   }
 }
 

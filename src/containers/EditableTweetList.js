@@ -3,16 +3,15 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { allTweets, editableTweet } from '../reducers/TweetsById';
 import { EditableTweet } from '../components/EditableTweet';
-import { deleteTweet, triggerEditable } from '../actions/Tweet';
+import { editTweet, deleteTweet, triggerEditable } from '../actions/Tweet';
 import '../styles/EditableTweetList.css';
 
 // import { client } from '../client/Client';
 // import { apiTweet } from '../client/ApiTweet';
-// import { onEditableTweetMode, offEditableTweetMode } from '../actions/EditableTweet';
+
 
 class EditableTweetList extends React.Component {
   render(){
-    // debugger
     return(
       <div>
         <EditableTweet
@@ -20,6 +19,8 @@ class EditableTweetList extends React.Component {
           editableTweet={this.props.editableTweet}
           onEditClick={this.props.onEditClick}
           onTrashClick={this.props.onTrashClick}
+          onSubmitForm={this.props.onSubmitForm}
+          closeEditable={this.props.closeEditable}
         />
       </div>
     )
@@ -32,21 +33,31 @@ function onTrashClick(id){
 
 function onEditClick(id, editableId){
   if(editableId){
-    // debugger
     return (dispatch) => {
       dispatch(triggerEditable(editableId))
       dispatch(triggerEditable(id))
     }
   } else {
-    // debugger
     return (dispatch) => {
       dispatch(triggerEditable(id))
     }
   }
 }
 
+function closeEditable(editableId){
+  return (dispatch) => {
+    dispatch(triggerEditable(editableId))
+  }
+}
+
+function onSubmitForm(tweet){
+  return (dispatch) => {
+    dispatch(editTweet(tweet))
+    dispatch(triggerEditable(tweet.id))
+  }
+}
+
 const mapStateToProps = (state) => {
-  // debugger
   return {
     tweets: allTweets(state.tweetsById),
     editableTweet: editableTweet(state.tweetsById)
@@ -57,6 +68,8 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     onTrashClick,
     onEditClick,
+    closeEditable,
+    onSubmitForm,
   }, dispatch)
 }
 

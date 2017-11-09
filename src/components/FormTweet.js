@@ -1,6 +1,5 @@
 import React from 'react';
 import FieldInput from './FieldInput';
-import { client } from '../client/Client';
 
 class FormTweet extends React.Component{
   state = {
@@ -32,7 +31,7 @@ class FormTweet extends React.Component{
   }
 
   onSubmitForm = () => {
-    const tweet = {...this.state.tweet, userId: client.currentUser().id};
+    const tweet = {...this.state.tweet};
     if(this.validate()) return;
     this.props.onSubmitForm(tweet);
     this.setState({
@@ -70,7 +69,7 @@ class FormTweet extends React.Component{
                   format='area'
                   value={this.state.tweet.body}
                   onChange={this.onInputChange}
-                  validate={(value) => (value ? false : 'Body is required')}
+                  validate={(value) => (value ? false : 'Description is required')}
                 />
               </div>
               {
@@ -85,7 +84,7 @@ class FormTweet extends React.Component{
                     </button>
                     <button
                       className='ui medium red button'
-                      onClick={() => this.props.offEditableTweetMode()}
+                      onClick={() => this.props.closeEditable(tweet.id)}
                     >
                       Close
                     </button>
