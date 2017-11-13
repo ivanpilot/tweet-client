@@ -20,15 +20,21 @@ let state = {
     editable: false
   },
   '2': {
-    title: 'First Tweet',
-    body: 'Hi I am the first',
+    title: 'Second Tweet',
+    body: 'Hi I am the second',
     user_id: '1',
     editable: false
+  },
+  '3': {
+    title: 'Third Tweet',
+    body: 'Hi I am the third',
+    user_id: '2',
+    editable: true
   }
 }
 
 let keys = Object.keys(state)
-let result = Object.keys(state).map(id => ({
+let result = Object.keys(state).filter(id => state[id].user_id !== '2').map(id => ({
   id: id,
   title: state[id].title,
   body: state[id].body,

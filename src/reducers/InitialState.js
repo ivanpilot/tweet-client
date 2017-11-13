@@ -22,5 +22,23 @@ export const initialState = {
       name: 'Wall',
       active: false
     }
+  },
+  commentsById:{
+    '1': {
+      body: 'I am comment 1 of tweet 1',
+      post_id: '1'
+    },
+    '2': {
+      body: 'I am comment 2 of tweet 1',
+      post_id: '1'
+    },
+    '3': {
+      body: 'I am comment 3 of tweet 2',
+      post_id: '2'
+    },
+    '4': {
+      body: 'I am comment 4 of tweet 2',
+      post_id: '2'
+    },
   }
 }

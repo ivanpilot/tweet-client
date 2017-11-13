@@ -4,18 +4,18 @@ import { EditTweetInput } from './EditTweetInput';
 import '../styles/EditableTweet.css';
 
 
-export const EditableTweet = (props) => {
+export const EditableItem = (props) => {
   // debugger
-  return props.tweets.map((tweet, index) => {
+  return props.items.map((item, index) => {
     // debugger
     return (
     <div key={index} className='tweet-list'>
       <div className='ui center aligned grid'>
           {
-            (tweet.editable) ? (
+            (item.editable) ? (
               <div className='editable-tweet'>
                 <EditTweetInput
-                  tweet={tweet}
+                  tweet={item}
                   onSubmitForm={props.onSubmitForm}
                   closeEditable={props.closeEditable}
                 />
@@ -23,7 +23,7 @@ export const EditableTweet = (props) => {
             ) : (
               <div className='editable-tweet'>
                 <Tweet
-                  tweet={tweet}
+                  tweet={item}
                   editableTweet={props.editableTweet}
                   onEditClick={props.onEditClick}
                   onTrashClick={props.onTrashClick}
