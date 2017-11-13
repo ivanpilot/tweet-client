@@ -1,29 +1,29 @@
 import React from 'react';
-import { Tweet } from './Tweet';
+import { Comment } from './Comment';
 import { EditTweetInput } from './EditTweetInput';
 import '../styles/EditableTweet.css';
 
 
-export const EditableItem = (props) => {
+export const EditableComment = (props) => {
   // debugger
-  return props.items.map((item, index) => {
+  return props.comments.map((comment, index) => {
     // debugger
     return (
     <div key={index} className='tweet-list'>
       <div className='ui center aligned grid'>
           {
-            (item.editable) ? (
+            (comment.editable) ? (
               <div className='editable-tweet'>
                 <EditTweetInput
-                  tweet={item}
+                  tweet={comment}
                   onSubmitForm={props.onSubmitForm}
                   closeEditable={props.closeEditable}
                 />
               </div>
             ) : (
               <div className='editable-tweet'>
-                <Tweet
-                  tweet={item}
+                <Comment
+                  comment={comment}
                   editableTweet={props.editableTweet}
                   onEditClick={props.onEditClick}
                   onTrashClick={props.onTrashClick}

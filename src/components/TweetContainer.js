@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getAllTweets, getEditableTweet } from '../reducers/TweetsById';
 import { getAllCommentsForTweet } from '../reducers/CommentsById';
-import { EditableItem } from '../components/EditableItem';
-import { editTweet, deleteTweet, triggerEditable } from '../actions/Tweet';
+import { EditableTweet } from '../components/EditableTweet';
+import { EditableComment } from '../components/EditableComment';
+import { editTweet, deleteTweet, triggerEditable, triggerActivable } from '../actions/Tweet';
 // import EditableTweetList from '../containers/EditableTweetList';
 
 
@@ -16,19 +17,20 @@ class TweetContainer extends React.Component {
         <div className={ this.props.activeTweet ? ('ui two column stackable divided grid') : ('')}>
           <div className="row">
             <div className={this.props.activeTweet ? ('ui eight wide column') : ('')}>
-              <EditableItem
-                items={this.props.tweets}
+              <EditableTweet
+                tweets={this.props.tweets}
                 editableTweet={this.props.editableTweet}
                 onEditClick={this.props.onEditClick}
                 onTrashClick={this.props.onTrashClick}
+                onActiveClick={this.props.onActiveClick}
                 onSubmitForm={this.props.onSubmitForm}
                 closeEditable={this.props.closeEditable}
               />
             </div>
             { this.props.activeTweet ? (
             <div className='ui eight wide column'>
-              <EditableItem
-                items={this.props.comments}
+              <EditableComment
+                comments={this.props.comments}
                 editableTweet={this.props.editableTweet}
                 onEditClick={this.props.onEditClick}
                 onTrashClick={this.props.onTrashClick}
@@ -62,6 +64,12 @@ function onEditClick(id, editableId){
   }
 }
 
+function onActiveClick(id){
+  return (dispatch) => {
+    dispatch(triggerActivable(id))
+  }
+}
+
 function closeEditable(editableId){
   return (dispatch) => {
     dispatch(triggerEditable(editableId))
@@ -88,6 +96,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     onTrashClick,
     onEditClick,
+    onActiveClick,
     closeEditable,
     onSubmitForm,
   }, dispatch)

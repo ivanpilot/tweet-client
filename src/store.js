@@ -3,12 +3,12 @@ import thunk from 'redux-thunk';
 import { reducer } from './reducers/Reducer'
 
 
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// const enhancer = composeEnhancers(
-//   applyMiddleware(thunk),
-//   // other store enhancers if any
-// );
-export const store = createStore(reducer, applyMiddleware(thunk));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const enhancer = composeEnhancers(
+  applyMiddleware(thunk),
+  // other store enhancers if any
+);
+export const store = createStore(reducer, enhancer);
 
 // export const store = createStore(reducer,
 //   window.__REDUX_DEVTOOLS_EXTENSION__&&

@@ -43,6 +43,19 @@ export function tweetsById(state = initialState.tweetsById, action){
       }
     }
 
+    case 'TRIGGER_ACTIVABLE': {
+      // debugger
+      const oldActivable = state[action.id]
+      const newActivable = {
+        ...oldActivable,
+        active: !oldActivable.active
+      }
+      return {
+        ...state,
+        [action.id]: newActivable
+      }
+    }
+
     case 'LOAD_TWEETS': {
       return state
     }
@@ -59,6 +72,7 @@ export const getAllTweets = (state) => {
     body: state[id].body,
     userId: state[id].user_id,
     editable: state[id].editable || false,
+    active: state[id].active,
     ownership: true,
     // ownership: state[id].user_id === client.currentUser().id
   })
@@ -76,6 +90,7 @@ function newTweet(tweet){
       title: tweet.title,
       body: tweet.body,
       editable: false,
+      active: false,
       ownership: true
     }
   }

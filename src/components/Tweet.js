@@ -1,11 +1,15 @@
 import React from 'react';
+import '../styles/Tweet.css'
 
 export const Tweet = (props) => {
   // debugger
 return (
   <div className="ui cards">
-    <div className="card">
-      <div className="content">
+    <div
+      className="card"
+      onClick={() => props.onActiveClick(props.tweet.id)}
+    >
+      <div className={props.tweet.active ? "content tweet-blue" : "content"}>
         <div className="header">{props.tweet.title}</div>
         <div className="description">{props.tweet.body}</div>
         {

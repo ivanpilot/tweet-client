@@ -27,3 +27,10 @@ export function triggerEditable(id){
     id: id
   }
 }
+
+export function triggerActivable(id){
+  return {
+    type: types.TRIGGER_ACTIVABLE,
+    id: id
+  }
+}
