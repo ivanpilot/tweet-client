@@ -1,6 +1,7 @@
 import React from 'react';
-import {VerticalMenu} from './VerticalMenu';
-import {TweetContainer} from './TweetContainer';
+import { VerticalMenu } from './VerticalMenu';
+import TweetContainer from './TweetContainer';
+import { ThreadTabs } from '../containers/ThreadTabs';
 
 export const RootPage = (props) => (
   <div className='ui two column stackable divided grid'>
@@ -9,6 +10,7 @@ export const RootPage = (props) => (
         <VerticalMenu />
       </div>
       <div className='ui twelve wide column'>
+        <ThreadTabs />
         <TweetContainer />
       </div>
     </div>

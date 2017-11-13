@@ -4,30 +4,24 @@ import { bindActionCreators } from 'redux';
 import { getAllTweets, getEditableTweet } from '../reducers/TweetsById';
 import { EditableTweet } from '../components/EditableTweet';
 import { editTweet, deleteTweet, triggerEditable } from '../actions/Tweet';
-import EditableTweetList from '../containers/EditableTweetList';
+import '../styles/EditableTweetList.css';
+
+// import { client } from '../client/Client';
+// import { apiTweet } from '../client/ApiTweet';
 
 
-class TweetContainer extends React.Component {
+class EditableTweetList extends React.Component {
   render(){
     return(
-      <div className="ui center aligned">
-        <div className='ui two column stackable divided grid'>
-          <div className="row">
-            <div className='ui eight wide column'>
-              <EditableTweetList
-                tweets={this.props.tweets}
-                editableTweet={this.props.editableTweet}
-                onEditClick={this.props.onEditClick}
-                onTrashClick={this.props.onTrashClick}
-                onSubmitForm={this.props.onSubmitForm}
-                closeEditable={this.props.closeEditable}
-              />
-            </div>
-            <div className='ui eight wide column'>
-              hello
-            </div>
-          </div>
-        </div>
+      <div>
+        <EditableTweet
+          tweets={this.props.tweets}
+          editableTweet={this.props.editableTweet}
+          onEditClick={this.props.onEditClick}
+          onTrashClick={this.props.onTrashClick}
+          onSubmitForm={this.props.onSubmitForm}
+          closeEditable={this.props.closeEditable}
+        />
       </div>
     )
   }
@@ -82,4 +76,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-) (TweetContainer)
+) (EditableTweetList)
