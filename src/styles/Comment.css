@@ -3,15 +3,6 @@
   padding-bottom: 10px;
 }
 
-/*.ui.cards > .card .description,*/
-
 .ui.cards > .card .comment-blue {
   background-color: #CEF6FF;
-  /*box-shadow: 1px  #CDEAFF;
-  border: 1px solid #CDEAFF;*/
 }
-
-/*.ui.cards > .card .comment {
-  background-color: #CDEAFF;
-  border: 1px solid red;
-}*/

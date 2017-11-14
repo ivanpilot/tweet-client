@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { getActiveTweet } from '../reducers/TweetsById';
 import EditableTweetList  from '../containers/EditableTweetList';
 import EditableCommentList from '../containers/EditableCommentList';
+import '../styles/TweetContainer.css';
 
 
 class TweetContainer extends React.Component {
@@ -18,7 +19,9 @@ class TweetContainer extends React.Component {
             </div>
             { this.props.activeTweet ? (
             <div className='ui eight wide column'>
+              <div className="">
               <EditableCommentList />
+              </div>
             </div>
             ) : (null)
             }

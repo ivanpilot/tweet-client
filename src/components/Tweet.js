@@ -5,13 +5,20 @@ export const Tweet = (props) => {
   // debugger
   return (
     <div className="ui cards">
-      <div
-        className="card"
-        onClick={() => props.onActiveClick(props.tweet.id, props.activeTweet)}
-      >
-        <div className={props.tweet.active ? "content tweet-blue" : "content"}>
-          <div className="header">{props.tweet.title}</div>
-          <div className="description">{props.tweet.body}</div>
+      <div className="card">
+        <div className={props.tweet.active ? "content tweet-blue" : "content tweet"}>
+          <div
+            className="header"
+            onClick={() => props.onActiveClick(props.tweet.id, props.activeTweet)}
+          >
+            {props.tweet.title}
+          </div>
+          <div
+            className="description"
+            onClick={() => props.onActiveClick(props.tweet.id, props.activeTweet)}
+          >
+            {props.tweet.body}
+          </div>
           {
             (props.tweet.ownership) ? (
               <div className='extra content'>

@@ -1,0 +1,4 @@
+.tweet-container{
+  background-color: red;
+  transition: background-color 3s;
+}

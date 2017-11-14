@@ -1,3 +1,12 @@
+.ui.cards > .card .tweet {
+  transition: all 0.5s ease;
+}
+
+.ui.cards > .card .tweet:hover{
+  background-color: #C2F6FF;
+  box-shadow: 10px 10px 5px #C4C3C4;
+}
+
 .ui.cards > .card .tweet-blue {
   background-color: #C2F6FF;
   box-shadow: 10px 10px 5px #C4C3C4;
