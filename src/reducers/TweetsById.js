@@ -82,6 +82,10 @@ export const getEditableTweet = (state) => {
   return Object.keys(state).find(id => state[id].editable)
 }
 
+export const getActiveTweet = (state) => {
+  return Object.keys(state).find(id => state[id].active)
+}
+
 function newTweet(tweet){
   return {
     id: uuid.v4(),

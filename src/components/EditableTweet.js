@@ -24,6 +24,7 @@ export const EditableTweet = (props) => {
               <div className='editable-tweet'>
                 <Tweet
                   tweet={tweet}
+                  activeTweet={props.activeTweet}
                   editableTweet={props.editableTweet}
                   onEditClick={props.onEditClick}
                   onTrashClick={props.onTrashClick}

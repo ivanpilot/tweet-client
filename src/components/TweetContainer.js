@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getAllTweets, getEditableTweet } from '../reducers/TweetsById';
+import { getAllTweets, getEditableTweet, getActiveTweet } from '../reducers/TweetsById';
 import { getAllCommentsForTweet } from '../reducers/CommentsById';
 import { EditableTweet } from '../components/EditableTweet';
 import { EditableComment } from '../components/EditableComment';
@@ -19,6 +19,7 @@ class TweetContainer extends React.Component {
             <div className={this.props.activeTweet ? ('ui eight wide column') : ('')}>
               <EditableTweet
                 tweets={this.props.tweets}
+                activeTweet={this.props.activeTweet}
                 editableTweet={this.props.editableTweet}
                 onEditClick={this.props.onEditClick}
                 onTrashClick={this.props.onTrashClick}
@@ -64,9 +65,17 @@ function onEditClick(id, editableId){
   }
 }
 
-function onActiveClick(id){
-  return (dispatch) => {
-    dispatch(triggerActivable(id))
+function onActiveClick(id, activeId){
+  // debugger
+  if(activeId && activeId !== id){
+    return (dispatch) => {
+      dispatch(triggerActivable(activeId))
+      dispatch(triggerActivable(id))
+    }
+  } else {
+    return (dispatch) => {
+      dispatch(triggerActivable(id))
+    }
   }
 }
 
@@ -86,9 +95,9 @@ function onSubmitForm(tweet){
 const mapStateToProps = (state) => {
   return {
     tweets: getAllTweets(state.tweetsById),
+    activeTweet: getActiveTweet(state.tweetsById),
     editableTweet: getEditableTweet(state.tweetsById),
     comments: getAllCommentsForTweet(state.commentsById),
-    activeTweet: true
   }
 }
 
