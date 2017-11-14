@@ -54,7 +54,7 @@ function newComment(comment){
     id: uuid.v4(),
     comment: {
       description: comment.description,
-      tweet_id: comment.activeTweet.id,
+      tweet_id: comment.activeTweetId,
       editable: false,
       ownership: true
     }
