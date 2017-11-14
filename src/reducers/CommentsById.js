@@ -33,8 +33,8 @@ export function commentsById(state = initialState.commentsById, action){
   }
 }
 
-export const getAllCommentsForTweet = (state) => {
-  return Object.keys(state).filter(id => state[id].tweet_id !== '2').map(id => ({
+export const getAllCommentsForTweet = (state, activeTweetId) => {
+  return Object.keys(state).filter(id => state[id].tweet_id === activeTweetId).map(id => ({
     id: id,
     description: state[id].description,
     tweetId: state[id].tweet_id,

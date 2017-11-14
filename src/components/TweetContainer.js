@@ -97,7 +97,7 @@ const mapStateToProps = (state) => {
     tweets: getAllTweets(state.tweetsById),
     activeTweet: getActiveTweet(state.tweetsById),
     editableTweet: getEditableTweet(state.tweetsById),
-    comments: getAllCommentsForTweet(state.commentsById),
+    comments: getAllCommentsForTweet(state.commentsById, getActiveTweet(state.tweetsById)),
   }
 }
 
