@@ -2,27 +2,28 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getActiveTweet } from '../reducers/TweetsById';
-import { addComment } from '../actions/Comment';
+import { getEditableComment } from '../reducers/CommentsById';
+import { addComment, triggerEditableComment } from '../actions/Comment';
 import FormComment from '../components/FormComment';
 
 // import { apiTweet } from '../client/ApiTweet';
 
-function onSubmitForm(comment, activeTweetId){ //, editableId
-  // if(editableId){
-  //   return (dispatch) => {
-  //     dispatch(triggerEditable(editableId))
-  //     dispatch(addTweet(tweet))
-  //   }
-  // } else {
+function onSubmitForm(comment, editableId){
+  if(editableId){
+    return (dispatch) => {
+      dispatch(triggerEditableComment(editableId))
+      dispatch(addComment(comment))
+    }
+  } else {
     return (dispatch) => {
       dispatch(addComment(comment))
     }
-  // }
+  }
 }
 
 const mapStateToProps = (state) => ({
-  activeTweet: getActiveTweet(state.tweetsById)
-  // editableComment: getEditableComment(state.commentsById)
+  activeTweet: getActiveTweet(state.tweetsById),
+  editableComment: getEditableComment(state.commentsById)
 })
 
 const mapDispatchToProps = (dispatch) => {

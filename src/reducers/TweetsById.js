@@ -31,7 +31,7 @@ export function tweetsById(state = initialState.tweetsById, action){
       return Object.assign({}, newState)
     }
 
-    case 'TRIGGER_EDITABLE': {
+    case 'TRIGGER_EDITABLE_TWEET': {
       const oldEditable = state[action.id]
       const newEditable = {
         ...oldEditable,
@@ -43,7 +43,7 @@ export function tweetsById(state = initialState.tweetsById, action){
       }
     }
 
-    case 'TRIGGER_ACTIVABLE': {
+    case 'TRIGGER_ACTIVABLE_TWEET': {
       const oldActivable = state[action.id]
       const newActivable = {
         ...oldActivable,

@@ -21,9 +21,9 @@ export function deleteComment(id){
   }
 }
 
-export function triggerEditable(id){
+export function triggerEditableComment(id){
   return {
-    type: types.TRIGGER_EDITABLE,
+    type: types.TRIGGER_EDITABLE_COMMENT,
     id: id
   }
 }

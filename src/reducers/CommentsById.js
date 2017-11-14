@@ -3,18 +3,33 @@ import uuid from 'uuid';
 
 export function commentsById(state = initialState.commentsById, action){
   switch (action.type) {
-    case 'ADD_COMMENT': {
+    case 'ADD_COMMENT':{
       const tempComment = newComment(action.comment)
       return {
         [tempComment.id]: tempComment.comment,
         ...state
       }
     }
-    case 'EDIT_COMMENT':
-      return state
-    case 'DELETE_COMMENT':
-      return state
-    case 'TRIGGER_EDITABLE': {
+
+    case 'EDIT_COMMENT':{
+      const oldComment = state[action.comment.id]
+      const newComment = {
+        ...oldComment,
+        description: action.comment.description,
+      }
+      return {
+        ...state,
+        [action.comment.id]: newComment
+      }
+    }
+
+    case 'DELETE_COMMENT':{
+      const newState = Object.assign({}, state)
+      delete newState[action.id]
+      return Object.assign({}, newState)
+    }
+
+    case 'TRIGGER_EDITABLE_COMMENT': {
       const oldEditable = state[action.id]
       const newEditable = {
         ...oldEditable,

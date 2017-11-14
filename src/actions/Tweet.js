@@ -21,16 +21,16 @@ export function deleteTweet(id){
   }
 }
 
-export function triggerEditable(id){
+export function triggerEditableTweet(id){
   return {
-    type: types.TRIGGER_EDITABLE,
+    type: types.TRIGGER_EDITABLE_TWEET,
     id: id
   }
 }
 
-export function triggerActivable(id){
+export function triggerActivableTweet(id){
   return {
-    type: types.TRIGGER_ACTIVABLE,
+    type: types.TRIGGER_ACTIVABLE_TWEET,
     id: id
   }
 }

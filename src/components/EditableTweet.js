@@ -9,7 +9,7 @@ export const EditableTweet = (props) => {
   return props.tweets.map((tweet, index) => {
     // debugger
     return (
-    <div key={index} className='tweet-list'>
+    <div key={index}>
       <div className='ui center aligned grid'>
           {
             (tweet.editable) ? (

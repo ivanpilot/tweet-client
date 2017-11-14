@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getAllTweets, getEditableTweet } from '../reducers/TweetsById';
 import { EditableTweet } from '../components/EditableTweet';
-import { editTweet, deleteTweet, triggerEditable } from '../actions/Tweet';
+import { editTweet, deleteTweet, triggerEditable } from '../actions/TweetComment';
 import '../styles/EditableTweetList.css';
 
 // import { client } from '../client/Client';

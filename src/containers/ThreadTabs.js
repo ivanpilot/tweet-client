@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { triggerThread } from '../actions/Thread'
-import { triggerEditable } from '../actions/Tweet'
+import { triggerThread } from '../actions/Thread';
+import { triggerEditableTweet } from '../actions/Tweet';
 import { getAllThreads, getActiveThread } from '../reducers/ThreadsById';
 import { getEditableTweet } from '../reducers/TweetsById';
 import { Tabs } from '../components/Tabs';
@@ -12,7 +12,7 @@ function handleClickTab(id, activeThreadId, editableId){
     return (dispatch) => {
       dispatch(triggerThread(activeThreadId))
       dispatch(triggerThread(id))
-      dispatch(triggerEditable(editableId))
+      dispatch(triggerEditableTweet(editableId))
     }
   } else {
     return (dispatch) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Comment } from './Comment';
-import { EditTweetInput } from './EditTweetInput';
-import '../styles/EditableTweet.css';
+import { EditCommentInput } from './EditCommentInput';
+import '../styles/EditableComment.css';
 
 
 export const EditableComment = (props) => {
@@ -9,19 +9,19 @@ export const EditableComment = (props) => {
   return props.comments.map((comment, index) => {
     // debugger
     return (
-    <div key={index} className='tweet-list'>
+    <div key={index}>
       <div className='ui center aligned grid'>
           {
             (comment.editable) ? (
-              <div className='editable-tweet'>
-                <EditTweetInput
-                  tweet={comment}
+              <div className='editable-comment'>
+                <EditCommentInput
+                  comment={comment}
                   onSubmitForm={props.onSubmitForm}
                   closeEditable={props.closeEditable}
                 />
               </div>
             ) : (
-              <div className='editable-tweet'>
+              <div className='editable-comment'>
                 <Comment
                   comment={comment}
                   editableComment={props.editableComment}

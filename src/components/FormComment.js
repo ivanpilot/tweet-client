@@ -29,12 +29,14 @@ class FormComment extends React.Component{
   }
 
   onSubmitForm = () => {
+    const activeTweet = (this.props.comment && this.props.comment.tweetId) //to make sure we keep the activeTweetId in case of editing a comment
     const comment = {
       ...this.state.comment,
-      activeTweetId: this.props.activeTweet,
+      activeTweetId: activeTweet || this.props.activeTweet,
     };
+    // debugger
     if(this.validate()) return;
-    this.props.onSubmitForm(comment, this.props.editableComment); /////OOOOOOOOOOOO
+    this.props.onSubmitForm(comment, this.props.editableComment); //second argument when Form rendered from AddCommentInput
     this.setState({
       comment: {
         id: '',
@@ -58,7 +60,7 @@ class FormComment extends React.Component{
                   format='area'
                   value={this.state.comment.description}
                   onChange={this.onInputChange}
-                  validate={(value) => (value ? false : 'Description is required')}
+                  validate={(value) => (value ? false : 'Field can\'t be empty')}
                 />
               </div>
               {

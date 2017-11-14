@@ -19,7 +19,7 @@ export const Comment = (props) => {
                 </span>
                 <span
                   className='right floated edit icon'
-                  onClick={() => props.onEditClick(props.comment.id)} //, props.editableTweet
+                  onClick={() => props.onEditClick(props.comment.id, props.editableComment)}
                 >
                   <a><i className='edit icon' /></a>
                 </span>
