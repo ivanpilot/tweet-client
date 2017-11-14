@@ -1,9 +1,15 @@
-import { initialState } from './InitialState.js'
+import { initialState } from './InitialState.js';
+import uuid from 'uuid';
 
 export function commentsById(state = initialState.commentsById, action){
   switch (action.type) {
-    case 'ADD_COMMENT':
-      return state
+    case 'ADD_COMMENT': {
+      const tempComment = newComment(action.comment)
+      return {
+        [tempComment.id]: tempComment.comment,
+        ...state
+      }
+    }
     case 'EDIT_COMMENT':
       return state
     case 'DELETE_COMMENT':
@@ -28,11 +34,12 @@ export function commentsById(state = initialState.commentsById, action){
 }
 
 export const getAllCommentsForTweet = (state) => {
-  return Object.keys(state).filter(id => state[id].post_id !== '2').map(id => ({
+  return Object.keys(state).filter(id => state[id].tweet_id !== '2').map(id => ({
     id: id,
-    body: state[id].body,
-    post_id: state[id].post_id,
-    editable: false,
+    description: state[id].description,
+    tweetId: state[id].tweet_id,
+    userId: state[id].user_id,
+    editable: state[id].editable || false,
     ownership: true,
     // ownership: state[id].user_id === client.currentUser().id
   }))
@@ -40,4 +47,16 @@ export const getAllCommentsForTweet = (state) => {
 
 export const getEditableComment = (state) => {
   return Object.keys(state).find(id => state[id].editable)
+}
+
+function newComment(comment){
+  return {
+    id: uuid.v4(),
+    comment: {
+      description: comment.description,
+      tweet_id: comment.activeTweet.id,
+      editable: false,
+      ownership: true
+    }
+  }
 }

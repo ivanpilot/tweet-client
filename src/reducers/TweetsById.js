@@ -44,7 +44,6 @@ export function tweetsById(state = initialState.tweetsById, action){
     }
 
     case 'TRIGGER_ACTIVABLE': {
-      // debugger
       const oldActivable = state[action.id]
       const newActivable = {
         ...oldActivable,

@@ -27,20 +27,24 @@ export const initialState = {
   },
   commentsById:{
     '1': {
-      body: 'I am comment 1 of tweet 1',
-      post_id: '1'
+      description: 'I am comment 1 of tweet 1',
+      tweet_id: '1',
+      user_id: '1'
     },
     '2': {
-      body: 'I am comment 2 of tweet 1',
-      post_id: '1'
+      description: 'I am comment 2 of tweet 1',
+      tweet_id: '1',
+      user_id: '1'
     },
     '3': {
-      body: 'I am comment 3 of tweet 2',
-      post_id: '2'
+      description: 'I am comment 3 of tweet 2',
+      tweet_id: '2',
+      user_id: '1'
     },
     '4': {
-      body: 'I am comment 4 of tweet 2',
-      post_id: '2'
+      description: 'I am comment 4 of tweet 2',
+      tweet_id: '2',
+      user_id: '1'
     },
   }
 }

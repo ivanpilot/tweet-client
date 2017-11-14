@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Comment.css'
 
 export const Comment = (props) => {
-  // debugger
+  debugger
 return (
   <div className="ui cards border-blue">
 
@@ -10,7 +10,7 @@ return (
 
       <div className="content comment-blue">
 
-        <div className="description ">{props.comment.body}</div>
+        <div className="description ">{props.comment.description}</div>
         {
           (props.comment.ownership) ? (
             <div className='extra content'>
