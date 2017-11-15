@@ -41,12 +41,24 @@ export function commentsById(state = initialState.commentsById, action){
       }
     }
 
+    case 'DELETE_TWEET_COMMENTS':{
+      const commentIds = getCommentIdsForTweet(state, action.tweetId)
+      const modifiedState = Object.assign({}, state)
+      commentIds.map(id => delete modifiedState[id])
+      return Object.assign({}, modifiedState)
+    }
+
     case 'LOAD_COMMENTS':
       return state
     default:
       return state
   }
 }
+
+const getCommentIdsForTweet = (state, tweetId) => {
+  return Object.keys(state).filter(id => state[id].tweet_id === tweetId)
+}
+
 
 export const getAllCommentsForTweet = (state, activeTweetId) => {
   return Object.keys(state).filter(id => state[id].tweet_id === activeTweetId).map(id => ({

@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { getAllTweets, getEditableTweet, getActiveTweet } from '../reducers/TweetsById';
 import { EditableTweet } from '../components/EditableTweet';
 import { editTweet, deleteTweet, triggerEditableTweet, triggerActivableTweet } from '../actions/Tweet';
+import { deleteTweetComments } from '../actions/Comment';
 import '../styles/EditableList.css';
 // import { client } from '../client/Client';
 // import { apiTweet } from '../client/ApiTweet';
@@ -32,7 +33,10 @@ class EditableTweetList extends React.Component {
 // export default EditableTweetList
 
 function onTrashClick(id){
-  return (dispatch) => dispatch(deleteTweet(id))
+  return (dispatch) => {
+    dispatch(deleteTweet(id))
+    dispatch(deleteTweetComments(id))
+  }
 }
 
 function onEditClick(id, editableId){

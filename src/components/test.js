@@ -33,22 +33,77 @@ let state = {
   }
 }
 
-let keys = Object.keys(state)
-let result = Object.keys(state).filter(id => state[id].user_id !== '2').map(id => ({
-  id: id,
-  title: state[id].title,
-  body: state[id].body,
-  userId: state[id].user_id,
-  editable: false,
-  ownership: true,
-  // ownership: state[id].user_id === client.currentUser().id
+// let keys = Object.keys(state)
+// let result = Object.keys(state).filter(id => state[id].user_id !== '2').map(id => ({
+//   id: id,
+//   title: state[id].title,
+//   body: state[id].body,
+//   userId: state[id].user_id,
+//   editable: false,
+//   ownership: true,
+//   // ownership: state[id].user_id === client.currentUser().id
+// })
+// )
+
+// let activeThread = Object.keys(state).find(id => state[id].active)
+//
+// // let filter = Object.keys(state).filter(id => id !== )
+// let copy = Object.assign({}, state)
+// let newState = delete copy['1']
+//
+// console.log(result)
+
+
+state = {
+  '1': {
+    description: 'I am comment 1 of tweet 1',
+    tweet_id: '1',
+    user_id: '1',
+    editable: false,
+    ownership: true
+  },
+  '2': {
+    description: 'I am comment 2 of tweet 1',
+    tweet_id: '1',
+    user_id: '1',
+    editable: false,
+    ownership: true
+  },
+  '3': {
+    description: 'I am comment 3 of tweet 2',
+    tweet_id: '2',
+    user_id: '1',
+    editable: false,
+    ownership: true
+  },
+  '4': {
+    description: 'I am comment 4 of tweet 2',
+    tweet_id: '2',
+    user_id: '1',
+    editable: false,
+    ownership: true
+  },
+}
+
+const comments = Object.keys(state).reduce((result, id) => {
+  if(state[id].tweet_id === '1'){
+    return Object.assign({}, result, Object.assign({}, {[id]: state[id]}))
+  }
+  return result
+}, {})
+
+// const commentIds = Object.keys(state).reduce((result, id) => {
+//   if(state[id].tweet_id === '1'){
+//     return [...result, id]
+//   }
+//   return result
+// }, [])
+
+const commentIds = Object.keys(state).filter(id => {
+  return state[id].tweet_id === '1'
 })
-)
 
-let activeThread = Object.keys(state).find(id => state[id].active)
 
-// let filter = Object.keys(state).filter(id => id !== )
-let copy = Object.assign({}, state)
-let newState = delete copy['1']
-
-console.log(result)
+// console.log(state[comments])
+console.log(commentIds)
+// console.log(Object.keys(state))

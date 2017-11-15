@@ -27,3 +27,10 @@ export function triggerEditableComment(id){
     id: id
   }
 }
+
+export function deleteTweetComments(tweetId){
+  return {
+    type: types.DELETE_TWEET_COMMENTS,
+    tweetId: tweetId
+  }
+}
