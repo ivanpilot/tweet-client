@@ -11,22 +11,32 @@ import '../styles/EditableList.css';
 
 
 class EditableTweetList extends React.Component {
+
+  // compo
+
   render(){
-    // debugger
-    return(
-      <div className="editable-list">
-        <EditableTweet
-          tweets={this.props.tweets}
-          activeTweet={this.props.activeTweet}
-          editableTweet={this.props.editableTweet}
-          onEditClick={this.props.onEditClick}
-          onTrashClick={this.props.onTrashClick}
-          onActiveClick={this.props.onActiveClick}
-          onSubmitForm={this.props.onSubmitTweetForm}
-          closeEditable={this.props.closeEditable}
-        />
-      </div>
-    )
+    if(this.props.tweets.length === 0){
+      return(
+        <div className="no-tweet">
+          <h3>There is no tweet for now</h3>
+        </div>
+      )
+    } else {
+      return(
+        <div className="editable-list">
+          <EditableTweet
+            tweets={this.props.tweets}
+            activeTweet={this.props.activeTweet}
+            editableTweet={this.props.editableTweet}
+            onEditClick={this.props.onEditClick}
+            onTrashClick={this.props.onTrashClick}
+            onActiveClick={this.props.onActiveClick}
+            onSubmitForm={this.props.onSubmitTweetForm}
+            closeEditable={this.props.closeEditable}
+          />
+        </div>
+      )
+    }
   }
 }
 

@@ -14,18 +14,26 @@ import '../styles/EditableList.css';
 class EditableCommentList extends React.Component {
   render(){
     // debugger
-    return(
-      <div className="editable-list">
-        <EditableComment
-          comments={this.props.comments}
-          editableComment={this.props.editableComment}
-          onEditClick={this.props.onEditClick}//
-          onTrashClick={this.props.onTrashClick}//
-          onSubmitForm={this.props.onSubmitCommentForm}//
-          closeEditable={this.props.closeEditable}
-        />
-      </div>
-    )
+    if(this.props.activeTweet && this.props.comments.length === 0){
+      return(
+        <div className="no-comment">
+          <p>Be the first to write a comment...</p>
+        </div>
+      )
+    } else {
+      return(
+        <div className="editable-list">
+          <EditableComment
+            comments={this.props.comments}
+            editableComment={this.props.editableComment}
+            onEditClick={this.props.onEditClick}//
+            onTrashClick={this.props.onTrashClick}//
+            onSubmitForm={this.props.onSubmitCommentForm}//
+            closeEditable={this.props.closeEditable}
+          />
+        </div>
+      )
+    }
   }
 }
 
@@ -62,7 +70,8 @@ function onSubmitCommentForm(comment){
 const mapStateToProps = (state) => {
   return {
     comments: getAllCommentsForTweet(state.commentsById, getActiveTweet(state.tweetsById)),
-    editableComment: getEditableComment(state.commentsById)
+    editableComment: getEditableComment(state.commentsById),
+    activeTweet: getActiveTweet(state.tweetsById)
   }
 }
 

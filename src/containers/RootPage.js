@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getActiveTweet } from '../reducers/TweetsById';
-import { VerticalMenu } from './VerticalMenu';
-import { TweetContainer } from './TweetContainer';
-import { ThreadTabs } from '../containers/ThreadTabs';
+import { VerticalMenu } from '../components/VerticalMenu';
+import { TweetContainer } from '../components/TweetContainer';
+import { ThreadTabs } from './ThreadTabs';
 
 class RootPage extends React.Component {
   render(){

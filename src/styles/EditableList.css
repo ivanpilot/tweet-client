@@ -1,3 +1,15 @@
 .editable-list {
   padding-top: 5px;
 }
+
+.no-tweet {
+  padding-top: 50px;
+  text-align: center;
+  color: darkgrey;
+}
+
+.no-comment {
+  padding-top: 50px;
+  text-align: center;
+  color: darkgrey;
+}
