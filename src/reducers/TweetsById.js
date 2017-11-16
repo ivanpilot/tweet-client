@@ -2,7 +2,8 @@
 import uuid from 'uuid';
 import { initialState } from './InitialState';
 
-export function tweetsById(state = initialState.tweetsById, action){
+// export function tweetsById(state = initialState.tweetsById, action){
+export function tweetsById(state = {}, action){
   switch (action.type) {
     case 'ADD_TWEET': {
       const tempTweet = newTweet(action.tweet)
@@ -56,7 +57,11 @@ export function tweetsById(state = initialState.tweetsById, action){
     }
 
     case 'LOAD_TWEETS': {
-      return state
+      const tweets = action.tweets
+
+      return Object.keys(tweets).reduce((result, tweet) => {
+        return Object.assign({}, result, Object.assign({}, {[tweets[tweet].id]: tweets[tweet]}))
+      }, {})
     }
 
     default:

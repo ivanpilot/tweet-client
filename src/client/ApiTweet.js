@@ -9,7 +9,6 @@ class ApiTweet {
       headers:{
         'Content-Type': 'application/json'
       }
-
     }).then(this.checkStatus)
       .then(this.parseJson)
       .then(success)

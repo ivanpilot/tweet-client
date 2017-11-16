@@ -34,3 +34,10 @@ export function triggerActivableTweet(id){
     id: id
   }
 }
+
+export function loadTweets(tweets){
+  return {
+    type: types.LOAD_TWEETS,
+    tweets: tweets
+  }
+}

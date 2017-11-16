@@ -3,18 +3,26 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getAllTweets, getEditableTweet, getActiveTweet } from '../reducers/TweetsById';
 import { EditableTweet } from '../components/EditableTweet';
-import { editTweet, deleteTweet, triggerEditableTweet, triggerActivableTweet } from '../actions/Tweet';
+import { editTweet, deleteTweet, triggerEditableTweet, triggerActivableTweet, loadTweets } from '../actions/Tweet';
 import { deleteTweetComments } from '../actions/Comment';
 import '../styles/EditableList.css';
 // import { client } from '../client/Client';
-// import { apiTweet } from '../client/ApiTweet';
+import { apiTweet } from '../client/ApiTweet';
 
 
 class EditableTweetList extends React.Component {
 
-  // compo
+  componentDidMount(){
+    apiTweet.loadTweets((tweets) => {
+      console.log(tweets)
+      return this.props.loadsTweets(tweets)
+    })
+
+    // this.props.loadTweets(tweets)
+  }
 
   render(){
+    debugger
     if(this.props.tweets.length === 0){
       return(
         <div className="no-tweet">
@@ -88,6 +96,12 @@ function onSubmitTweetForm(tweet){
   }
 }
 
+function loadsTweets(tweets){
+  return (dispatch) => {
+    dispatch(loadTweets(tweets))
+  }
+}
+
 const mapStateToProps = (state) => {
   return {
     tweets: getAllTweets(state.tweetsById),
@@ -103,6 +117,7 @@ const mapDispatchToProps = (dispatch) => {
     onActiveClick,
     closeEditable,
     onSubmitTweetForm,
+    loadsTweets,
   }, dispatch)
 }
 
