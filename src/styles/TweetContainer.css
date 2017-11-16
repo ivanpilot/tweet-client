@@ -1,32 +1,28 @@
-.tweet-container{
-  background-color: red;
-  transition: background-color 3s;
+.tweets-col {
+  width: 100%;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
 }
 
-.ui.eight.wide.column {
-  /*-webkit-transition: 0.5s;
+.hide-tweets-col {
+  width: 50%;
+}
+
+.comments-col {
+  /*opacity: 0;*/
+  /*visibility: hidden;*/
+  width: 0%;
+  -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
-  opacity: 0;*/
-  /*height:0px;*/
+
 }
 
-.comments {
-  /*background-color: red;*/
-  /*-webkit-transition: 0.5s;
-  -moz-transition: 0.5s;
-  -o-transition: 0.5s;
-  transition: 0.5s;*/
-  /*opacity: 0;*/
-  /*opacity: 0;*/
-}
-
-.visible-comments {
-  /*-webkit-transition: 0.5s;
-  -moz-transition: 0.5s;
-  -o-transition: 0.5s;
-  transition: 0.5s;*/
-  /*height: 100%;*/
+.visible-comments-col {
   /*opacity: 1;*/
+  /*visibility: visible;*/
+  width: 50%;
 }

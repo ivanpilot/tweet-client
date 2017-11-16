@@ -8,27 +8,26 @@ import '../styles/TweetContainer.css';
 
 
 export const TweetContainer = (props) => {
-  const cssClass = ['ui eight wide column comments']
-  if(props.activeTweet) {cssClass.push('visible-comments')}
+  const cssClassTweets = ['tweets-col']
+  const cssClassComments = ['comments-col']
+  if(props.activeTweet) {
+    cssClassTweets.push('hide-tweets-col')
+    cssClassComments.push('visible-comments-col')
+  }
   return(
-    <div className="ui center aligned">
-      <div className={ props.activeTweet ? ('ui two column stackable divided grid') : ('')}>
-        <div className="row">
-          <div className={props.activeTweet ? ('ui eight wide column') : ('')}>
+    <div className="ui grid">
+      <div className="row">
+          <div className={cssClassTweets.join(' ')}>
             <EditableTweetList />
           </div>
-
-          <div className={cssClass.join(' ')}>
-
+          <div className={cssClassComments.join(' ')}>
             <EditableCommentList />
-
           </div>
-          
         </div>
-      </div>
     </div>
   )
 }
+
 
 // class TweetContainer extends React.Component {
 //   render(){
