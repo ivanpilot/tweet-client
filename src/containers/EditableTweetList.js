@@ -35,7 +35,7 @@ class EditableTweetList extends React.Component {
 function onTrashClick(id){
   return (dispatch) => {
     dispatch(deleteTweet(id))
-    dispatch(deleteTweetComments(id))
+    dispatch(deleteTweetComments(id)) //should be modified once we change the state to normalized
   }
 }
 

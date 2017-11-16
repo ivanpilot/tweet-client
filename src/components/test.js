@@ -66,7 +66,7 @@ state = {
     description: 'I am comment 2 of tweet 1',
     tweet_id: '1',
     user_id: '1',
-    editable: false,
+    editable: true,
     ownership: true
   },
   '3': {
@@ -103,7 +103,10 @@ const commentIds = Object.keys(state).filter(id => {
   return state[id].tweet_id === '1'
 })
 
+const getTweetEditableComment = Object.keys(state).filter(id => state[id].tweet_id === '1').find(id => state[id].editable)
+
+
 
 // console.log(state[comments])
-console.log(commentIds)
+console.log(getTweetEditableComment)
 // console.log(Object.keys(state))

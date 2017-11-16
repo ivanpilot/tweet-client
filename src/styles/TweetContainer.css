@@ -2,3 +2,31 @@
   background-color: red;
   transition: background-color 3s;
 }
+
+.ui.eight.wide.column {
+  /*-webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  opacity: 0;*/
+  /*height:0px;*/
+}
+
+.comments {
+  /*background-color: red;*/
+  /*-webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;*/
+  /*opacity: 0;*/
+  /*opacity: 0;*/
+}
+
+.visible-comments {
+  /*-webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;*/
+  /*height: 100%;*/
+  /*opacity: 1;*/
+}

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 import uuid from 'uuid';
 import { initialState } from './InitialState';
 
@@ -65,7 +65,7 @@ export function tweetsById(state = initialState.tweetsById, action){
 }
 
 export const getAllTweets = (state) => {
-  return _.keys(state).map(id => ({
+  return Object.keys(state).map(id => ({
     id: id,
     title: state[id].title,
     body: state[id].body,

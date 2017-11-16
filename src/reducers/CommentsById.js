@@ -35,12 +35,14 @@ export function commentsById(state = initialState.commentsById, action){
         ...oldEditable,
         editable: !oldEditable.editable
       }
+
       return {
         ...state,
         [action.id]: newEditable
       }
     }
 
+    //should be simplified with normalizer
     case 'DELETE_TWEET_COMMENTS':{
       const commentIds = getCommentIdsForTweet(state, action.tweetId)
       const modifiedState = Object.assign({}, state)
@@ -58,6 +60,11 @@ export function commentsById(state = initialState.commentsById, action){
 const getCommentIdsForTweet = (state, tweetId) => {
   return Object.keys(state).filter(id => state[id].tweet_id === tweetId)
 }
+
+// export const getEditableCommentForTweet = (state, tweetId) => {
+//
+//   return Object.keys(state).filter(id => state[id].tweet_id === tweetId).find(id => state[id].editable)
+// }
 
 
 export const getAllCommentsForTweet = (state, activeTweetId) => {

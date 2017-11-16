@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute'
-import { RootPage } from './RootPage';
+import RootPage from './RootPage';
 import Authenticating from './Authenticating';
 import Logout from './Logout';
 import { NotFound } from './NotFound';

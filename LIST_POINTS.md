@@ -13,8 +13,8 @@
 2. check on the fly if password === password confirmation
 
 # Action points
-<!-- 1. delete tweet must delete all respective comments -->
-2. select a tweet must close editabletweet
-3. add comment must close editabletweet
-4. add comment form must be available only when tweet is active
-5. add tweet must close editable comment
+<!-- 1. delete tweet must delete all respective comments --> done but to be revised with normalizer
+2. select a tweet must close editablecomment of the activetweet -- was under progress but should be easier with normalizer[idem 5]
+3. add comment must close editabletweet -- same as 5
+4. add comment form must be available only when tweet is active -- done but trying to implement transition effect
+5. add tweet must close editable comment -- was under progress but should be easier with normalizer
