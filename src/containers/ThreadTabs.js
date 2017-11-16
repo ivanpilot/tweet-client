@@ -2,17 +2,32 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { triggerThread } from '../actions/Thread';
 import { triggerEditableTweet } from '../actions/Tweet';
+import { triggerEditableComment } from '../actions/Comment';
 import { getAllThreads, getActiveThread } from '../reducers/ThreadsById';
 import { getEditableTweet } from '../reducers/TweetsById';
+import { getEditableComment } from '../reducers/CommentsById';
 import { Tabs } from '../components/Tabs';
 
 //can dispatch several action only because of redux-thunk
-function handleClickTab(id, activeThreadId, editableId){
-  if(editableId){
+function handleClickTab(id, activeThreadId, editableTweetId, editableCommentId){
+  if(editableTweetId && editableCommentId){
     return (dispatch) => {
       dispatch(triggerThread(activeThreadId))
       dispatch(triggerThread(id))
-      dispatch(triggerEditableTweet(editableId))
+      dispatch(triggerEditableTweet(editableTweetId))
+      dispatch(triggerEditableComment(editableCommentId))
+    }
+  } else if(editableTweetId) {
+    return (dispatch) => {
+      dispatch(triggerThread(activeThreadId))
+      dispatch(triggerThread(id))
+      dispatch(triggerEditableTweet(editableTweetId))
+    }
+  } else if(!editableTweetId && editableCommentId){
+    return (dispatch) => {
+      dispatch(triggerThread(activeThreadId))
+      dispatch(triggerThread(id))
+      dispatch(triggerEditableComment(editableCommentId))
     }
   } else {
     return (dispatch) => {
@@ -26,7 +41,8 @@ const mapStateToProps = (state) => {
   return {
     tabs: getAllThreads(state.threadsById),
     activeThreadId: getActiveThread(state.threadsById),
-    editableTweet: getEditableTweet(state.tweetsById)
+    editableTweet: getEditableTweet(state.tweetsById),
+    editableComment: getEditableComment(state.commentsById)
   }
 }
 
