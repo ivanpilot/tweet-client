@@ -8,6 +8,8 @@ import { deleteTweetComments } from '../actions/Comment';
 import '../styles/EditableList.css';
 // import { client } from '../client/Client';
 import { apiTweet } from '../client/ApiTweet';
+import { normalize } from 'normalizr';
+import { normalizedTweet } from '../normalizers/Normalizr';
 
 
 class EditableTweetList extends React.Component {
@@ -15,14 +17,18 @@ class EditableTweetList extends React.Component {
   componentDidMount(){
     apiTweet.loadTweets((tweets) => {
       console.log(tweets)
-      return this.props.loadsTweets(tweets)
+      // return this.props.loadsTweets(tweets)
+      const normalizedData = normalize(tweets:tweets, normalizedTweet)
+      console.log(normalizedData)
+      return this.props.loadsTweets(normalizedData)
+
     })
 
     // this.props.loadTweets(tweets)
   }
 
   render(){
-    debugger
+    // debugger
     if(this.props.tweets.length === 0){
       return(
         <div className="no-tweet">

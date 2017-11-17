@@ -57,11 +57,12 @@ export function tweetsById(state = {}, action){
     }
 
     case 'LOAD_TWEETS': {
-      const tweets = action.tweets
-
-      return Object.keys(tweets).reduce((result, tweet) => {
-        return Object.assign({}, result, Object.assign({}, {[tweets[tweet].id]: tweets[tweet]}))
-      }, {})
+      // const tweets = action.tweets.entities.tweets
+      //
+      // return Object.keys(tweets).reduce((result, tweet) => {
+      //   return Object.assign({}, result, Object.assign({}, {[tweets[tweet].id]: tweets[tweet]}))
+      // }, {})
+      return action.tweets.entities.tweets
     }
 
     default:
