@@ -41,4 +41,6 @@
 1. ADD_TWEET > keep ownership?
 2. ADD_TWEET > author_id should be dynamic and correspond to currentUser
 3. LOAD_TWEETS > keep ownership?
-4.
+
+## Comment Action
+1. DELETE_TWEET_COMMENTS > action not needed anymore, should send another dispatch to delete each comment when deleting a tweet

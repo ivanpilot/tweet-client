@@ -12,6 +12,20 @@ import '../styles/EditableList.css';
 
 
 class EditableCommentList extends React.Component {
+
+  // componentDidMount(){
+  //   apiTweet.loadComments((tweets) => {
+  //     console.log(tweets)
+  //     // return this.props.loadsTweets(tweets)
+  //     const normalizedData = normalize(tweets, normalizedTweet)
+  //     console.log(normalizedData)
+  //     return this.props.loadsTweets(normalizedData)
+  //
+  //   })
+  //
+  //   // this.props.loadTweets(tweets)
+  // }
+
   render(){
     // debugger
     if(this.props.activeTweet && this.props.comments.length === 0){

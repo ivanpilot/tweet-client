@@ -28,6 +28,13 @@ export function triggerEditableComment(id){
   }
 }
 
+export function loadComments(comments){
+  return {
+    type: types.LOAD_COMMENTS,
+    comments: comments
+  }
+}
+
 export function deleteTweetComments(tweetId){
   return {
     type: types.DELETE_TWEET_COMMENTS,

@@ -114,4 +114,7 @@ const comments = Object.keys(state).reduce((result, id) => {
 // console.log(state[comments])
 // console.log(getTweetEditableComment)
 // console.log(Object.keys(state))
-console.log(comments)
+// console.log(comments)
+a = 5 + 1
+console.log(a)
+console.log(`${a}`)
