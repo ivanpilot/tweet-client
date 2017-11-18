@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid';
 import FieldInput from './FieldInput';
 
 class FormComment extends React.Component{
@@ -29,9 +30,11 @@ class FormComment extends React.Component{
   }
 
   onSubmitForm = () => {
+    const id = this.state.tweet.id || uuid.v4()
     const activeTweet = (this.props.comment && this.props.comment.tweetId) //to make sure we keep the activeTweetId in case of editing a comment
     const comment = {
       ...this.state.comment,
+      id: id,
       activeTweetId: activeTweet || this.props.activeTweet,
     };
     // debugger

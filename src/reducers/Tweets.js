@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { tweet } from './Tweet';
+import { getCommentById } from './Comments';
 
 
 export const tweets = combineReducers({
@@ -32,7 +33,7 @@ function byId(state = {}, action){
     }
 
     case 'LOAD_TWEETS': {
-      const rawTweets = action.tweets.entities.tweets
+      const rawTweets = action.tweets.entities.tweets;
       return Object.keys(rawTweets).reduce((result, id) => {
         return Object.assign({}, result, Object.assign({}, {[id]: tweet(rawTweets[id], action)}))
       }, {})
@@ -72,7 +73,10 @@ export const getEditableTweet = (state) => {
 }
 
 export const getActiveTweet = (state) => {
-  // debugger
   const tweetId = Object.keys(state.byId).find(id => state.byId[id].active)
   return parseInt(tweetId, 10)
+}
+
+export const getAllCommentsForTweet = (stateTweets, tweetId, stateComments) => {
+  return stateTweets.byId[tweetId].comments.map(comment => getCommentById(stateComments, comment))
 }
