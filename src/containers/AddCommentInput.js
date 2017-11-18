@@ -1,7 +1,7 @@
 // import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getActiveTweet } from '../reducers/TweetsById';
+import { getActiveTweet } from '../reducers/Tweets';
 import { getEditableComment } from '../reducers/CommentsById';
 import { addComment, triggerEditableComment } from '../actions/Comment';
 import FormComment from '../components/FormComment';
@@ -22,7 +22,7 @@ function onSubmitForm(comment, editableId){
 }
 
 const mapStateToProps = (state) => ({
-  activeTweet: getActiveTweet(state.tweetsById),
+  activeTweet: getActiveTweet(state.tweets),
   editableComment: getEditableComment(state.commentsById)
 })
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getAllTweets, getEditableTweet } from '../reducers/TweetsById';
+import { getAllTweets, getEditableTweet } from '../reducers/Tweets';
 import { EditableTweet } from '../components/EditableTweet';
 import { editTweet, deleteTweet, triggerEditable } from '../actions/Tweet';
 import '../styles/EditableTweetList.css';
@@ -59,8 +59,8 @@ function onSubmitForm(tweet){
 
 const mapStateToProps = (state) => {
   return {
-    tweets: getAllTweets(state.tweetsById),
-    editableTweet: getEditableTweet(state.tweetsById)
+    tweets: getAllTweets(state.tweets),
+    editableTweet: getEditableTweet(state.tweets)
   }
 }
 

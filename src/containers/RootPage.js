@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getActiveTweet } from '../reducers/TweetsById';
+import { getActiveTweet } from '../reducers/Tweets';
 import { VerticalMenu } from '../components/VerticalMenu';
 import { TweetContainer } from '../components/TweetContainer';
 import { ThreadTabs } from './ThreadTabs';
@@ -30,7 +30,7 @@ class RootPage extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    activeTweet: getActiveTweet(state.tweetsById),
+    activeTweet: getActiveTweet(state.tweets),
   }
 }
 

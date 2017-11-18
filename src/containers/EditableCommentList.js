@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getAllCommentsForTweet, getEditableComment } from '../reducers/CommentsById';
-import { getActiveTweet } from '../reducers/TweetsById';
+import { getActiveTweet } from '../reducers/Tweets';
 import { EditableComment } from '../components/EditableComment';
 import { editComment, deleteComment, triggerEditableComment } from '../actions/Comment';
 import '../styles/EditableList.css';
@@ -69,9 +69,9 @@ function onSubmitCommentForm(comment){
 
 const mapStateToProps = (state) => {
   return {
-    comments: getAllCommentsForTweet(state.commentsById, getActiveTweet(state.tweetsById)),
+    comments: getAllCommentsForTweet(state.commentsById, getActiveTweet(state.tweets)),
     editableComment: getEditableComment(state.commentsById),
-    activeTweet: getActiveTweet(state.tweetsById)
+    activeTweet: getActiveTweet(state.tweets)
   }
 }
 
