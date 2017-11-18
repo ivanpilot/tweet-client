@@ -18,7 +18,7 @@ class EditableTweetList extends React.Component {
     apiTweet.loadTweets((tweets) => {
       console.log(tweets)
       // return this.props.loadsTweets(tweets)
-      const normalizedData = normalize(tweets:tweets, normalizedTweet)
+      const normalizedData = normalize(tweets, normalizedTweet)
       console.log(normalizedData)
       return this.props.loadsTweets(normalizedData)
 
@@ -78,12 +78,15 @@ function onEditClick(id, editableId){
 }
 
 function onActiveClick(id, activeId){
+
   if(activeId && activeId !== id){
+    // debugger
     return (dispatch) => {
       dispatch(triggerActivableTweet(activeId))
       dispatch(triggerActivableTweet(id))
     }
   } else {
+    // debugger
     return (dispatch) => {
       dispatch(triggerActivableTweet(id))
     }
@@ -110,6 +113,7 @@ function loadsTweets(tweets){
 }
 
 const mapStateToProps = (state) => {
+  // debugger
   return {
     tweets: getAllTweets(state.tweets),
     activeTweet: getActiveTweet(state.tweets),

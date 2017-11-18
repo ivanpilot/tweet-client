@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid';
 import FieldInput from './FieldInput';
 
 class FormTweet extends React.Component{
@@ -31,9 +32,12 @@ class FormTweet extends React.Component{
   }
 
   onSubmitForm = () => {
-    const tweet = {...this.state.tweet};
+    const id = this.state.tweet.id || uuid.v4()
+    // debugger
+    const tweet = {...this.state.tweet, id: id};
+    // debugger
     if(this.validate()) return;
-    this.props.onSubmitForm(tweet, this.props.editableTweet); //second argument when Form rendered from AddTweetInput 
+    this.props.onSubmitForm(tweet, this.props.editableTweet); //second argument when Form rendered from AddTweetInput
     this.setState({
       tweet: {
         id: '',

@@ -4,7 +4,7 @@ import { triggerThread } from '../actions/Thread';
 import { triggerEditableTweet } from '../actions/Tweet';
 import { triggerEditableComment } from '../actions/Comment';
 import { getAllThreads, getActiveThread } from '../reducers/ThreadsById';
-import { getEditableTweet } from '../reducers/TweetsById';
+import { getEditableTweet } from '../reducers/Tweets';
 import { getEditableComment } from '../reducers/CommentsById';
 import { Tabs } from '../components/Tabs';
 
@@ -41,7 +41,7 @@ const mapStateToProps = (state) => {
   return {
     tabs: getAllThreads(state.threadsById),
     activeThreadId: getActiveThread(state.threadsById),
-    editableTweet: getEditableTweet(state.tweetsById),
+    editableTweet: getEditableTweet(state.tweets),
     editableComment: getEditableComment(state.commentsById)
   }
 }

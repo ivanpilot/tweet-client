@@ -85,11 +85,15 @@ state = {
   },
 }
 
+// const comments = Object.keys(state).reduce((result, id) => {
+//   if(state[id].tweet_id === '1'){
+//     return Object.assign({}, result, Object.assign({}, {[id]: state[id]}))
+//   }
+//   return result
+// }, {})
+
 const comments = Object.keys(state).reduce((result, id) => {
-  if(state[id].tweet_id === '1'){
-    return Object.assign({}, result, Object.assign({}, {[id]: state[id]}))
-  }
-  return result
+  return Object.assign({}, result, Object.assign({}, {[id]: state[id]}))
 }, {})
 
 // const commentIds = Object.keys(state).reduce((result, id) => {
@@ -99,14 +103,15 @@ const comments = Object.keys(state).reduce((result, id) => {
 //   return result
 // }, [])
 
-const commentIds = Object.keys(state).filter(id => {
-  return state[id].tweet_id === '1'
-})
-
-const getTweetEditableComment = Object.keys(state).filter(id => state[id].tweet_id === '1').find(id => state[id].editable)
+// const commentIds = Object.keys(state).filter(id => {
+//   return state[id].tweet_id === '1'
+// })
+//
+// const getTweetEditableComment = Object.keys(state).filter(id => state[id].tweet_id === '1').find(id => state[id].editable)
 
 
 
 // console.log(state[comments])
-console.log(getTweetEditableComment)
+// console.log(getTweetEditableComment)
 // console.log(Object.keys(state))
+console.log(comments)
