@@ -23,7 +23,7 @@ class ApiTweet {
       post:{
         title: tweet.title,
         body: tweet.body,
-        user_id: parseInt(tweet.userId)
+        user_id: parseInt(tweet.userId, 10)
       }
     }
     // debugger

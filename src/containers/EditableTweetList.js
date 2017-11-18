@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getAllTweets, getEditableTweet, getActiveTweet } from '../reducers/TweetsById';
+import { getAllTweets, getEditableTweet, getActiveTweet } from '../reducers/Tweets';
 import { EditableTweet } from '../components/EditableTweet';
 import { editTweet, deleteTweet, triggerEditableTweet, triggerActivableTweet, loadTweets } from '../actions/Tweet';
 import { deleteTweetComments } from '../actions/Comment';
@@ -29,6 +29,7 @@ class EditableTweetList extends React.Component {
 
   render(){
     // debugger
+    // if(this.props.tweets.length === 0){
     if(this.props.tweets.length === 0){
       return(
         <div className="no-tweet">
@@ -110,9 +111,9 @@ function loadsTweets(tweets){
 
 const mapStateToProps = (state) => {
   return {
-    tweets: getAllTweets(state.tweetsById),
-    activeTweet: getActiveTweet(state.tweetsById),
-    editableTweet: getEditableTweet(state.tweetsById)
+    tweets: getAllTweets(state.tweets),
+    activeTweet: getActiveTweet(state.tweets),
+    editableTweet: getEditableTweet(state.tweets)
   }
 }
 

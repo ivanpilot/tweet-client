@@ -71,25 +71,28 @@ export function tweetsById(state = {}, action){
 }
 
 export const getAllTweets = (state) => {
-  return Object.keys(state).map(id => ({
-    id: id,
-    title: state[id].title,
-    body: state[id].body,
-    userId: state[id].user_id,
-    editable: state[id].editable || false,
-    active: state[id].active,
-    ownership: true,
-    // ownership: state[id].user_id === client.currentUser().id
-  })
-  )
+  return state
+  // return Object.keys(state).map(id => ({
+  //   id: id,
+  //   title: state[id].title,
+  //   body: state[id].body,
+  //   userId: state[id].user_id,
+  //   editable: state[id].editable || false,
+  //   active: state[id].active,
+  //   ownership: true,
+  //   // ownership: state[id].user_id === client.currentUser().id
+  // })
+  // )
 }
 
 export const getEditableTweet = (state) => {
-  return Object.keys(state).find(id => state[id].editable)
+  return state
+  // return Object.keys(state).find(id => state[id].editable)
 }
 
 export const getActiveTweet = (state) => {
-  return Object.keys(state).find(id => state[id].active)
+  return state
+  // return Object.keys(state).find(id => state[id].active)
 }
 
 function newTweet(tweet){
