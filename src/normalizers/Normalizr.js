@@ -10,7 +10,7 @@ const comment = new schema.Entity('comments', {
 
 const tweetSchema = new schema.Entity('tweets', {
   author: user,
-  // comments: [comment]
+  comments: [comment]
 })
 
 export const normalizedTweet = new schema.Array(tweetSchema)

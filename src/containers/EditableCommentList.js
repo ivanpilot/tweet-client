@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getEditableComment } from '../reducers/Comments';
-import { getActiveTweet, getAllCommentsForTweet} from '../reducers/Tweets';
+import { getEditableComment, getAllCommentsForTweet } from '../reducers/Comments';
+import { getActiveTweet } from '../reducers/Tweets';
 import { EditableComment } from '../components/EditableComment';
 import { editComment, deleteComment, triggerEditableComment, loadComments } from '../actions/Comment';
 import '../styles/EditableList.css';
@@ -19,15 +19,15 @@ class EditableCommentList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.activeTweet){
-      // debugger
+    if(nextProps.activeTweet && nextProps.activeTweet !== this.props.activeTweet){
+      debugger
       this.setState({loading: true});
 
       apiComment.loadRawComments(nextProps.activeTweet, (comments) => {
-debugger
+// debugger
         // console.log(comments)
         if(comments.length > 0){
-          debugger
+          // debugger
         const normalizedData = normalize(comments, normalizedComment)
         // console.log(normalizedData)
         return this.props.loadingComments(normalizedData)
