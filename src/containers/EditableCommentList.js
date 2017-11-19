@@ -20,7 +20,7 @@ class EditableCommentList extends React.Component {
 
   componentWillReceiveProps(nextProps){
     if(nextProps.activeTweet && nextProps.activeTweet !== this.props.activeTweet){
-      debugger
+      // debugger
       this.setState({loading: true});
 
       apiComment.loadRawComments(nextProps.activeTweet, (comments) => {

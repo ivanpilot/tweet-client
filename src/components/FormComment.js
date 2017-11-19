@@ -30,7 +30,7 @@ class FormComment extends React.Component{
   }
 
   onSubmitForm = () => {
-    const id = this.state.tweet.id || uuid.v4()
+    const id = this.state.comment.id || uuid.v4()
     const activeTweet = (this.props.comment && this.props.comment.tweetId) //to make sure we keep the activeTweetId in case of editing a comment
     const comment = {
       ...this.state.comment,

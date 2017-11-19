@@ -25,7 +25,7 @@ function comment(state, action){
     case 'EDIT_COMMENT': {
       return {
         ...state,
-        descripton: action.comment.description
+        description: action.comment.description
       }
     }
 
@@ -51,8 +51,8 @@ function byId(state = {}, action){
     case 'ADD_COMMENT':
     case 'EDIT_COMMENT': {
       return {
-        [action.comment.id]: comment(state[action.comment.id], action),
-        ...state
+        ...state,
+        [action.comment.id]: comment(state[action.comment.id], action)
       }
     }
 
