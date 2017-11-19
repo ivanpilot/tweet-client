@@ -24,12 +24,14 @@ class EditableCommentList extends React.Component {
       this.setState({loading: true});
 
       apiComment.loadRawComments(nextProps.activeTweet, (comments) => {
-        // debugger
+debugger
         // console.log(comments)
+        if(comments.length > 0){
+          debugger
         const normalizedData = normalize(comments, normalizedComment)
         // console.log(normalizedData)
         return this.props.loadingComments(normalizedData)
-
+}
       }).then(() => {
         console.log('just returned')
         // debugger
