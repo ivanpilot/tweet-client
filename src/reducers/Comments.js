@@ -79,6 +79,7 @@ function byId(state = {}, action){
 
     case 'LOAD_COMMENTS': {
       const rawComments = action.comments.entities.comments;
+      // debugger
       return Object.keys(rawComments).reduce((result, id) => {
         return Object.assign({}, result, Object.assign({}, {[id]: comment(rawComments[id], action)}))
       }, {})
@@ -117,7 +118,16 @@ export const getCommentById = (state, id) => {
 }
 
 export const getEditableComment = (state) => {
+  // debugger
   if(Object.keys(state).length > 0){
-    return Object.keys(state.byId).find(id => state.byId[id].editable)
-  }
+    // debugger
+    return Object.keys(state).find(id => state[id].editable)
+
+  } //else if(Object.keys(state).length > 0 && Object.keys(state.byId).length > 0){
+  //   debugger
+  //   return Object.keys(state.byId).find(id => state.byId[id].editable)
+  //
+  // } else {
+  //   null
+  // }
 }

@@ -55,7 +55,18 @@ class EditableTweetList extends React.Component {
   }
 }
 
-// export default EditableTweetList
+// componentWillReceiveProps(nextProps){
+//   if(nextProps.activeTweet){
+//     debugger
+//     apiComment.loadComments(nextProps.activeTweet, (comments) => {
+//       console.log(comments)
+//       const normalizedData = normalize(comments, normalizedComment)
+//       console.log(normalizedData)
+//       return this.props.loadingComments(normalizedData)
+//     })
+//   }
+// }
+// dispatch(loadComments(comments))
 
 function onTrashClick(id){
   return (dispatch) => {

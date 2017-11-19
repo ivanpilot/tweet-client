@@ -3,15 +3,19 @@ class ApiComment {
     this.domain = 'http://localhost:3000'
   }
 
-  loadComments(postId, success){
+  loadRawComments(postId, success){
     const url = this.domain + `/api/posts/${postId}/comments`
-    fetch(url, {
+    return fetch(url, {
       headers:{
         'Content-Type': 'application/json'
       }
     }).then(this.checkStatus)
       .then(this.parseJson)
       .then(success)
+      // .then((data) => {
+      //   debugger
+      //   return data
+      // })
   }
 
 
