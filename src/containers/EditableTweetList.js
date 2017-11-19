@@ -15,12 +15,12 @@ import { normalizedTweet } from '../normalizers/Normalizr';
 class EditableTweetList extends React.Component {
 
   componentDidMount(){
-    apiTweet.loadTweets((tweets) => {
+    apiTweet.loadRawTweets((tweets) => {
       console.log(tweets)
       // return this.props.loadsTweets(tweets)
       const normalizedData = normalize(tweets, normalizedTweet)
-      console.log(normalizedData)
-      return this.props.loadsTweets(normalizedData)
+      console.log('SHOWME STUFFFFF', normalizedData)
+      return this.props.loadingTweets(normalizedData)
 
     })
 
@@ -106,7 +106,7 @@ function onSubmitTweetForm(tweet){
   }
 }
 
-function loadsTweets(tweets){
+function loadingTweets(tweets){
   return (dispatch) => {
     dispatch(loadTweets(tweets))
   }
@@ -128,7 +128,7 @@ const mapDispatchToProps = (dispatch) => {
     onActiveClick,
     closeEditable,
     onSubmitTweetForm,
-    loadsTweets,
+    loadingTweets,
   }, dispatch)
 }
 

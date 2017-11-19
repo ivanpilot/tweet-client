@@ -60,6 +60,20 @@ class Client {
     console.log(response);
   }
 
+  loadData(success){
+    const url = 'http://localhost:3000/api/posts'
+    fetch(url, {
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }).then(this.checkStatus)
+      .then(this.parseJson)
+      .then(success)
+      // .then((json) => {
+      //   console.log(json)
+      // })
+  }
+
   checkStatus(response){
     if(response.status >= 200 && response.status < 300){
       return response

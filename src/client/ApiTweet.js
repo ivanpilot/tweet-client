@@ -3,7 +3,7 @@ class ApiTweet {
     this.domain = 'http://localhost:3000'
   }
 
-  loadTweets(success){
+  loadRawTweets(success){
     const url = this.domain + '/api/posts'
     fetch(url, {
       headers:{

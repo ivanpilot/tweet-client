@@ -4,27 +4,28 @@ import { bindActionCreators } from 'redux';
 import { getAllCommentsForTweet, getEditableComment } from '../reducers/CommentsById';
 import { getActiveTweet } from '../reducers/Tweets';
 import { EditableComment } from '../components/EditableComment';
-import { editComment, deleteComment, triggerEditableComment } from '../actions/Comment';
+import { editComment, deleteComment, triggerEditableComment, loadComments } from '../actions/Comment';
 import '../styles/EditableList.css';
-
 // import { client } from '../client/Client';
-// import { apiTweet } from '../client/ApiTweet';
+import { apiComment } from '../client/ApiComment';
+import { normalize } from 'normalizr';
+import { normalizedComment } from '../normalizers/Normalizr';
 
 
 class EditableCommentList extends React.Component {
 
-  // componentDidMount(){
-  //   apiTweet.loadComments((tweets) => {
-  //     console.log(tweets)
-  //     // return this.props.loadsTweets(tweets)
-  //     const normalizedData = normalize(tweets, normalizedTweet)
-  //     console.log(normalizedData)
-  //     return this.props.loadsTweets(normalizedData)
-  //
-  //   })
-  //
-  //   // this.props.loadTweets(tweets)
-  // }
+  componentWillReceiveProps(nextProps){
+    if(nextProps.activeTweet){
+      apiComment.loadComments(nextProps.activeTweet, (comments) => {
+        console.log(comments)
+        const normalizedData = normalize(comments, normalizedComment)
+        console.log(normalizedData)
+        return this.props.loadingComments(normalizedData)
+      })
+    }
+
+    // this.props.loadTweets(tweets)
+  }
 
   render(){
     // debugger
@@ -81,7 +82,14 @@ function onSubmitCommentForm(comment){
   }
 }
 
+function loadingComments(comments){
+  return (dispatch) => {
+    dispatch(loadComments(comments))
+  }
+}
+
 const mapStateToProps = (state) => {
+  // debugger
   return {
     comments: getAllCommentsForTweet(state.commentsById, getActiveTweet(state.tweets)),
     editableComment: getEditableComment(state.commentsById),
@@ -95,6 +103,7 @@ const mapDispatchToProps = (dispatch) => {
     onEditClick,
     closeEditable,
     onSubmitCommentForm,
+    loadingComments,
   }, dispatch)
 }
 

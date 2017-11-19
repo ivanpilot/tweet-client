@@ -78,7 +78,7 @@ function byId(state = {}, action){
     // }
 
     case 'LOAD_COMMENTS': {
-      const rawComments = action.tweets.entities.comments;
+      const rawComments = action.comments.entities.comments;
       return Object.keys(rawComments).reduce((result, id) => {
         return Object.assign({}, result, Object.assign({}, {[id]: comment(rawComments[id], action)}))
       }, {})

@@ -12,12 +12,9 @@ class ApiComment {
     }).then(this.checkStatus)
       .then(this.parseJson)
       .then(success)
-      // .then((json) => {
-      //   console.log(json)
-      // })
   }
 
-  
+
   parseJson(response){
     return response.json();
   }
