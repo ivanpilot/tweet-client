@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getAllTweets, getEditableTweet, getActiveTweet } from '../reducers/Tweets';
-import { getAllCommentsForTweet, getEditableComment } from '../reducers/CommentsById';
+import { getAllCommentsForTweet, getEditableComment } from '../reducers/Comments';
 import { EditableTweet } from '../components/EditableTweet';
 import { EditableComment } from '../components/EditableComment';
 import { editTweet, deleteTweet, triggerEditable, triggerActivable } from '../actions/TweetComment';

@@ -78,5 +78,7 @@ export const getActiveTweet = (state) => {
 }
 
 export const getAllCommentsForTweet = (stateTweets, tweetId, stateComments) => {
-  return stateTweets.byId[tweetId].comments.map(comment => getCommentById(stateComments, comment))
+  if(tweetId){
+    return stateTweets.byId[tweetId].comments.map(comment => getCommentById(stateComments, comment))
+  }
 }

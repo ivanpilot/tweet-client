@@ -5,7 +5,7 @@ import { triggerEditableTweet } from '../actions/Tweet';
 import { triggerEditableComment } from '../actions/Comment';
 import { getAllThreads, getActiveThread } from '../reducers/ThreadsById';
 import { getEditableTweet } from '../reducers/Tweets';
-import { getEditableComment } from '../reducers/CommentsById';
+import { getEditableComment } from '../reducers/Comments';
 import { Tabs } from '../components/Tabs';
 
 //can dispatch several action only because of redux-thunk
@@ -42,7 +42,7 @@ const mapStateToProps = (state) => {
     tabs: getAllThreads(state.threadsById),
     activeThreadId: getActiveThread(state.threadsById),
     editableTweet: getEditableTweet(state.tweets),
-    editableComment: getEditableComment(state.commentsById)
+    editableComment: getEditableComment(state.comments.byId)
   }
 }
 
