@@ -129,10 +129,22 @@ export const getEditableComment = (state) => {
 
 export const getAllCommentsForTweet = (state) => {
   // debugger
-  return Object.keys(state.byId).reduce((result, id) => {
-    return [...result, state.byId[id]]
-  }, [])
+  return state.allIds.map(id => {
+    return state.byId[id]
+  })
+
+
+  //   (result, id) => {
+  //   return [state.byId[id], ...result]
+  // }, [])
 }
+
+// export const getAllCommentsForTweet = (state) => {
+//   // debugger
+//   return Object.keys(state.byId).reduce((result, id) => {
+//     return [state.byId[id], ...result]
+//   }, [])
+// }
 
 // export const getAllCommentsForTweet = (tweetId, state) => {
 //   if(tweetId){
