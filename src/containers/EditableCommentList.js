@@ -26,10 +26,12 @@ class EditableCommentList extends React.Component {
 
       apiComment.loadRawComments(nextProps.activeTweet, (comments) => {
         // debugger
-        if(comments.length > 0){
+        // if(comments.length > 0){
+
           const normalizedData = normalize(comments, normalizedComment)
+          // debugger
           return this.props.loadingComments(normalizedData)
-        }
+        // }
       }).then(() => {
         this.setState({loading: false})
       })
@@ -43,7 +45,7 @@ class EditableCommentList extends React.Component {
       return(
         <div className='ui active centered inline loader' />
       )
-    } else if(!this.props.comments){
+    } else if(!this.props.activeTweet || !this.props.comments){
       // debugger
       return(
         null
@@ -109,13 +111,16 @@ function onSubmitCommentForm(comment){
 
 function loadingComments(comments){
   return (dispatch) => {
+    // debugger
     dispatch(loadComments(comments))
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    comments: getAllCommentsForTweet(state.tweets, getActiveTweet(state.tweets), state.comments),
+    comments: getAllCommentsForTweet(state.comments),
+    // comments: getAllCommentsForTweet(getActiveTweet(state.tweets), state.comments),
+    // comments: getAllCommentsForTweet(state.tweets, getActiveTweet(state.tweets), state.comments),
     editableComment: getEditableComment(state.comments),
     activeTweet: getActiveTweet(state.tweets)
   }

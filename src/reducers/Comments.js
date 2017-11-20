@@ -39,6 +39,7 @@ function comment(state, action){
     }
 
     case 'LOAD_COMMENTS': {
+      // debugger
       return {
         ...state,
         editable: false,
@@ -72,10 +73,15 @@ function byId(state = {}, action){
     }
 
     case 'LOAD_COMMENTS': {
-      const rawComments = action.comments.entities.comments;
-      return Object.keys(rawComments).reduce((result, id) => {
-        return Object.assign({}, result, Object.assign({}, {[id]: comment(rawComments[id], action)}))
-      }, {})
+      const entities = action.comments.entities
+      if(Object.keys(entities).length === 0){
+        return {}
+      } else {
+        const rawComments = entities.comments;
+        return Object.keys(rawComments).reduce((result, id) => {
+          return Object.assign({}, result, Object.assign({}, {[id]: comment(rawComments[id], action)}))
+        }, {})
+      }
     }
 
     default:
@@ -94,6 +100,7 @@ function allIds(state = [], action){
     }
 
     case 'LOAD_COMMENTS': {
+      // debugger
       return action.comments.result
     }
 
@@ -120,17 +127,43 @@ export const getEditableComment = (state) => {
   // }
 }
 
+export const getAllCommentsForTweet = (state) => {
+  // debugger
+  return Object.keys(state.byId).reduce((result, id) => {
+    return [...result, state.byId[id]]
+  }, [])
+}
+
+// export const getAllCommentsForTweet = (tweetId, state) => {
+//   if(tweetId){
+//     // debugger
+//     return Object.keys(state.byId).reduce((result, id) => {
+//       return [...result, state.byId[id]]
+//     }, [])
+//
+//     // return state.byId[tweetId].comments.reduce((result, comment) => {
+//     //   const getComment = getCommentById(stateComments, comment)
+//     //   if(getComment){
+//     //     return [...result, getComment]
+//     //   }
+//     //   return result
+//     // }, [])
+//   }
+// }
+
 //reason to have a complex redux function is to force reloading the comments when activating/deactivating tweets
 //However this concerns only the comments that have been added and not yet saved on the server
-export const getAllCommentsForTweet = (stateTweets, tweetId, stateComments) => {
-  if(tweetId){
-    // return stateTweets.byId[tweetId].comments.map(comment => getCommentById(stateComments, comment))
-    return stateTweets.byId[tweetId].comments.reduce((result, comment) => {
-      const getComment = getCommentById(stateComments, comment)
-      if(getComment){
-        return [...result, getComment]
-      }
-      return result
-    }, [])
-  }
-}
+// export const getAllCommentsForTweet = (stateTweets, tweetId, stateComments) => {
+//   debugger
+//   if(tweetId){
+//     debugger
+//     // return stateTweets.byId[tweetId].comments.map(comment => getCommentById(stateComments, comment))
+//     return stateTweets.byId[tweetId].comments.reduce((result, comment) => {
+//       const getComment = getCommentById(stateComments, comment)
+//       if(getComment){
+//         return [...result, getComment]
+//       }
+//       return result
+//     }, [])
+//   }
+// }
