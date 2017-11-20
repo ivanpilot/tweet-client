@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { getAllTweets, getEditableTweet, getActiveTweet } from '../reducers/Tweets';
 import { EditableTweet } from '../components/EditableTweet';
 import { editTweet, deleteTweet, triggerEditableTweet, triggerActivableTweet, loadTweets } from '../actions/Tweet';
-import { deleteAllTweetComments } from '../actions/Comment';
+import { deleteAllCommentsInTweet } from '../actions/Comment';
 import '../styles/EditableList.css';
 // import { client } from '../client/Client';
 import { apiTweet } from '../client/ApiTweet';
@@ -54,7 +54,7 @@ function onTrashClick(id){
   // debugger
   return (dispatch) => {
     dispatch(deleteTweet(id))
-    dispatch(deleteAllTweetComments(id)) //should be modified once we change the state to normalized
+    // dispatch(deleteAllCommentsInTweet(id)) //should be modified once we change the state to normalized
   }
 }
 

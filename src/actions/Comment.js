@@ -36,9 +36,9 @@ export function loadComments(comments){
   }
 }
 
-export function deleteAllTweetComments(tweetId){
+export function deleteAllCommentsInTweet(tweetId){
   return {
-    type: types.DELETE_ALL_TWEET_COMMENTS,
+    type: types.DELETE_ALL_COMMENTS_IN_TWEET,
     tweetId: tweetId
   }
 }

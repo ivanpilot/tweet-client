@@ -74,10 +74,16 @@ function byId(state = {}, action){
       }
     }
 
-    case 'DELETE_ALL_TWEET_COMMENTS': {
-      debugger
-      return state
-    }
+    // case 'DELETE_ALL_COMMENTS_IN_TWEET': {
+    //   debugger
+    //   const copyState = Object.assign({}, state)
+    //   Object.keys(copyState).filter(id => {
+    //     if(copyState[id].post_id === action.tweetId){
+    //       delete copyState[id]
+    //     }
+    //   })
+    //   return Object.assign({}, copyState)
+    // }
 
     case 'LOAD_COMMENTS': {
       const rawComments = action.comments.entities.comments;
@@ -107,7 +113,7 @@ function allIds(state = [], action){
     // }
 
     case 'LOAD_COMMENTS': {
-      return action.comments.result.concat(state)
+      return action.comments.result//.concat(state)
     }
 
     default:
