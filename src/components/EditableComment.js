@@ -5,8 +5,6 @@ import '../styles/EditableComment.css';
 
 
 export const EditableComment = (props) => {
-  // debugger
-
   return props.comments.map((comment, index) => {
     // debugger
     return (
@@ -37,5 +35,4 @@ export const EditableComment = (props) => {
     </div>
     )
   })
-
 }

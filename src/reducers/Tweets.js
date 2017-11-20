@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import { tweet } from './Tweet';
-import { getCommentById } from './Comments';
 
 
 export const tweets = combineReducers({
@@ -47,13 +46,6 @@ function byId(state = {}, action){
       }
     }
 
-    // case 'DELETE_COMMENT_IN_TWEET': {
-    //   return {
-    //     ...state,
-    //     [action.tweetId]: tweet(state[action.tweetId], action)
-    //   }
-    // }
-
     default:
       return state
   }
@@ -91,10 +83,3 @@ export const getActiveTweet = (state) => {
   const tweetId = Object.keys(state.byId).find(id => state.byId[id].active)
   return parseInt(tweetId, 10)
 }
-
-// export const getAllCommentsForTweet = (stateTweets, tweetId, stateComments) => {
-//   // debugger
-//   if(tweetId){
-//     return stateTweets.byId[tweetId].comments.map(comment => getCommentById(stateComments, comment))
-//   }
-// }

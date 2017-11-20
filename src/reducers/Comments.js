@@ -1,5 +1,3 @@
-import { initialState } from './InitialState.js';
-import uuid from 'uuid';
 import { combineReducers } from 'redux';
 
 export const comments = combineReducers({
@@ -8,12 +6,9 @@ export const comments = combineReducers({
 })
 
 
-
-
 function comment(state, action){
   switch (action.type) {
     case 'ADD_COMMENT': {
-      // debugger
       return {
         id: action.comment.id,
         description: action.comment.description,
@@ -39,7 +34,6 @@ function comment(state, action){
     }
 
     case 'LOAD_COMMENTS': {
-      // debugger
       return {
         ...state,
         editable: false,
@@ -100,7 +94,6 @@ function allIds(state = [], action){
     }
 
     case 'LOAD_COMMENTS': {
-      // debugger
       return action.comments.result
     }
 
@@ -114,68 +107,11 @@ export const getCommentById = (state, id) => {
 }
 
 export const getEditableComment = (state) => {
-  // debugger
   if(Object.keys(state).length > 0){
-    // debugger
     return Object.keys(state).find(id => state[id].editable)
-  } //else if(Object.keys(state).length > 0 && Object.keys(state.byId).length > 0){
-  //   debugger
-  //   return Object.keys(state.byId).find(id => state.byId[id].editable)
-  //
-  // } else {
-  //   null
-  // }
+  }
 }
 
 export const getAllCommentsForTweet = (state) => {
-  // debugger
-  return state.allIds.map(id => {
-    return state.byId[id]
-  })
-
-
-  //   (result, id) => {
-  //   return [state.byId[id], ...result]
-  // }, [])
+  return state.allIds.map(id => state.byId[id])
 }
-
-// export const getAllCommentsForTweet = (state) => {
-//   // debugger
-//   return Object.keys(state.byId).reduce((result, id) => {
-//     return [state.byId[id], ...result]
-//   }, [])
-// }
-
-// export const getAllCommentsForTweet = (tweetId, state) => {
-//   if(tweetId){
-//     // debugger
-//     return Object.keys(state.byId).reduce((result, id) => {
-//       return [...result, state.byId[id]]
-//     }, [])
-//
-//     // return state.byId[tweetId].comments.reduce((result, comment) => {
-//     //   const getComment = getCommentById(stateComments, comment)
-//     //   if(getComment){
-//     //     return [...result, getComment]
-//     //   }
-//     //   return result
-//     // }, [])
-//   }
-// }
-
-//reason to have a complex redux function is to force reloading the comments when activating/deactivating tweets
-//However this concerns only the comments that have been added and not yet saved on the server
-// export const getAllCommentsForTweet = (stateTweets, tweetId, stateComments) => {
-//   debugger
-//   if(tweetId){
-//     debugger
-//     // return stateTweets.byId[tweetId].comments.map(comment => getCommentById(stateComments, comment))
-//     return stateTweets.byId[tweetId].comments.reduce((result, comment) => {
-//       const getComment = getCommentById(stateComments, comment)
-//       if(getComment){
-//         return [...result, getComment]
-//       }
-//       return result
-//     }, [])
-//   }
-// }

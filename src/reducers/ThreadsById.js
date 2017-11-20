@@ -1,7 +1,16 @@
-import _ from 'lodash';
-import { initialState } from './InitialState';
+// import _ from 'lodash';
+// import { initialState } from './InitialState';
 
-export function threadsById(state = initialState.threadsById, action){
+export function threadsById(state = {
+  '1': {
+    name: 'My Tweets',
+    active: true
+  },
+  '2': {
+    name: 'Wall',
+    active: false
+  },
+}, action){
   switch (action.type) {
 
     case 'TRIGGER_THREAD':
@@ -20,7 +29,7 @@ export function threadsById(state = initialState.threadsById, action){
 }
 
 export const getAllThreads = (state) => {
-  return _.keys(state).map(id => ({
+  return Object.keys(state).map(id => ({
       id: id,
       name: state[id].name,
       active: state[id].active

@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { getAllTweets, getEditableTweet, getActiveTweet } from '../reducers/Tweets';
 import { EditableTweet } from '../components/EditableTweet';
 import { editTweet, deleteTweet, triggerEditableTweet, triggerActivableTweet, loadTweets } from '../actions/Tweet';
-import { deleteAllCommentsInTweet } from '../actions/Comment';
 import '../styles/EditableList.css';
 // import { client } from '../client/Client';
 import { apiTweet } from '../client/ApiTweet';
@@ -16,15 +15,14 @@ class EditableTweetList extends React.Component {
 
   componentDidMount(){
     apiTweet.loadRawTweets((tweets) => {
-      console.log(tweets)
+      // console.log(tweets)
       const normalizedData = normalize(tweets, normalizedTweet)
-      console.log('SHOWME STUFFFFF', normalizedData)
+      // console.log('SHOWME STUFFFFF', normalizedData)
       return this.props.loadingTweets(normalizedData)
     })
   }
 
   render(){
-    // debugger
     if(this.props.tweets.length === 0){
       return(
         <div className="no-tweet">
@@ -51,7 +49,6 @@ class EditableTweetList extends React.Component {
 }
 
 function onTrashClick(id){
-  // debugger
   return (dispatch) => {
     dispatch(deleteTweet(id))
     // dispatch(deleteAllCommentsInTweet(id)) //should be modified once we change the state to normalized >> no need to do this
@@ -74,13 +71,11 @@ function onEditClick(id, editableId){
 function onActiveClick(id, activeId){
 
   if(activeId && activeId !== id){
-    // debugger
     return (dispatch) => {
       dispatch(triggerActivableTweet(activeId))
       dispatch(triggerActivableTweet(id))
     }
   } else {
-    // debugger
     return (dispatch) => {
       dispatch(triggerActivableTweet(id))
     }
@@ -107,7 +102,6 @@ function loadingTweets(tweets){
 }
 
 const mapStateToProps = (state) => {
-  // debugger
   return {
     tweets: getAllTweets(state.tweets),
     activeTweet: getActiveTweet(state.tweets),

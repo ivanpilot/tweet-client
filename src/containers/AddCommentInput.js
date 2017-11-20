@@ -11,14 +11,12 @@ import FormComment from '../components/FormComment';
 
 function onSubmitForm(comment, editableId){
   if(editableId){
-    // debugger
     return (dispatch) => {
       dispatch(triggerEditableComment(editableId))
       dispatch(addComment(comment))
       dispatch(addCommentToTweet(comment))
     }
   } else {
-    // debugger
     return (dispatch) => {
       dispatch(addComment(comment))
       dispatch(addCommentToTweet(comment))

@@ -1,6 +1,4 @@
-import { normalize, schema } from 'normalizr';
-import { apiTweet } from '../client/ApiTweet';
-
+import { schema } from 'normalizr';
 
 const user = new schema.Entity('users')
 
