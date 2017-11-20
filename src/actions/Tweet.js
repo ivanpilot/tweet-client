@@ -41,3 +41,11 @@ export function loadTweets(tweets){
     tweets: tweets
   }
 }
+
+export function deleteCommentInTweet(commentId, tweetId){
+  return {
+    type: types.DELETE_COMMENT_IN_TWEET,
+    commentId: commentId,
+    tweetId: tweetId
+  }
+}

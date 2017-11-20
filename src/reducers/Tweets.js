@@ -39,6 +39,13 @@ function byId(state = {}, action){
       }, {})
     }
 
+    case 'DELETE_COMMENT_IN_TWEET': {
+      return {
+        ...state,
+        [action.tweetId]: tweet(state[action.tweetId], action)
+      }
+    }
+
     default:
       return state
   }

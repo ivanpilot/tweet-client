@@ -14,10 +14,11 @@ export function editComment(comment){
   }
 }
 
-export function deleteComment(id){
+export function deleteComment(id, activeId){
   return {
     type: types.DELETE_COMMENT,
-    id: id
+    id: id,
+    activeTweetId: activeId
   }
 }
 
@@ -35,9 +36,9 @@ export function loadComments(comments){
   }
 }
 
-export function deleteTweetComments(tweetId){
+export function deleteAllTweetComments(tweetId){
   return {
-    type: types.DELETE_TWEET_COMMENTS,
+    type: types.DELETE_ALL_TWEET_COMMENTS,
     tweetId: tweetId
   }
 }

@@ -13,7 +13,7 @@ export const Comment = (props) => {
               <div className='extra content'>
                 <span
                   className='right floated trash icon'
-                  onClick={() => props.onTrashClick(props.comment.id)}
+                  onClick={() => props.onTrashClick(props.comment.id, props.activeTweet)}
                 >
                   <a><i className='trash icon' /></a>
                 </span>

@@ -43,5 +43,12 @@ export function tweet(state, action){
       }
     }
 
+    case 'DELETE_COMMENT_IN_TWEET': {
+      return {
+        ...state,
+        comments: state.comments.filter(id => id !== action.commentId)
+      }
+    }
+
   }
 }

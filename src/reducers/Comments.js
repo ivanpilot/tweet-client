@@ -61,6 +61,7 @@ function byId(state = {}, action){
     // }
 
     case 'DELETE_COMMENT': {
+      // debugger
       const newState = Object.assign({}, state)
       delete newState[action.id]
       return Object.assign({}, newState)
@@ -73,9 +74,10 @@ function byId(state = {}, action){
       }
     }
 
-    // case 'DELETE_TWEET_COMMENTS': {
-    //   return state
-    // }
+    case 'DELETE_ALL_TWEET_COMMENTS': {
+      debugger
+      return state
+    }
 
     case 'LOAD_COMMENTS': {
       const rawComments = action.comments.entities.comments;
@@ -135,6 +137,7 @@ export const getEditableComment = (state) => {
 export const getAllCommentsForTweet = (stateTweets, tweetId, stateComments) => {
   // debugger
   if(tweetId){
+    // debugger
     return stateTweets.byId[tweetId].comments.map(comment => getCommentById(stateComments, comment))
   }
 }

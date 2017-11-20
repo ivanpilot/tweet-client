@@ -5,6 +5,7 @@ import { getEditableComment, getAllCommentsForTweet } from '../reducers/Comments
 import { getActiveTweet } from '../reducers/Tweets';
 import { EditableComment } from '../components/EditableComment';
 import { editComment, deleteComment, triggerEditableComment, loadComments } from '../actions/Comment';
+import { deleteCommentInTweet } from '../actions/Tweet';
 import '../styles/EditableList.css';
 // import { client } from '../client/Client';
 import { apiComment } from '../client/ApiComment';
@@ -15,7 +16,6 @@ import { normalizedComment } from '../normalizers/Normalizr';
 class EditableCommentList extends React.Component {
   state = {
     loading: false,
-    // loaded: false
   }
 
   componentWillReceiveProps(nextProps){
@@ -28,13 +28,10 @@ class EditableCommentList extends React.Component {
         // console.log(comments)
         if(comments.length > 0){
           // debugger
-        const normalizedData = normalize(comments, normalizedComment)
-        // console.log(normalizedData)
-        return this.props.loadingComments(normalizedData)
-}
+          const normalizedData = normalize(comments, normalizedComment)
+          return this.props.loadingComments(normalizedData)
+        }
       }).then(() => {
-        console.log('just returned')
-        // debugger
         this.setState({loading: false})
       })
     }
@@ -65,6 +62,7 @@ class EditableCommentList extends React.Component {
           <EditableComment
             comments={this.props.comments}
             editableComment={this.props.editableComment}
+            activeTweet={this.props.activeTweet}
             onEditClick={this.props.onEditClick}
             onTrashClick={this.props.onTrashClick}
             onSubmitForm={this.props.onSubmitCommentForm}
@@ -101,8 +99,12 @@ class EditableCommentList extends React.Component {
   // }
 }
 
-function onTrashClick(id){
-  return (dispatch) => dispatch(deleteComment(id))
+function onTrashClick(id, activeId){
+  // debugger
+  return (dispatch) => {
+    dispatch(deleteCommentInTweet(id, activeId))
+    dispatch(deleteComment(id))
+  }
 }
 
 function onEditClick(id, editableId){

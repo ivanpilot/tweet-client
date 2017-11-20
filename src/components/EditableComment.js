@@ -26,6 +26,7 @@ export const EditableComment = (props) => {
                 <Comment
                   comment={comment}
                   editableComment={props.editableComment}
+                  activeTweet={props.activeTweet}
                   onEditClick={props.onEditClick}
                   onTrashClick={props.onTrashClick}
                 />
