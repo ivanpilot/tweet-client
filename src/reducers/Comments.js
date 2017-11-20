@@ -13,12 +13,14 @@ export const comments = combineReducers({
 function comment(state, action){
   switch (action.type) {
     case 'ADD_COMMENT': {
+      // debugger
       return {
         id: action.comment.id,
         description: action.comment.description,
-        tweet_id: comment.comment.activeTweetId,
+        post_id: action.comment.activeTweetId,
         editable: false,
-        ownership: true
+        commenter_id: 1, // for now
+        ownership: true // do we keep?
       }
     }
 
@@ -56,12 +58,7 @@ function byId(state = {}, action){
       }
     }
 
-    // case 'EDIT_COMMENT': {
-    //   return state
-    // }
-
     case 'DELETE_COMMENT': {
-      // debugger
       const newState = Object.assign({}, state)
       delete newState[action.id]
       return Object.assign({}, newState)
@@ -74,20 +71,8 @@ function byId(state = {}, action){
       }
     }
 
-    // case 'DELETE_ALL_COMMENTS_IN_TWEET': {
-    //   debugger
-    //   const copyState = Object.assign({}, state)
-    //   Object.keys(copyState).filter(id => {
-    //     if(copyState[id].post_id === action.tweetId){
-    //       delete copyState[id]
-    //     }
-    //   })
-    //   return Object.assign({}, copyState)
-    // }
-
     case 'LOAD_COMMENTS': {
       const rawComments = action.comments.entities.comments;
-      // debugger
       return Object.keys(rawComments).reduce((result, id) => {
         return Object.assign({}, result, Object.assign({}, {[id]: comment(rawComments[id], action)}))
       }, {})
@@ -108,12 +93,8 @@ function allIds(state = [], action){
       return state.filter(id => id !== action.id)
     }
 
-    // case 'DELETE_TWEET_COMMENTS': {
-    //   return state
-    // }
-
     case 'LOAD_COMMENTS': {
-      return action.comments.result//.concat(state)
+      return action.comments.result
     }
 
     default:
@@ -130,7 +111,6 @@ export const getEditableComment = (state) => {
   if(Object.keys(state).length > 0){
     // debugger
     return Object.keys(state).find(id => state[id].editable)
-
   } //else if(Object.keys(state).length > 0 && Object.keys(state.byId).length > 0){
   //   debugger
   //   return Object.keys(state.byId).find(id => state.byId[id].editable)
@@ -140,10 +120,17 @@ export const getEditableComment = (state) => {
   // }
 }
 
+//reason to have a complex redux function is to force reloading the comments when activating/deactivating tweets
+//However this concerns only the comments that have been added and not yet saved on the server
 export const getAllCommentsForTweet = (stateTweets, tweetId, stateComments) => {
-  // debugger
   if(tweetId){
-    // debugger
-    return stateTweets.byId[tweetId].comments.map(comment => getCommentById(stateComments, comment))
+    // return stateTweets.byId[tweetId].comments.map(comment => getCommentById(stateComments, comment))
+    return stateTweets.byId[tweetId].comments.reduce((result, comment) => {
+      const getComment = getCommentById(stateComments, comment)
+      if(getComment){
+        return [...result, getComment]
+      }
+      return result
+    }, [])
   }
 }

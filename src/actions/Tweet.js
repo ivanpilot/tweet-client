@@ -42,6 +42,14 @@ export function loadTweets(tweets){
   }
 }
 
+export function addCommentToTweet(comment){
+  return {
+    type: types.ADD_COMMENT_TO_TWEET,
+    tweetId: comment.activeTweetId,
+    commentId: comment.id
+  }
+}
+
 export function deleteCommentInTweet(commentId, tweetId){
   return {
     type: types.DELETE_COMMENT_IN_TWEET,

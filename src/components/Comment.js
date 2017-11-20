@@ -2,7 +2,6 @@ import React from 'react';
 import '../styles/Comment.css'
 
 export const Comment = (props) => {
-  // debugger
   return (
     <div className="ui cards border-blue">
       <div className="card ">

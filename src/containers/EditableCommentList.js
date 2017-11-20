@@ -19,15 +19,14 @@ class EditableCommentList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.activeTweet && nextProps.activeTweet !== this.props.activeTweet){
+    // debugger
+    if(nextProps.activeTweet && nextProps.activeTweet !== this.props.activeTweet){ //comparison to avoid infinite loop
       // debugger
       this.setState({loading: true});
 
       apiComment.loadRawComments(nextProps.activeTweet, (comments) => {
-// debugger
-        // console.log(comments)
+        // debugger
         if(comments.length > 0){
-          // debugger
           const normalizedData = normalize(comments, normalizedComment)
           return this.props.loadingComments(normalizedData)
         }
@@ -38,6 +37,7 @@ class EditableCommentList extends React.Component {
   }
 
   render(){
+    // debugger
     if(this.state.loading){
       // debugger
       return(
@@ -72,35 +72,9 @@ class EditableCommentList extends React.Component {
       )
     }
   }
-
-
-  // render(){
-  //   debugger
-  //   if(this.props.activeTweet && this.props.comments.length === 0){
-  //     return(
-  //       <div className="no-comment">
-  //         <p>Be the first to write a comment...</p>
-  //       </div>
-  //     )
-  //   } else {
-  //     return(
-  //       <div className="editable-list">
-  //         <EditableComment
-  //           comments={this.props.comments}
-  //           editableComment={this.props.editableComment}
-  //           onEditClick={this.props.onEditClick}//
-  //           onTrashClick={this.props.onTrashClick}//
-  //           onSubmitForm={this.props.onSubmitCommentForm}//
-  //           closeEditable={this.props.closeEditable}
-  //         />
-  //       </div>
-  //     )
-  //   }
-  // }
 }
 
 function onTrashClick(id, activeId){
-  // debugger
   return (dispatch) => {
     dispatch(deleteCommentInTweet(id, activeId))
     dispatch(deleteComment(id))
@@ -135,15 +109,12 @@ function onSubmitCommentForm(comment){
 
 function loadingComments(comments){
   return (dispatch) => {
-    // debugger
     dispatch(loadComments(comments))
   }
 }
 
 const mapStateToProps = (state) => {
-  // debugger
   return {
-    // comments: getAllCommentsForTweet(state.comments.byId, getActiveTweet(state.tweets)),
     comments: getAllCommentsForTweet(state.tweets, getActiveTweet(state.tweets), state.comments),
     editableComment: getEditableComment(state.comments),
     activeTweet: getActiveTweet(state.tweets)

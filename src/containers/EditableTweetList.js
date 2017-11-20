@@ -54,7 +54,7 @@ function onTrashClick(id){
   // debugger
   return (dispatch) => {
     dispatch(deleteTweet(id))
-    // dispatch(deleteAllCommentsInTweet(id)) //should be modified once we change the state to normalized
+    // dispatch(deleteAllCommentsInTweet(id)) //should be modified once we change the state to normalized >> no need to do this
   }
 }
 

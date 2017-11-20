@@ -39,6 +39,3 @@ export const EditableComment = (props) => {
   })
 
 }
-
-// offEditableTweetMode={props.offEditableTweetMode}
-// onSubmitForm={props.onSubmitForm}

@@ -4,19 +4,24 @@ import { bindActionCreators } from 'redux';
 import { getActiveTweet } from '../reducers/Tweets';
 import { getEditableComment } from '../reducers/Comments';
 import { addComment, triggerEditableComment } from '../actions/Comment';
+import { addCommentToTweet } from '../actions/Tweet';
 import FormComment from '../components/FormComment';
 
 // import { apiTweet } from '../client/ApiTweet';
 
 function onSubmitForm(comment, editableId){
   if(editableId){
+    // debugger
     return (dispatch) => {
       dispatch(triggerEditableComment(editableId))
       dispatch(addComment(comment))
+      dispatch(addCommentToTweet(comment))
     }
   } else {
+    // debugger
     return (dispatch) => {
       dispatch(addComment(comment))
+      dispatch(addCommentToTweet(comment))
     }
   }
 }
