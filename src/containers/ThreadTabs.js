@@ -23,7 +23,7 @@ function handleClickTab(id, activeThreadId, editableTweetId, editableCommentId){
       dispatch(triggerThread(id))
       dispatch(triggerEditableTweet(editableTweetId))
     }
-  } else if(!editableTweetId && editableCommentId){
+  } else if(editableCommentId){
     return (dispatch) => {
       dispatch(triggerThread(activeThreadId))
       dispatch(triggerThread(id))

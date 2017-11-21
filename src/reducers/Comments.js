@@ -78,6 +78,10 @@ function byId(state = {}, action){
       }
     }
 
+    case 'CLEAR_COMMENTS': {
+      return {}
+    }
+
     default:
       return state
   }
@@ -95,6 +99,10 @@ function allIds(state = [], action){
 
     case 'LOAD_COMMENTS': {
       return action.comments.result
+    }
+
+    case 'CLEAR_COMMENTS': {
+      return []
     }
 
     default:

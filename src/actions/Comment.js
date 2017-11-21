@@ -36,6 +36,12 @@ export function loadComments(comments){
   }
 }
 
+export function clearComments(){
+  return {
+    type: types.CLEAR_COMMENTS,
+  }
+}
+
 export function deleteAllCommentsInTweet(tweetId){
   return {
     type: types.DELETE_ALL_COMMENTS_IN_TWEET,

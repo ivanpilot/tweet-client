@@ -5,7 +5,7 @@ import { getEditableComment, getAllCommentsForTweet } from '../reducers/Comments
 import { getActiveTweet } from '../reducers/Tweets';
 import { getCommentsError } from '../reducers/Errors';
 import { EditableComment } from '../components/EditableComment';
-import { editComment, deleteComment, triggerEditableComment, loadComments } from '../actions/Comment';
+import { editComment, deleteComment, triggerEditableComment, loadComments, clearComments } from '../actions/Comment';
 import { deleteCommentInTweet } from '../actions/Tweet';
 import { fetchCommentsFailure } from '../actions/Error';
 import { DisplayError } from '../components/DisplayError';
@@ -22,7 +22,9 @@ class EditableCommentList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
+    // debugger
     if(nextProps.activeTweet && nextProps.activeTweet !== this.props.activeTweet){ //comparison to avoid infinite loop
+      // debugger
       this.setState({loading: true});
       this.fetchComments(nextProps.activeTweet)
     }
@@ -131,6 +133,7 @@ function loadingComments(comments){
 
 function handleFetchingError(error){
   return (dispatch) => {
+    dispatch(cleanComments())
     dispatch(fetchCommentsFailure(error))
   }
 }

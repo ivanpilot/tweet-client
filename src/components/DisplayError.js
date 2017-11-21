@@ -5,7 +5,7 @@ export const DisplayError = ({message, onRetry}) => (
     <div className="ui compact red message">
       <p>{message}</p>
       <button
-        className='mini ui black button'
+        className='mini ui red button'
         onClick={onRetry}
       >
         Retry
