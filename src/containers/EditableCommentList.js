@@ -133,7 +133,7 @@ function loadingComments(comments){
 
 function handleFetchingError(error){
   return (dispatch) => {
-    dispatch(cleanComments())
+    dispatch(clearComments())
     dispatch(fetchCommentsFailure(error))
   }
 }

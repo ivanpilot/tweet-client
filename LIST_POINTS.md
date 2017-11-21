@@ -44,3 +44,5 @@
 
 ## Comment Action
 1. DELETE_TWEET_COMMENTS > action not needed anymore, should send another dispatch to delete each comment when deleting a tweet
+2. handleFetchingError > make sure that when switching thread it will reload again but not show empty comments
+  switching threads MUST RELOAD TWEETS ANYWAY SO THE COMMENTS ISSUE SHOULD DISAPPEAR > in that case the previous point #2 might not be needed anymore
