@@ -4,8 +4,8 @@ class ApiComment {
   }
 
   loadRawComments(postId, success){
-    debugger
     const url = this.domain + `/api/posts/${postId}/comments`
+    // debugger
     return fetch(url, {
       headers:{
         'Content-Type': 'application/json'
@@ -13,10 +13,6 @@ class ApiComment {
     }).then(this.checkStatus)
       .then(this.parseJson)
       .then(success)
-      // .then((data) => {
-      //   debugger
-      //   return data
-      // })
   }
 
 
@@ -25,16 +21,14 @@ class ApiComment {
   }
 
   checkStatus(response){
-    // if(response.status >= 200 && response.status < 300){
-    console.log(response)
+    if(response.status >= 200 && response.status < 300){
       return response
-    // } else {
-    //   const error = new Error(`HTTP Error ${response.statusText}`);
-    //   error.status = response.statusText;
-    //   error.response = response;
-    //   console.log(error);
-    //   throw error
-    // }
+    } else {
+      // debugger
+      const error = new Error();
+      error.response = response;
+      throw error
+    }
   }
 
 }

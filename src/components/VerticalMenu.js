@@ -5,7 +5,7 @@ import '../styles/VerticalMenu.css';
 
 export const VerticalMenu = (props) => {
   const componentClass = ['add-comment-form'];
-  if (props.activeTweet) {componentClass.push('visible-form')}
+  if (props.activeTweet && !props.commentError) {componentClass.push('visible-form')}
 
   return(
   <div className='vertical-menu'>

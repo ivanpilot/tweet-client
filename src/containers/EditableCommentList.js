@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getEditableComment, getAllCommentsForTweet } from '../reducers/Comments';
 import { getActiveTweet } from '../reducers/Tweets';
+import { getCommentsError } from '../reducers/Errors';
 import { EditableComment } from '../components/EditableComment';
 import { editComment, deleteComment, triggerEditableComment, loadComments } from '../actions/Comment';
 import { deleteCommentInTweet } from '../actions/Tweet';
+import { fetchCommentsFailure } from '../actions/Error';
+import { DisplayError } from '../components/DisplayError';
 import '../styles/EditableList.css';
 // import { client } from '../client/Client';
 import { apiComment } from '../client/ApiComment';
@@ -19,21 +22,29 @@ class EditableCommentList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    debugger
     if(nextProps.activeTweet && nextProps.activeTweet !== this.props.activeTweet){ //comparison to avoid infinite loop
       this.setState({loading: true});
-// debugger
-      apiComment.loadRawComments(nextProps.activeTweet, (comments) => {
-          const normalizedData = normalize(comments, normalizedComment)
-          debugger
-          return this.props.loadingComments(normalizedData)
-      }).then(() => {
-        this.setState({loading: false})
-      })
+      this.fetchComments(nextProps.activeTweet)
     }
   }
 
+  fetchComments = (tweetId) => {
+    return apiComment.loadRawComments(tweetId, (comments) => {
+      const normalizedData = normalize(comments, normalizedComment)
+      return this.props.loadingComments(normalizedData)
+    }).then(
+      response => {
+        this.setState({loading: false})
+      },
+      error => {
+        this.setState({loading: false})
+        this.props.handleFetchingError(error)
+      }
+    )
+  }
+
   render(){
+    // debugger
     if(this.state.loading){
       return(
         <div className='ui active centered inline loader' />
@@ -42,6 +53,16 @@ class EditableCommentList extends React.Component {
       // debugger
       return(
         null
+      )
+    } else if(this.props.activeTweet && this.props.error){
+      // debugger
+      return(
+        <div>
+          <DisplayError
+            message={`Looks like a server issue. Retry in a few sec... 'HTTP status: ${this.props.error.status}. Error message: ${this.props.error.message}'`}
+            onRetry={() => this.fetchComments(this.props.activeTweet)}
+          />
+        </div>
       )
     } else if(this.props.activeTweet && this.props.comments.length === 0){
       // debugger
@@ -108,11 +129,18 @@ function loadingComments(comments){
   }
 }
 
+function handleFetchingError(error){
+  return (dispatch) => {
+    dispatch(fetchCommentsFailure(error))
+  }
+}
+
 const mapStateToProps = (state) => {
   return {
     comments: getAllCommentsForTweet(state.comments),
     editableComment: getEditableComment(state.comments),
-    activeTweet: getActiveTweet(state.tweets)
+    activeTweet: getActiveTweet(state.tweets),
+    error: getCommentsError(state.errors),
   }
 }
 
@@ -123,6 +151,7 @@ const mapDispatchToProps = (dispatch) => {
     closeEditable,
     onSubmitCommentForm,
     loadingComments,
+    handleFetchingError,
   }, dispatch)
 }
 

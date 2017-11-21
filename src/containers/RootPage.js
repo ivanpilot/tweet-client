@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getActiveTweet } from '../reducers/Tweets';
+import { getCommentsError } from '../reducers/Errors';
 import { VerticalMenu } from '../components/VerticalMenu';
 import { TweetContainer } from '../components/TweetContainer';
 import { ThreadTabs } from './ThreadTabs';
@@ -14,6 +15,7 @@ class RootPage extends React.Component {
           <div className='ui four wide column'>
             <VerticalMenu
               activeTweet={this.props.activeTweet}
+              commentError={this.props.commentError}
             />
           </div>
           <div className='ui twelve wide column'>
@@ -33,6 +35,7 @@ const mapStateToProps = (state) => {
   // debugger
   return {
     activeTweet: getActiveTweet(state.tweets),
+    commentError: getCommentsError(state.errors)
   }
 }
 

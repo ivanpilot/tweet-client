@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 export const comments = combineReducers({
   byId,
-  allIds
+  allIds,
 })
 
 
