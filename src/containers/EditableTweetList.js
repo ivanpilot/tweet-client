@@ -72,11 +72,13 @@ function onActiveClick(id, activeId){
 
   if(activeId && activeId !== id){
     return (dispatch) => {
+      // debugger
       dispatch(triggerActivableTweet(activeId))
       dispatch(triggerActivableTweet(id))
     }
   } else {
     return (dispatch) => {
+      // debugger
       dispatch(triggerActivableTweet(id))
     }
   }

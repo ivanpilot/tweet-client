@@ -7,6 +7,7 @@ import { ThreadTabs } from './ThreadTabs';
 
 class RootPage extends React.Component {
   render(){
+    // debugger
     return(
       <div className='ui two column stackable divided grid'>
         <div className="row">
@@ -29,6 +30,7 @@ class RootPage extends React.Component {
 
 
 const mapStateToProps = (state) => {
+  // debugger
   return {
     activeTweet: getActiveTweet(state.tweets),
   }

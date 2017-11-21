@@ -5,6 +5,7 @@ export function tweet(state, action){
         id: action.tweet.id,
         title: action.tweet.title,
         body: action.tweet.body,
+        // comments: [],
         editable: false,
         active: false,
         ownership: true,
@@ -28,6 +29,7 @@ export function tweet(state, action){
     }
 
     case 'TRIGGER_ACTIVABLE_TWEET': {
+      // debugger
       return {
         ...state,
         active: !state.active

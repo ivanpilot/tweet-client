@@ -25,6 +25,7 @@ function byId(state = {}, action){
 
     case 'TRIGGER_EDITABLE_TWEET':
     case 'TRIGGER_ACTIVABLE_TWEET': {
+      // debugger
       return {
         ...state,
         [action.id]: tweet(state[action.id], action)
@@ -81,5 +82,6 @@ export const getEditableTweet = (state) => {
 
 export const getActiveTweet = (state) => {
   const tweetId = Object.keys(state.byId).find(id => state.byId[id].active)
-  return parseInt(tweetId, 10)
+  const numTweetId = parseInt(tweetId, 10)
+  return numTweetId == tweetId ? numTweetId : tweetId
 }
