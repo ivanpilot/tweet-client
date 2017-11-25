@@ -9,17 +9,37 @@ import '../styles/EditableList.css';
 import { apiTweet } from '../client/ApiTweet';
 import { normalize } from 'normalizr';
 import { normalizedTweet } from '../normalizers/Normalizr';
+import { store } from '../store';
 
 
 class EditableTweetList extends React.Component {
 
   componentDidMount(){
-    apiTweet.loadRawTweets((tweets) => {
-      // console.log(tweets)
-      const normalizedData = normalize(tweets, normalizedTweet)
-      // console.log('SHOWME STUFFFFF', normalizedData)
-      return this.props.loadingTweets(normalizedData)
-    })
+    this.fetchTweets()
+  }
+
+  // componentDidUpdate(nextProps){
+  //   if(nextProps.tweets.length - this.props.tweets.length === -1){
+  //     this.fetchTweets()
+  //   }
+  // }
+
+  // fetchTweets = () => {
+  //   apiTweet.loadRawTweets((tweets) => {
+  //     const normalizedData = normalize(tweets, normalizedTweet)
+  //     return this.props.loadingTweets(normalizedData)
+  //   })
+  // }
+
+  fetchTweets = () => {
+    apiTweet.loadRawTweets(tweets =>
+      normalize(tweets, normalizedTweet))
+      .then((tweets) =>
+        store.dispatch({
+          type: 'LOAD_TWEETS',
+          tweets
+        })
+    )
   }
 
   render(){
@@ -69,7 +89,6 @@ function onEditClick(id, editableId){
 }
 
 function onActiveClick(id, activeId){
-
   if(activeId && activeId !== id){
     return (dispatch) => {
       // debugger

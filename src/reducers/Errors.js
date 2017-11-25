@@ -7,8 +7,16 @@ export const errors = combineReducers({
 
 function tweets(state = false, action){
   switch (action.type) {
+    case 'FETCH_TWEETS_FAILURE': {
+      const res = action.message.response
+      return {
+        message: res.statusText,
+        status: res.status
+      }
+    }
+
     default:
-      return state
+      return false
   }
 }
 
@@ -18,8 +26,7 @@ function comments(state = false, action){
     //   return null
     // }
 
-    case 'FETCH_COMMENTS_FAILURE':
-    case 'FETCH_TWEETS_FAILURE': {
+    case 'FETCH_COMMENTS_FAILURE': {
       const res = action.message.response
       return {
         message: res.statusText,

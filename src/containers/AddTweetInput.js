@@ -2,12 +2,25 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getEditableTweet, getActiveTweet } from '../reducers/Tweets';
-// import { getEditableCommentForTweet } from '../reducers/Comments';
-import { addTweet, triggerEditableTweet } from '../actions/Tweet';
-// import { triggerEditableComment } from '../actions/Comment';
+import { addTweet, triggerEditableTweet, loadTweets } from '../actions/Tweet';
 import FormTweet from '../components/FormTweet';
 
-// import { apiTweet } from '../client/ApiTweet';
+import { apiTweet } from '../client/ApiTweet';
+import { normalize } from 'normalizr';
+import { normalizedTweet } from '../normalizers/Normalizr';
+import { store } from '../store';
+
+
+const fetchTweets = () => {
+  apiTweet.loadRawTweets(tweets =>
+    normalize(tweets, normalizedTweet))
+    .then((tweets) =>
+      store.dispatch({
+        type: 'LOAD_TWEETS',
+        tweets
+      })
+  )
+}
 
 function onSubmitForm(tweet, editableId, activeId){
   if(editableId){
@@ -20,9 +33,34 @@ function onSubmitForm(tweet, editableId, activeId){
     return (dispatch) => {
       // dispatch(triggerEditableComment(getEditableCommentForTweet(activeId))) //messy to implement w/o normalizer
       dispatch(addTweet(tweet))
+      // debugger
+      apiTweet.createTweet(tweet).then((response) => {
+        // debugger
+        console.log('AND NOW THE SECOND PART OF RESPONSE: ', response)
+        return fetchTweets()
+      })
+      // apiTweet.createTweet(tweet).then((response) => {
+      //   console.log('AND NOW THE SECOND PART OF RESPONSE: ', response)
+      //   return dispatch => {
+      //     dispatch({
+      //       type: 'LOAD_TWEETS',
+      //       tweets: tweets
+      //     })
+      //       // fetchTweets()
+      //   }
+      // })
     }
   }
 }
+
+// function loadingTweets(tweets){
+//   debugger
+//   store.dispatch(loadTweets(tweets))
+//   // return (dispatch) => {
+//   //   debugger
+//   //   dispatch(loadTweets(tweets))
+//   // }
+// }
 
 const mapStateToProps = (state) => ({
   editableTweet: getEditableTweet(state.tweets),
@@ -31,7 +69,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    onSubmitForm
+    onSubmitForm,
   }, dispatch)
 }
 

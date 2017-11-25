@@ -5,36 +5,42 @@ class ApiTweet {
 
   loadRawTweets(success){
     const url = this.domain + '/api/posts'
-    fetch(url, {
+    return fetch(url, {
       headers:{
         'Content-Type': 'application/json'
       }
     }).then(this.checkStatus)
       .then(this.parseJson)
+      .then((response) => {
+        console.log(response)
+        debugger
+        return response
+      })
       .then(success)
-      // .then((json) => {
-      //   console.log(json)
-      // })
   }
 
-  addNewTweet(tweet){
+  createTweet(tweet){
+    // debugger
     const url = this.domain + '/api/posts'
     const newTweet = {
       post:{
         title: tweet.title,
         body: tweet.body,
-        user_id: parseInt(tweet.userId, 10)
+        author_id: '1'
       }
     }
     // debugger
-    fetch(url, {
+    return fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type':'application/json'
       },
       body: JSON.stringify(newTweet)
     }).then(this.checkStatus)
-      .then((response) => console.log(response))
+      .then((response) => {
+        console.log('HEY MAN LOOK AT THAT', response)
+        return response
+      })
   }
 
   parseJson(response){
@@ -45,10 +51,8 @@ class ApiTweet {
     if(response.status >= 200 && response.status < 300){
       return response
     } else {
-      const error = new Error(`HTTP Error ${response.statusText}`);
-      error.status = response.statusText;
+      const error = new Error();
       error.response = response;
-      console.log(error);
       throw error
     }
   }

@@ -22,9 +22,7 @@ class EditableCommentList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    // debugger
     if(nextProps.activeTweet && nextProps.activeTweet !== this.props.activeTweet){ //comparison to avoid infinite loop
-      // debugger
       this.setState({loading: true});
       this.fetchComments(nextProps.activeTweet)
     }

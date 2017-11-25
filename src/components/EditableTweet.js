@@ -5,7 +5,7 @@ import '../styles/EditableTweet.css';
 
 
 export const EditableTweet = (props) => {
-  // debugger
+  debugger
   return props.tweets.map((tweet, index) => {
     // debugger
     return (
