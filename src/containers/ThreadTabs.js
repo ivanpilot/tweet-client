@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { triggerThread } from '../actions/Thread';
 import { triggerEditableTweet } from '../actions/Tweet';
 import { triggerEditableComment } from '../actions/Comment';
-import { getAllThreads, getActiveThread } from '../reducers/ThreadsById';
+import { getAllThreads, getActiveThread } from '../reducers/tweetsByThread';
 import { getEditableTweet } from '../reducers/Tweets';
 import { getEditableComment } from '../reducers/Comments';
 import { Tabs } from '../components/Tabs';

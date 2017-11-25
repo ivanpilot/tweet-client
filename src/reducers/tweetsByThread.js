@@ -45,3 +45,8 @@ export const getAllThreads = (state) => {
 export const getActiveThread = (state) => {
   return Object.keys(state).find(id => state[id].active)
 }
+
+export const getTweetsForActiveThread = (state) => {
+  const activeThreadId = getActiveThread(state)
+  return state[activeThreadId].tweets
+}

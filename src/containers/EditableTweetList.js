@@ -2,14 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getAllTweets, getEditableTweet, getActiveTweet } from '../reducers/Tweets';
+import { getTweetsForActiveThread } from '../reducers/tweetsByThread';
 import { EditableTweet } from '../components/EditableTweet';
 import { editTweet, deleteTweet, triggerEditableTweet, triggerActivableTweet, loadTweets } from '../actions/Tweet';
 import '../styles/EditableList.css';
 // import { client } from '../client/Client';
-import { apiTweet } from '../client/ApiTweet';
-import { normalize } from 'normalizr';
-import { normalizedTweet } from '../normalizers/Normalizr';
-import { store } from '../store';
+// import { apiTweet } from '../client/ApiTweet';
+// import { normalize } from 'normalizr';
+// import { normalizedTweet } from '../normalizers/Normalizr';
+// import { store } from '../store';
 
 
 class EditableTweetList extends React.Component {
@@ -118,7 +119,8 @@ function onSubmitTweetForm(tweet){
 
 const mapStateToProps = (state) => {
   return {
-    tweets: getAllTweets(state.entities.tweets),
+    tweets: getAllTweets(state.entities.tweets, getTweetsForActiveThread(state.tweetsByThread)),
+    // tweets: getAllTweets(state.entities.tweets),
     activeTweet: getActiveTweet(state.entities.tweets),
     editableTweet: getEditableTweet(state.entities.tweets)
   }

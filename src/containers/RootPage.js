@@ -46,7 +46,7 @@ function fetchTweets() {
       const normalizedTweets = normalize(tweets, normalizedTweet)
       const newTweets = normalizedTweets.entities.tweets
       Object.keys(newTweets).map(newTweet => {
-        dispatch(addTweet(newTweets[newTweet]))
+        return dispatch(addTweet(newTweets[newTweet]))
       })
     })
   }
