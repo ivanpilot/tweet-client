@@ -1,10 +1,23 @@
 import { combineReducers } from 'redux';
 // import { threadsById } from './ThreadsById';
-import { activeThread } from './activeThread';
 import { tweetsByThread } from './tweetsByThread';
 import { tweets } from './Tweets';
 import { comments } from './Comments';
 import { errors } from './Errors';
+
+
+export const reducer = combineReducers({
+  entities: combineReducers({
+    tweets,
+    comments,
+  }),
+  tweetsByThread,
+  workInProgress: combineReducers({
+    errors,
+    tweets,
+    comments,
+  }),
+})
 
 // function reducer(state, action){
 //   return {
@@ -20,20 +33,25 @@ import { errors } from './Errors';
 //   comments,
 // })
 
-export const reducer = combineReducers({
-  activeThread,
-  entities,
-  tweetsByThread,
-})
-
-
-const entities = combineReducers({
-  tweets,
-  comments,
-})
-
-const workInProgress = combineReducers({
-  errors,
-  tweets,
-  comments,
-})
+// export function reducer(state = {}, action){
+//   return {
+//     entities: entities(state.entities, action),
+//     tweetsByThread: tweetsByThread(state.tweetsByThread, action),
+//     workInProgress: workInProgress(state.workInProgress, action),
+//   }
+// }
+//
+// function entities(state = {}, action){
+//   return {
+//     tweets: tweets(state.tweets, action),
+//     comments: comments(state.comments, action),
+//   }
+// }
+//
+// function workInProgress(state = {}, action){
+//   return {
+//     errors: errors(state.errors, action),
+//     tweets: tweets(state.tweets, action),
+//     comments: comments(state.comments, action),
+//   }
+// }

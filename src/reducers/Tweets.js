@@ -81,6 +81,7 @@ export const getEditableTweet = (state) => {
 }
 
 export const getActiveTweet = (state) => {
+  debugger
   const tweetId = Object.keys(state.byId).find(id => state.byId[id].active)
   const numTweetId = parseInt(tweetId, 10)
   return numTweetId == tweetId ? numTweetId : tweetId
