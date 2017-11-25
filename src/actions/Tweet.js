@@ -57,3 +57,10 @@ export function deleteCommentInTweet(commentId, tweetId){
     tweetId: tweetId
   }
 }
+
+export function receiveTweets(tweets){
+  return {
+    type: types.RECEIVE_TWEETS,
+    tweets
+  }
+}

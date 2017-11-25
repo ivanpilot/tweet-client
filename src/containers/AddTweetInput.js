@@ -25,42 +25,20 @@ const fetchTweets = () => {
 function onSubmitForm(tweet, editableId, activeId){
   if(editableId){
     return (dispatch) => {
-      // dispatch(triggerEditableComment(getTweetEditableComment(activeId))) //messy to implement w/o normalizer
       dispatch(triggerEditableTweet(editableId))
       dispatch(addTweet(tweet))
     }
   } else {
     return (dispatch) => {
-      // dispatch(triggerEditableComment(getEditableCommentForTweet(activeId))) //messy to implement w/o normalizer
       dispatch(addTweet(tweet))
-      // debugger
-      apiTweet.createTweet(tweet).then((response) => {
-        // debugger
-        console.log('AND NOW THE SECOND PART OF RESPONSE: ', response)
-        return fetchTweets()
-      })
       // apiTweet.createTweet(tweet).then((response) => {
       //   console.log('AND NOW THE SECOND PART OF RESPONSE: ', response)
-      //   return dispatch => {
-      //     dispatch({
-      //       type: 'LOAD_TWEETS',
-      //       tweets: tweets
-      //     })
-      //       // fetchTweets()
-      //   }
+      //   return fetchTweets()
       // })
     }
   }
 }
 
-// function loadingTweets(tweets){
-//   debugger
-//   store.dispatch(loadTweets(tweets))
-//   // return (dispatch) => {
-//   //   debugger
-//   //   dispatch(loadTweets(tweets))
-//   // }
-// }
 
 const mapStateToProps = (state) => ({
   editableTweet: getEditableTweet(state.entities.tweets),

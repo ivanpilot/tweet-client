@@ -1,13 +1,10 @@
-// import _ from 'lodash';
-// import { initialState } from './InitialState';
-
 export function tweetsByThread(state = {
   '1': {
     name: 'My Tweets',
     isFetching: false,
     didInvalidate: false,
     lastUpdated: Date.now(),
-    isActive: true,
+    active: true,
     tweets: []
   },
   '2': {
@@ -15,7 +12,7 @@ export function tweetsByThread(state = {
     isFetching: false,
     didInvalidate: false,
     lastUpdated: Date.now(),
-    isActive: true,
+    active: false,
     tweets: []
   },
 }, action){

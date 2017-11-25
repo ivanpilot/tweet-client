@@ -11,6 +11,7 @@ function byId(state = {}, action){
   switch (action.type) {
     case 'ADD_TWEET':
     case 'EDIT_TWEET': {
+      // debugger
       return {
         ...state,
         [action.tweet.id]: tweet(state[action.tweet.id], action)
@@ -47,6 +48,10 @@ function byId(state = {}, action){
       }
     }
 
+    case 'RECEIVE_TWEETS': {
+      //
+    }
+
     default:
       return state
   }
@@ -81,7 +86,6 @@ export const getEditableTweet = (state) => {
 }
 
 export const getActiveTweet = (state) => {
-  // debugger
   const tweetId = Object.keys(state.byId).find(id => state.byId[id].active)
   const numTweetId = parseInt(tweetId, 10)
   return numTweetId == tweetId ? numTweetId : tweetId

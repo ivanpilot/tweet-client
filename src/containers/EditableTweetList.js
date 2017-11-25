@@ -14,9 +14,9 @@ import { store } from '../store';
 
 class EditableTweetList extends React.Component {
 
-  componentDidMount(){
-    this.fetchTweets()
-  }
+  // componentDidMount(){
+  //   this.fetchTweets()
+  // }
 
   // componentDidUpdate(nextProps){
   //   if(nextProps.tweets.length - this.props.tweets.length === -1){
@@ -31,16 +31,16 @@ class EditableTweetList extends React.Component {
   //   })
   // }
 
-  fetchTweets = () => {
-    apiTweet.loadRawTweets(tweets =>
-      normalize(tweets, normalizedTweet))
-      .then((tweets) =>
-        store.dispatch({
-          type: 'LOAD_TWEETS',
-          tweets
-        })
-    )
-  }
+  // fetchTweets = () => {
+  //   apiTweet.loadRawTweets(tweets =>
+  //     normalize(tweets, normalizedTweet))
+  //     .then((tweets) =>
+  //       store.dispatch({
+  //         type: 'LOAD_TWEETS',
+  //         tweets
+  //       })
+  //   )
+  // }
 
   render(){
     if(this.props.tweets.length === 0){
@@ -71,7 +71,7 @@ class EditableTweetList extends React.Component {
 function onTrashClick(id){
   return (dispatch) => {
     dispatch(deleteTweet(id))
-    // dispatch(deleteAllCommentsInTweet(id)) //should be modified once we change the state to normalized >> no need to do this
+    // dispatch(deleteAllCommentsInTweet(id)) //should be modified once we change the state to normalized >> no need to do this in fact
   }
 }
 
@@ -116,12 +116,6 @@ function onSubmitTweetForm(tweet){
   }
 }
 
-function loadingTweets(tweets){
-  return (dispatch) => {
-    dispatch(loadTweets(tweets))
-  }
-}
-
 const mapStateToProps = (state) => {
   return {
     tweets: getAllTweets(state.entities.tweets),
@@ -137,7 +131,6 @@ const mapDispatchToProps = (dispatch) => {
     onActiveClick,
     closeEditable,
     onSubmitTweetForm,
-    loadingTweets,
   }, dispatch)
 }
 
