@@ -39,10 +39,10 @@ function handleClickTab(id, activeThreadId, editableTweetId, editableCommentId){
 
 const mapStateToProps = (state) => {
   return {
-    tabs: getAllThreads(state.threadsById),
-    activeThreadId: getActiveThread(state.threadsById),
-    editableTweet: getEditableTweet(state.tweets),
-    editableComment: getEditableComment(state.comments.byId)
+    tabs: getAllThreads(state.tweetsByThread),
+    activeThreadId: getActiveThread(state.tweetsByThread),
+    editableTweet: getEditableTweet(state.entities.tweets),
+    editableComment: getEditableComment(state.entities.comments.byId)
   }
 }
 

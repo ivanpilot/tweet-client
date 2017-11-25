@@ -34,8 +34,8 @@ class RootPage extends React.Component {
 const mapStateToProps = (state) => {
   // debugger
   return {
-    activeTweet: getActiveTweet(state.tweets),
-    commentError: getCommentsError(state.errors)
+    activeTweet: getActiveTweet(state.entities.tweets),
+    commentError: getCommentsError(state.workInProgress.errors)
   }
 }
 

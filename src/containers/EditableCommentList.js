@@ -138,10 +138,10 @@ function handleFetchingError(error){
 
 const mapStateToProps = (state) => {
   return {
-    comments: getAllCommentsForTweet(state.comments),
-    editableComment: getEditableComment(state.comments),
-    activeTweet: getActiveTweet(state.tweets),
-    error: getCommentsError(state.errors),
+    comments: getAllCommentsForTweet(state.entities.comments),
+    editableComment: getEditableComment(state.entities.comments),
+    activeTweet: getActiveTweet(state.entities.tweets),
+    error: getCommentsError(state.workInProgress.errors),
   }
 }
 

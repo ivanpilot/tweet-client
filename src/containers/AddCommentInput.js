@@ -25,8 +25,8 @@ function onSubmitForm(comment, editableId){
 }
 
 const mapStateToProps = (state) => ({
-  activeTweet: getActiveTweet(state.tweets),
-  editableComment: getEditableComment(state.comments.byId)
+  activeTweet: getActiveTweet(state.entities.tweets),
+  editableComment: getEditableComment(state.entities.comments.byId)
 })
 
 const mapDispatchToProps = (dispatch) => {

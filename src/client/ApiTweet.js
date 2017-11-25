@@ -13,7 +13,7 @@ class ApiTweet {
       .then(this.parseJson)
       .then((response) => {
         console.log(response)
-        debugger
+        // debugger
         return response
       })
       .then(success)

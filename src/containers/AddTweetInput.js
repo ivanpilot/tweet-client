@@ -63,8 +63,8 @@ function onSubmitForm(tweet, editableId, activeId){
 // }
 
 const mapStateToProps = (state) => ({
-  editableTweet: getEditableTweet(state.tweets),
-  activeTweet: getActiveTweet(state.tweets)
+  editableTweet: getEditableTweet(state.entities.tweets),
+  activeTweet: getActiveTweet(state.entities.tweets)
 })
 
 const mapDispatchToProps = (dispatch) => {

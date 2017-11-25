@@ -124,9 +124,9 @@ function loadingTweets(tweets){
 
 const mapStateToProps = (state) => {
   return {
-    tweets: getAllTweets(state.tweets),
-    activeTweet: getActiveTweet(state.tweets),
-    editableTweet: getEditableTweet(state.tweets)
+    tweets: getAllTweets(state.entities.tweets),
+    activeTweet: getActiveTweet(state.entities.tweets),
+    editableTweet: getEditableTweet(state.entities.tweets)
   }
 }
 
