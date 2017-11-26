@@ -40,12 +40,27 @@ function loadTweetsForThread(threadId){
 }
 
 
-function handleClickTab(id, activeThreadId, activeTweetId){
-  if(activeTweetId){
+function handleClickTab(id, activeThreadId, activeTweetId, editableTweet){
+  if(activeTweetId && editableTweet){
     return (dispatch) => {
       dispatch(triggerThread(activeThreadId))
       dispatch(triggerThread(id))
       dispatch(triggerActivableTweet(activeTweetId))
+      dispatch(triggerEditableTweet(editableTweet))
+      dispatch(loadTweetsForThread(id))
+    }
+  } else if(activeTweetId){
+    return (dispatch) => {
+      dispatch(triggerThread(activeThreadId))
+      dispatch(triggerThread(id))
+      dispatch(triggerActivableTweet(activeTweetId))
+      dispatch(loadTweetsForThread(id))
+    }
+  } else if(!activeTweetId && editableTweet){
+    return (dispatch) => {
+      dispatch(triggerThread(activeThreadId))
+      dispatch(triggerThread(id))
+      dispatch(triggerEditableTweet(editableTweet))
       dispatch(loadTweetsForThread(id))
     }
   } else {
