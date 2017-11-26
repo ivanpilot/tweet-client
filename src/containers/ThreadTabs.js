@@ -10,8 +10,13 @@ import { Tabs } from '../components/Tabs';
 
 function loadTweetsForThread(threadId){
   return (dispatch, getState) => {
+    const threadName = getState().tweetsByThread[threadId].name
     const tweets = getState().entities.tweets.byId
-    const listOfTweets = Object.keys(tweets).filter(id => tweets[id].author_id === '1' )
+    // debugger
+    const listOfTweets = threadName === 'Wall' ? (Object.keys(tweets)) : (Object.keys(tweets).filter(id => tweets[id].author_id === 1))
+    // const tweets = getState().entities.tweets.byId
+    // const listOfTweets = Object.keys(tweets).filter(id => tweets[id].author_id === '1' )
+    // return dispatch(loadTweets(threadId, listOfTweets))
     return dispatch(loadTweets(threadId, listOfTweets))
   }
 }

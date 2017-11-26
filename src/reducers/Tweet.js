@@ -9,7 +9,7 @@ export function tweet(state, action){
         editable: false,
         active: false,
         ownership: true,
-        author_id: '1'
+        author_id: action.tweet.author_id
       }
     }
 
