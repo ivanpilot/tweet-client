@@ -11,7 +11,9 @@ import { Tabs } from '../components/Tabs';
 
 
 class ThreadTabs extends React.Component{
-
+  componentDidMount(){
+    this.props.firstLoadingTweets(this.props.activeThreadId)
+  }
 
 
   render(){
@@ -55,6 +57,13 @@ function handleClickTab(id, activeThreadId, activeTweetId){
   }
 }
 
+function firstLoadingTweets(threadId){
+  return (dispatch) => {
+    dispatch(loadTweetsForThread(threadId))
+  }
+}
+
+
 
 const mapStateToProps = (state) => {
   return {
@@ -69,6 +78,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     handleClickTab,
+    firstLoadingTweets,
   }, dispatch)
 }
 
