@@ -141,7 +141,7 @@ const mapStateToProps = (state) => {
     comments: getAllCommentsForTweet(state.entities.comments),
     editableComment: getEditableComment(state.entities.comments),
     activeTweet: getActiveTweet(state.entities.tweets),
-    error: getCommentsError(state.workInProgress.errors),
+    error: getCommentsError(state.errors),
   }
 }
 

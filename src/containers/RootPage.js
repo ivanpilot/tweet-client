@@ -101,7 +101,7 @@ const mapStateToProps = (state) => {
   return {
     activeTweet: getActiveTweet(state.entities.tweets),
     tweetsError: getTweetsError(state.errors),
-    commentError: getCommentsError(state.workInProgress.errors)
+    commentError: getCommentsError(state.errors)
   }
 }
 

@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getEditableTweet, getActiveTweet } from '../reducers/Tweets';
-import { addTweet, triggerEditableTweet, loadTweets } from '../actions/Tweet';
+import { addTweet, triggerEditableTweet, createTweet } from '../actions/Tweet';
 import FormTweet from '../components/FormTweet';
 
 import { apiTweet } from '../client/ApiTweet';
@@ -26,11 +26,12 @@ function onSubmitForm(tweet, editableId, activeId){
   if(editableId){
     return (dispatch) => {
       dispatch(triggerEditableTweet(editableId))
-      dispatch(addTweet(tweet)) 
+      dispatch(addTweet(tweet))
     }
   } else {
     return (dispatch) => {
-      dispatch(addTweet(tweet))
+      // dispatch(addTweet(tweet))
+      dispatch(createTweet(tweet))
     }
   }
 }

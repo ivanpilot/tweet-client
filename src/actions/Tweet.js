@@ -35,13 +35,6 @@ export function triggerActivableTweet(id){
   }
 }
 
-// export function loadTweets(tweets){
-//   return {
-//     type: types.LOAD_TWEETS,
-//     tweets: tweets
-//   }
-// }
-
 export function addCommentToTweet(comment){
   return {
     type: types.ADD_COMMENT_TO_TWEET,
@@ -58,9 +51,9 @@ export function deleteCommentInTweet(commentId, tweetId){
   }
 }
 
-export function receiveTweets(tweets){
+export function createTweet(tweet){
   return {
-    type: types.RECEIVE_TWEETS,
-    tweets
+    type: types.CREATE_TWEET,
+    tweet
   }
 }
