@@ -1,3 +1,4 @@
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { triggerThread, loadTweets } from '../actions/Thread';
@@ -8,6 +9,25 @@ import { getEditableTweet, getActiveTweet } from '../reducers/Tweets';
 // import { getEditableComment } from '../reducers/Comments';
 import { Tabs } from '../components/Tabs';
 
+
+class ThreadTabs extends React.Component{
+
+
+
+  render(){
+    return(
+      <Tabs
+        tabs={this.props.tabs}
+        activeThreadId={this.props.activeThreadId}
+        editableTweet={this.props.editableTweet}
+        activeTweet={this.props.activeTweet}
+        handleClickTab={this.props.handleClickTab}
+      />
+    )
+  }
+}
+
+
 function loadTweetsForThread(threadId){
   return (dispatch, getState) => {
     const threadName = getState().tweetsByThread[threadId].name
@@ -16,6 +36,7 @@ function loadTweetsForThread(threadId){
     return dispatch(loadTweets(threadId, listOfTweets))
   }
 }
+
 
 function handleClickTab(id, activeThreadId, activeTweetId){
   if(activeTweetId){
@@ -51,7 +72,7 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
-export const ThreadTabs = connect (
+export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Tabs)
+)(ThreadTabs)

@@ -8,19 +8,19 @@ import FormTweet from '../components/FormTweet';
 import { apiTweet } from '../client/ApiTweet';
 import { normalize } from 'normalizr';
 import { normalizedTweet } from '../normalizers/Normalizr';
-import { store } from '../store';
+// import { store } from '../store';
 
 
-const fetchTweets = () => {
-  apiTweet.loadRawTweets(tweets =>
-    normalize(tweets, normalizedTweet))
-    .then((tweets) =>
-      store.dispatch({
-        type: 'LOAD_TWEETS',
-        tweets
-      })
-  )
-}
+// const fetchTweets = () => {
+//   apiTweet.loadRawTweets(tweets =>
+//     normalize(tweets, normalizedTweet))
+//     .then((tweets) =>
+//       store.dispatch({
+//         type: 'LOAD_TWEETS',
+//         tweets
+//       })
+//   )
+// }
 
 function onSubmitForm(tweet, editableId, activeId){
   if(editableId){
@@ -31,10 +31,6 @@ function onSubmitForm(tweet, editableId, activeId){
   } else {
     return (dispatch) => {
       dispatch(addTweet(tweet))
-      // apiTweet.createTweet(tweet).then((response) => {
-      //   console.log('AND NOW THE SECOND PART OF RESPONSE: ', response)
-      //   return fetchTweets()
-      // })
     }
   }
 }

@@ -40,4 +40,7 @@ function comments(state = false, action){
 }
 
 export const getCommentsError = (state) => state.comments
-export const getTweetsError = (state) => state.tweets
+export const getTweetsError = (state) => {
+  // debugger
+  return state.tweets
+}

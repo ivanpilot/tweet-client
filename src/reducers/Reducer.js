@@ -12,6 +12,7 @@ export const reducer = combineReducers({
     comments,
   }),
   tweetsByThread,
+  errors,
   workInProgress: combineReducers({
     errors,
     tweets,
