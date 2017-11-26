@@ -33,12 +33,12 @@ function byId(state = {}, action){
       }
     }
 
-    case 'LOAD_TWEETS': {
-      const rawTweets = action.tweets.entities.tweets;
-      return Object.keys(rawTweets).reduce((result, id) => {
-        return Object.assign({}, result, Object.assign({}, {[id]: tweet(rawTweets[id], action)}))
-      }, {})
-    }
+    // case 'LOAD_TWEETS': {
+    //   const rawTweets = action.tweets.entities.tweets;
+    //   return Object.keys(rawTweets).reduce((result, id) => {
+    //     return Object.assign({}, result, Object.assign({}, {[id]: tweet(rawTweets[id], action)}))
+    //   }, {})
+    // }
 
     case 'ADD_COMMENT_TO_TWEET':
     case 'DELETE_COMMENT_IN_TWEET': {
@@ -68,9 +68,9 @@ function allIds(state = [], action){
       return state.filter(id => id !== action.id)
     }
 
-    case 'LOAD_TWEETS': {
-      return action.tweets.result.concat(state)
-    }
+    // case 'LOAD_TWEETS': {
+    //   return action.tweets.result.concat(state)
+    // }
 
     default:
       return state

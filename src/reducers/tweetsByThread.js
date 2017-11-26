@@ -1,5 +1,6 @@
 export function tweetsByThread(state = {
   '1': {
+    id: '1',
     name: 'My Tweets',
     isFetching: false,
     didInvalidate: false,
@@ -8,6 +9,7 @@ export function tweetsByThread(state = {
     tweets: []
   },
   '2': {
+    id: '2',
     name: 'Wall',
     isFetching: false,
     didInvalidate: false,
@@ -18,7 +20,7 @@ export function tweetsByThread(state = {
 }, action){
   switch (action.type) {
 
-    case 'TRIGGER_THREAD':
+    case 'TRIGGER_THREAD': {
       const oldThread = state[action.id]
       const newThread = {
         ...oldThread,
@@ -28,6 +30,18 @@ export function tweetsByThread(state = {
         ...state,
         [action.id]: newThread
       }
+    }
+
+    case 'LOAD_TWEETS': {
+      return {
+        ...state,
+        [action.id]: {
+          ...state[action.id],
+          tweets: action.tweets
+        }
+      }
+    }
+
     default:
       return state
   }

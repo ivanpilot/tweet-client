@@ -45,6 +45,7 @@ function fetchTweets() {
     return apiTweet.fetchTweets((tweets) => {
       const normalizedTweets = normalize(tweets, normalizedTweet)
       const newTweets = normalizedTweets.entities.tweets
+      // debugger
       Object.keys(newTweets).map(newTweet => {
         return dispatch(addTweet(newTweets[newTweet]))
       })

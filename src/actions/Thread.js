@@ -6,3 +6,11 @@ export function triggerThread(threadId){
       id: threadId
   }
 }
+
+export function loadTweets(id, tweets){
+  return {
+    type: types.LOAD_TWEETS,
+    id,
+    tweets,
+  }
+}

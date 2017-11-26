@@ -35,12 +35,12 @@ export function triggerActivableTweet(id){
   }
 }
 
-export function loadTweets(tweets){
-  return {
-    type: types.LOAD_TWEETS,
-    tweets: tweets
-  }
-}
+// export function loadTweets(tweets){
+//   return {
+//     type: types.LOAD_TWEETS,
+//     tweets: tweets
+//   }
+// }
 
 export function addCommentToTweet(comment){
   return {

@@ -1,12 +1,21 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { triggerThread } from '../actions/Thread';
+import { triggerThread, loadTweets } from '../actions/Thread';
 import { triggerEditableTweet } from '../actions/Tweet';
 import { triggerEditableComment } from '../actions/Comment';
 import { getAllThreads, getActiveThread } from '../reducers/tweetsByThread';
 import { getEditableTweet } from '../reducers/Tweets';
 import { getEditableComment } from '../reducers/Comments';
 import { Tabs } from '../components/Tabs';
+
+function loadTweetsForThread(threadId){
+  return (dispatch, getState) => {
+    const tweets = getState().entities.tweets.byId
+    const listOfTweets = Object.keys(tweets).filter(id => tweets[id].author_id === '1' )
+    return dispatch(loadTweets(threadId, listOfTweets))
+  }
+}
+
 
 //can dispatch several action only because of redux-thunk
 function handleClickTab(id, activeThreadId, editableTweetId, editableCommentId){
@@ -16,26 +25,31 @@ function handleClickTab(id, activeThreadId, editableTweetId, editableCommentId){
       dispatch(triggerThread(id))
       dispatch(triggerEditableTweet(editableTweetId))
       dispatch(triggerEditableComment(editableCommentId))
+      dispatch(loadTweetsForThread(id))
     }
   } else if(editableTweetId) {
     return (dispatch) => {
       dispatch(triggerThread(activeThreadId))
       dispatch(triggerThread(id))
       dispatch(triggerEditableTweet(editableTweetId))
+      dispatch(loadTweetsForThread(id))
     }
   } else if(editableCommentId){
     return (dispatch) => {
       dispatch(triggerThread(activeThreadId))
       dispatch(triggerThread(id))
       dispatch(triggerEditableComment(editableCommentId))
+      dispatch(loadTweetsForThread(id))
     }
   } else {
     return (dispatch) => {
       dispatch(triggerThread(activeThreadId))
       dispatch(triggerThread(id))
+      dispatch(loadTweetsForThread(id))
     }
   }
 }
+
 
 const mapStateToProps = (state) => {
   return {

@@ -5,7 +5,7 @@ export function tweet(state, action){
         id: action.tweet.id,
         title: action.tweet.title,
         body: action.tweet.body,
-        // comments: [],
+        comments: action.tweet.comments,
         editable: false,
         active: false,
         ownership: true,
