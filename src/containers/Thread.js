@@ -10,7 +10,7 @@ import { getEditableTweet, getActiveTweet } from '../reducers/Tweets';
 import { Tabs } from '../components/Tabs';
 
 
-class ThreadTabs extends React.Component{
+class Thread extends React.Component{
   componentDidMount(){
     this.props.LoadingTweets(this.props.activeThreadId)
   }
@@ -117,4 +117,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ThreadTabs)
+)(Thread)

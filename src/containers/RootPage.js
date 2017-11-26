@@ -5,7 +5,7 @@ import { getActiveTweet } from '../reducers/Tweets';
 import { getTweetsError, getCommentsError } from '../reducers/Errors';
 import { VerticalMenu } from '../components/VerticalMenu';
 import { TweetContainer } from '../components/TweetContainer';
-import ThreadTabs from './ThreadTabs';
+import Thread from './Thread';
 import { apiTweet } from '../client/ApiTweet';
 import { normalize } from 'normalizr';
 import { normalizedTweet } from '../normalizers/Normalizr';
@@ -66,7 +66,7 @@ class RootPage extends React.Component {
               />
             </div>
             <div className='ui twelve wide column'>
-              <ThreadTabs />
+              <Thread />
               <TweetContainer
                 activeTweet={this.props.activeTweet}
               />
