@@ -1,13 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Tabs } from '../components/Tabs';
+import { TweetContainer } from '../components/TweetContainer';
 import { triggerThread, loadTweets } from '../actions/Thread';
 import { triggerEditableTweet, triggerActivableTweet } from '../actions/Tweet';
 import { triggerEditableComment } from '../actions/Comment';
 import { getAllThreads, getActiveThread } from '../reducers/tweetsByThread';
 import { getEditableTweet, getActiveTweet } from '../reducers/Tweets';
 // import { getEditableComment } from '../reducers/Comments';
-import { Tabs } from '../components/Tabs';
+
 
 
 class Thread extends React.Component{
@@ -30,13 +32,18 @@ class Thread extends React.Component{
   render(){
     // debugger
     return(
-      <Tabs
-        tabs={this.props.tabs}
-        activeThreadId={this.props.activeThreadId}
-        editableTweet={this.props.editableTweet}
-        activeTweet={this.props.activeTweet}
-        handleClickTab={this.props.handleClickTab}
-      />
+      <div>
+        <Tabs
+          tabs={this.props.tabs}
+          activeThreadId={this.props.activeThreadId}
+          editableTweet={this.props.editableTweet}
+          activeTweet={this.props.activeTweet}
+          handleClickTab={this.props.handleClickTab}
+        />
+        <TweetContainer
+          activeTweet={this.props.activeTweet}
+        />
+      </div>
     )
   }
 }

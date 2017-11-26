@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { getActiveTweet } from '../reducers/Tweets';
 import { getTweetsError, getCommentsError } from '../reducers/Errors';
 import { VerticalMenu } from '../components/VerticalMenu';
-import { TweetContainer } from '../components/TweetContainer';
+// import { TweetContainer } from '../components/TweetContainer';
 import Thread from './Thread';
 import { apiTweet } from '../client/ApiTweet';
 import { normalize } from 'normalizr';
@@ -67,9 +67,6 @@ class RootPage extends React.Component {
             </div>
             <div className='ui twelve wide column'>
               <Thread />
-              <TweetContainer
-                activeTweet={this.props.activeTweet}
-              />
             </div>
           </div>
         </div>
