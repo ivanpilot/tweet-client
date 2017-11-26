@@ -8,7 +8,7 @@ export const Tabs = (props) => (
           <a
             key={index}
             className={tab.active? 'active item' : 'item'}
-            onClick={() => props.handleClickTab(tab.id, props.activeThreadId, props.editableTweet, props.editableComment)}
+            onClick={() => props.handleClickTab(tab.id, props.activeThreadId, props.activeTweet)}
           >
             {tab.name}
           </a>

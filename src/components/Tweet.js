@@ -4,19 +4,16 @@ import '../styles/Tweet.css'
 export const Tweet = (props) => {
   // debugger
   return (
-    <div className="ui cards">
+    <div
+      className="ui cards"
+      onClick={() => props.onActiveClick(props.tweet.id, props.activeTweet, props.editableTweet)}
+    >
       <div className="card">
         <div className={props.tweet.active ? "content tweet-blue" : "content tweet"}>
-          <div
-            className="header"
-            onClick={() => props.onActiveClick(props.tweet.id, props.activeTweet)}
-          >
+          <div className="header">
             {props.tweet.title}
           </div>
-          <div
-            className="description"
-            onClick={() => props.onActiveClick(props.tweet.id, props.activeTweet)}
-          >
+          <div className="description">
             {props.tweet.body}
           </div>
           {

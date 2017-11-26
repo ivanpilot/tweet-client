@@ -6,43 +6,9 @@ import { getTweetsForActiveThread } from '../reducers/tweetsByThread';
 import { EditableTweet } from '../components/EditableTweet';
 import { editTweet, deleteTweet, triggerEditableTweet, triggerActivableTweet, loadTweets } from '../actions/Tweet';
 import '../styles/EditableList.css';
-// import { client } from '../client/Client';
-// import { apiTweet } from '../client/ApiTweet';
-// import { normalize } from 'normalizr';
-// import { normalizedTweet } from '../normalizers/Normalizr';
-// import { store } from '../store';
 
 
 class EditableTweetList extends React.Component {
-
-  // componentDidMount(){
-  //   this.fetchTweets()
-  // }
-
-  // componentDidUpdate(nextProps){
-  //   if(nextProps.tweets.length - this.props.tweets.length === -1){
-  //     this.fetchTweets()
-  //   }
-  // }
-
-  // fetchTweets = () => {
-  //   apiTweet.loadRawTweets((tweets) => {
-  //     const normalizedData = normalize(tweets, normalizedTweet)
-  //     return this.props.loadingTweets(normalizedData)
-  //   })
-  // }
-
-  // fetchTweets = () => {
-  //   apiTweet.loadRawTweets(tweets =>
-  //     normalize(tweets, normalizedTweet))
-  //     .then((tweets) =>
-  //       store.dispatch({
-  //         type: 'LOAD_TWEETS',
-  //         tweets
-  //       })
-  //   )
-  // }
-
   render(){
     if(this.props.tweets.length === 0){
       return(
@@ -89,16 +55,18 @@ function onEditClick(id, editableId){
   }
 }
 
-function onActiveClick(id, activeId){
-  if(activeId && activeId !== id){
+function onActiveClick(id, activeId, editableId){
+  if(activeId && activeId === id && editableId === id){
     return (dispatch) => {
-      // debugger
+      null
+    }
+  } else if(activeId && activeId !== id){
+    return (dispatch) => {
       dispatch(triggerActivableTweet(activeId))
       dispatch(triggerActivableTweet(id))
     }
   } else {
     return (dispatch) => {
-      // debugger
       dispatch(triggerActivableTweet(id))
     }
   }
@@ -120,7 +88,6 @@ function onSubmitTweetForm(tweet){
 const mapStateToProps = (state) => {
   return {
     tweets: getAllTweets(state.entities.tweets, getTweetsForActiveThread(state.tweetsByThread)),
-    // tweets: getAllTweets(state.entities.tweets),
     activeTweet: getActiveTweet(state.entities.tweets),
     editableTweet: getEditableTweet(state.entities.tweets)
   }
