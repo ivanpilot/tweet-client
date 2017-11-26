@@ -11,7 +11,6 @@ function byId(state = {}, action){
   switch (action.type) {
     case 'ADD_TWEET':
     case 'EDIT_TWEET': {
-      // debugger
       return {
         ...state,
         [action.tweet.id]: tweet(state[action.tweet.id], action)
@@ -26,19 +25,11 @@ function byId(state = {}, action){
 
     case 'TRIGGER_EDITABLE_TWEET':
     case 'TRIGGER_ACTIVABLE_TWEET': {
-      // debugger
       return {
         ...state,
         [action.id]: tweet(state[action.id], action)
       }
     }
-
-    // case 'LOAD_TWEETS': {
-    //   const rawTweets = action.tweets.entities.tweets;
-    //   return Object.keys(rawTweets).reduce((result, id) => {
-    //     return Object.assign({}, result, Object.assign({}, {[id]: tweet(rawTweets[id], action)}))
-    //   }, {})
-    // }
 
     case 'ADD_COMMENT_TO_TWEET':
     case 'DELETE_COMMENT_IN_TWEET': {
@@ -46,10 +37,6 @@ function byId(state = {}, action){
         ...state,
         [action.tweetId]: tweet(state[action.tweetId], action)
       }
-    }
-
-    case 'RECEIVE_TWEETS': {
-      //
     }
 
     default:
@@ -68,10 +55,6 @@ function allIds(state = [], action){
       return state.filter(id => id !== action.id)
     }
 
-    // case 'LOAD_TWEETS': {
-    //   return action.tweets.result.concat(state)
-    // }
-
     default:
       return state
   }
@@ -82,10 +65,6 @@ export const getAllTweets = (state, listOfTweets) => {
     return [...result, state.byId[tweetId]]
   }, [])
 }
-
-// export const getAllTweets = (state) => {
-//   return state.allIds.map(id => state.byId[id])
-// }
 
 export const getEditableTweet = (state) => {
   return Object.keys(state.byId).find(id => state.byId[id].editable)

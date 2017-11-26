@@ -15,7 +15,6 @@ class ThreadTabs extends React.Component{
     this.props.firstLoadingTweets(this.props.activeThreadId)
   }
 
-
   render(){
     return(
       <Tabs

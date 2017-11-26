@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { getAllTweets, getEditableTweet, getActiveTweet } from '../reducers/Tweets';
 import { getTweetsForActiveThread } from '../reducers/tweetsByThread';
 import { EditableTweet } from '../components/EditableTweet';
-import { editTweet, deleteTweet, triggerEditableTweet, triggerActivableTweet, loadTweets } from '../actions/Tweet';
+import { editTweet, deleteTweet, triggerEditableTweet, triggerActivableTweet } from '../actions/Tweet';
 import '../styles/EditableList.css';
 
 

@@ -26,7 +26,7 @@ function onSubmitForm(tweet, editableId, activeId){
   if(editableId){
     return (dispatch) => {
       dispatch(triggerEditableTweet(editableId))
-      dispatch(addTweet(tweet))
+      dispatch(addTweet(tweet)) 
     }
   } else {
     return (dispatch) => {

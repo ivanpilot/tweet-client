@@ -29,24 +29,13 @@ export function tweet(state, action){
     }
 
     case 'TRIGGER_ACTIVABLE_TWEET': {
-      // debugger
       return {
         ...state,
         active: !state.active
       }
     }
 
-    case 'LOAD_TWEETS': {
-      return {
-        ...state,
-        editable: false,
-        active: false,
-        ownership: true,
-      }
-    }
-
     case 'ADD_COMMENT_TO_TWEET': {
-      // debugger
       return {
         ...state,
         comments: [action.commentId, ...state.comments]
