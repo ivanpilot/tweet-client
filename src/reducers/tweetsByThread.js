@@ -42,6 +42,19 @@ export function tweetsByThread(state = {
       }
     }
 
+    case 'CREATE_TWEET': {
+      return {
+        ...state,
+        '1': {
+          ...state['1'],
+          tweets: [
+            action.tweet.id,
+            ...state['1'].tweets
+          ]
+        }
+      }
+    }
+
     default:
       return state
   }

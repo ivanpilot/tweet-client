@@ -8,8 +8,21 @@ export function tweet(state, action){
         comments: action.tweet.comments,
         editable: false,
         active: false,
-        ownership: true,
+        ownership: true, //to be changed by function testing if author_id === currentUser.id
         author_id: action.tweet.author_id
+      }
+    }
+
+    case 'CREATE_TWEET': {
+      return {
+        id: action.tweet.id,
+        title: action.tweet.title,
+        body: action.tweet.body,
+        // comments: action.tweet.comments,
+        editable: false,
+        active: false,
+        ownership: true,
+        author_id: 1 //to be changed by replacing currentUser.id
       }
     }
 

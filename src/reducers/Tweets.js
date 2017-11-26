@@ -39,13 +39,6 @@ function byId(state = {}, action){
       }
     }
 
-    case 'CREATE_TWEET': {
-      return {
-        ...state,
-        '1': action.tweet
-      }
-    }
-
     default:
       return state
   }

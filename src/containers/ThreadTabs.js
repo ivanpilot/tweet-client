@@ -12,10 +12,23 @@ import { Tabs } from '../components/Tabs';
 
 class ThreadTabs extends React.Component{
   componentDidMount(){
-    this.props.firstLoadingTweets(this.props.activeThreadId)
+    this.props.LoadingTweets(this.props.activeThreadId)
   }
 
+  // componentDidUpdate(){
+  //   debugger
+  //   loadTweetsForThread(this.props.activeThreadId)
+  // }
+  // componentWillReceiveProps(nextProps){
+  //   // debugger
+  //   if(nextProps.active)
+  //   this.props.LoadingTweets(this.props.activeThreadId)
+  // }
+
+
+
   render(){
+    // debugger
     return(
       <Tabs
         tabs={this.props.tabs}
@@ -33,7 +46,12 @@ function loadTweetsForThread(threadId){
   return (dispatch, getState) => {
     const threadName = getState().tweetsByThread[threadId].name
     const tweets = getState().entities.tweets.byId
-    const listOfTweets = threadName === 'Wall' ? (Object.keys(tweets)) : (Object.keys(tweets).filter(id => tweets[id].author_id === 1))
+    const tempTweets = getState().workInProgress.tweetsWIP.allIds
+    const wallTweets = Object.keys(tweets).concat(tempTweets)
+    const myTweets = Object.keys(tweets).filter(id => tweets[id].author_id === 1).concat(tempTweets)
+    const listOfTweets = threadName === 'Wall' ? wallTweets : myTweets
+    // debugger
+    // const listOfTweets = threadName === 'Wall' ? (Object.keys(tweets)) : (Object.keys(tweets).filter(id => tweets[id].author_id === 1))
     return dispatch(loadTweets(threadId, listOfTweets))
   }
 }
@@ -71,7 +89,7 @@ function handleClickTab(id, activeThreadId, activeTweetId, editableTweet){
   }
 }
 
-function firstLoadingTweets(threadId){
+function LoadingTweets(threadId){
   return (dispatch) => {
     dispatch(loadTweetsForThread(threadId))
   }
@@ -92,7 +110,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     handleClickTab,
-    firstLoadingTweets,
+    LoadingTweets,
   }, dispatch)
 }
 

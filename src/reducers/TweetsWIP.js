@@ -9,12 +9,12 @@ export const tweetsWIP = combineReducers({
 
 function byId(state = {}, action){
   switch (action.type) {
-    // case 'CREATE_TWEET':
+    case 'CREATE_TWEET':
     // case 'UPDATE_TWEET': {
-    //   return {
-    //     ...state,
-    //     [action.tweet.id]: tweet(state[action.tweet.id], action)
-    //   }
+      return {
+        ...state,
+        [action.tweet.id]: tweet(state[action.tweet.id], action)
+      }
     // }
 
     // case 'DELETE_TWEET': {
@@ -39,9 +39,9 @@ function byId(state = {}, action){
 
 function allIds(state = [], action){
   switch (action.type) {
-    // case 'CREATE_TWEET': {
-    //   return [action.tweet.id, ...state]
-    // }
+    case 'CREATE_TWEET': {
+      return [action.tweet.id, ...state]
+    }
     //
     // case 'DELETE_TWEET': {
     //   return state.filter(id => id !== action.id)
