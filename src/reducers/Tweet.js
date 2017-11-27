@@ -1,3 +1,5 @@
+import uuid from 'uuid';
+
 export function tweet(state, action){
   switch(action.type){
     case 'ADD_TWEET': {
@@ -14,14 +16,15 @@ export function tweet(state, action){
     }
 
     case 'CREATE_TWEET': {
+      debugger
       return {
-        id: action.tweet.id,
+        id: uuid.v4(), //keep?
         title: action.tweet.title,
         body: action.tweet.body,
         // comments: action.tweet.comments,
-        editable: false,
-        active: false,
-        ownership: true,
+        editable: false, //keep?
+        active: false, //keep?
+        ownership: true, //keep?
         author_id: 1 //to be changed by replacing currentUser.id
       }
     }

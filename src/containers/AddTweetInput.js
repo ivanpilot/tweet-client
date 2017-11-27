@@ -4,23 +4,18 @@ import { bindActionCreators } from 'redux';
 import { getEditableTweet, getActiveTweet } from '../reducers/Tweets';
 import { addTweet, triggerEditableTweet, createTweet } from '../actions/Tweet';
 import FormTweet from '../components/FormTweet';
-
 import { apiTweet } from '../client/ApiTweet';
-import { normalize } from 'normalizr';
-import { normalizedTweet } from '../normalizers/Normalizr';
-// import { store } from '../store';
 
 
-// const fetchTweets = () => {
-//   apiTweet.loadRawTweets(tweets =>
-//     normalize(tweets, normalizedTweet))
-//     .then((tweets) =>
-//       store.dispatch({
-//         type: 'LOAD_TWEETS',
-//         tweets
-//       })
-//   )
-// }
+function persistTweet(tweet){
+  return dispatch => {
+    return apiTweet.createTweet(tweet)
+    .then(response => {
+      console.log('AND NOW, THE RESPONSE: ', response)
+      return response
+    })
+  }
+}
 
 function onSubmitForm(tweet, editableId, activeId){
   if(editableId){
@@ -32,6 +27,7 @@ function onSubmitForm(tweet, editableId, activeId){
     return (dispatch) => {
       // dispatch(addTweet(tweet))
       dispatch(createTweet(tweet))
+      dispatch(persistTweet(tweet))
     }
   }
 }

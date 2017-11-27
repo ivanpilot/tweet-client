@@ -12,7 +12,7 @@ class ApiTweet {
     }).then(this.checkStatus)
       .then(this.parseJson)
       .then((response) => {
-        console.log(response)
+        // console.log(response)
         // debugger
         return response
       })
@@ -26,7 +26,7 @@ class ApiTweet {
       post:{
         title: tweet.title,
         body: tweet.body,
-        author_id: '1'
+        author_id: 1 //to be replace by currentUser.id
       }
     }
     // debugger
