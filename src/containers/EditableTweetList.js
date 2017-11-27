@@ -17,6 +17,7 @@ class EditableTweetList extends React.Component {
         </div>
       )
     } else {
+      // debugger
       return(
         <div className="editable-list">
           <EditableTweet
@@ -87,7 +88,7 @@ function onSubmitTweetForm(tweet){
 
 const mapStateToProps = (state) => {
   return {
-    tweets: getAllTweets(state.entities.tweets, getTweetsForActiveThread(state.tweetsByThread)),
+    tweets: getAllTweets(state, getTweetsForActiveThread(state.tweetsByThread)),
     activeTweet: getActiveTweet(state.entities.tweets),
     editableTweet: getEditableTweet(state.entities.tweets)
   }

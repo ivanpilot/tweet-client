@@ -17,18 +17,6 @@ class Thread extends React.Component{
     this.props.LoadingTweets(this.props.activeThreadId)
   }
 
-  // componentDidUpdate(){
-  //   debugger
-  //   loadTweetsForThread(this.props.activeThreadId)
-  // }
-  // componentWillReceiveProps(nextProps){
-  //   // debugger
-  //   if(nextProps.active)
-  //   this.props.LoadingTweets(this.props.activeThreadId)
-  // }
-
-
-
   render(){
     // debugger
     return(
@@ -54,11 +42,9 @@ function loadTweetsForThread(threadId){
     const threadName = getState().tweetsByThread[threadId].name
     const tweets = getState().entities.tweets.byId
     const tempTweets = getState().workInProgress.tweetsWIP.allIds
-    const wallTweets = Object.keys(tweets).concat(tempTweets)
-    const myTweets = Object.keys(tweets).filter(id => tweets[id].author_id === 1).concat(tempTweets)
+    const wallTweets = tempTweets.concat(Object.keys(tweets))
+    const myTweets = tempTweets.concat(Object.keys(tweets).filter(id => tweets[id].author_id === 1))
     const listOfTweets = threadName === 'Wall' ? wallTweets : myTweets
-    // debugger
-    // const listOfTweets = threadName === 'Wall' ? (Object.keys(tweets)) : (Object.keys(tweets).filter(id => tweets[id].author_id === 1))
     return dispatch(loadTweets(threadId, listOfTweets))
   }
 }

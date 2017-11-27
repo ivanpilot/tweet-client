@@ -33,6 +33,7 @@ export function tweetsByThread(state = {
     }
 
     case 'LOAD_TWEETS': {
+      // debugger
       return {
         ...state,
         [action.id]: {
@@ -43,6 +44,7 @@ export function tweetsByThread(state = {
     }
 
     case 'CREATE_TWEET': {
+      // debugger
       return {
         ...state,
         '1': {
@@ -50,6 +52,13 @@ export function tweetsByThread(state = {
           tweets: [
             action.tweet.id,
             ...state['1'].tweets
+          ]
+        },
+        '2': {
+          ...state['2'],
+          tweets: [
+            action.tweet.id,
+            ...state['2'].tweets
           ]
         }
       }
@@ -75,5 +84,6 @@ export const getActiveThread = (state) => {
 
 export const getTweetsForActiveThread = (state) => {
   const activeThreadId = getActiveThread(state)
+  // debugger
   return state[activeThreadId].tweets
 }

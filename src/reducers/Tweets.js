@@ -62,9 +62,19 @@ function allIds(state = [], action){
 
 export const getAllTweets = (state, listOfTweets) => {
   return listOfTweets.reduce((result, tweetId) => {
-    return [...result, state.byId[tweetId]]
+    // debugger
+    if(Object.keys(state.entities.tweets.byId).includes(tweetId)){
+      return [...result, state.entities.tweets.byId[tweetId]]
+    }
+    return [...result, state.workInProgress.tweetsWIP.byId[tweetId]]
   }, [])
 }
+
+// export const getAllTweets = (state, listOfTweets) => {
+//   return listOfTweets.reduce((result, tweetId) => {
+//     return [...result, state.byId[tweetId]]
+//   }, [])
+// }
 
 export const getEditableTweet = (state) => {
   return Object.keys(state.byId).find(id => state.byId[id].editable)
