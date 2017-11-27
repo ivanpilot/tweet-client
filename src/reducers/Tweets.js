@@ -66,6 +66,8 @@ function allIds(state = [], action){
 //   }, [])
 // }
 
+export const getListOfTweetIds = (state) => state.allIds
+
 export const getEditableTweet = (state) => {
   return Object.keys(state.byId).find(id => state.byId[id].editable)
 }

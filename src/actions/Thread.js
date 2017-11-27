@@ -14,3 +14,11 @@ export function loadTweets(id, tweets){
     tweets,
   }
 }
+
+export function loadTweet(id, tweet){
+  return {
+    type: types.LOAD_TWEET,
+    id,
+    tweet,
+  }
+}

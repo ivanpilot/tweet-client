@@ -2,7 +2,9 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getEditableTweet, getActiveTweet } from '../reducers/Tweets';
-import { addTweet, triggerEditableTweet, createTweet } from '../actions/Tweet';
+import { getActiveThread } from '../reducers/tweetsByThread';
+import { addTweet, triggerEditableTweet, createTweet, eraseTweet } from '../actions/Tweet';
+import { loadTweets, loadTweet } from '../actions/Thread';
 import FormTweet from '../components/FormTweet';
 import { apiTweet } from '../client/ApiTweet';
 import { DisplayError } from '../components/DisplayError';
@@ -10,7 +12,7 @@ import React from 'react';
 
 
 function persistTweet(tweet){
-  return dispatch => {
+  return (dispatch, getState) => {
     return apiTweet.createTweet(tweet).then(
       response => {
         console.log('NOW INSIDE THE CONTAINER, RESPONSE: ', response)
@@ -32,6 +34,20 @@ function persistTweet(tweet){
     .then((response) => {
       // debugger
       console.log('NOW INSIDE THE CONTAINER, RESPONSE: ', response)
+      return response
+    })
+    .then(response => {
+      const receivedTweets = response
+      receivedTweets.map(tweet => {
+        const tempTweet = getState().workInProgress.tweetsWIP.byId[tweet.react_id]
+        const activeThreadId = getActiveThread(getState().tweetsByThread)
+        if(tempTweet){
+          dispatch(addTweet(tweet))
+          dispatch(eraseTweet(tweet.react_id))
+          // debugger
+          dispatch(loadTweet(activeThreadId, tweet.id))
+        }
+      })
     })
   }
 }

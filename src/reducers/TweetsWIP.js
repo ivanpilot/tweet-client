@@ -17,11 +17,12 @@ function byId(state = {}, action){
       }
     // }
 
-    // case 'DELETE_TWEET': {
-    //   const newState = Object.assign({}, state)
-    //   delete newState[action.id]
-    //   return Object.assign({}, newState)
-    // }
+    case 'ERASE_TWEET': {
+      const newState = Object.assign({}, state)
+      delete newState[action.id]
+      // debugger
+      return Object.assign({}, newState)
+    }
     //
     // case 'CREATE_COMMENT_TO_TWEET':
     // case 'DELETE_COMMENT_IN_TWEET': {
@@ -42,10 +43,11 @@ function allIds(state = [], action){
     case 'CREATE_TWEET': {
       return [action.tweet.id, ...state]
     }
-    //
-    // case 'DELETE_TWEET': {
-    //   return state.filter(id => id !== action.id)
-    // }
+
+    case 'ERASE_TWEET': {
+      // debugger
+      return state.filter(id => id !== action.id)
+    }
 
     default:
       return state

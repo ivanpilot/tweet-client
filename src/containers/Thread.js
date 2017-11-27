@@ -7,7 +7,7 @@ import { triggerThread, loadTweets } from '../actions/Thread';
 import { triggerEditableTweet, triggerActivableTweet } from '../actions/Tweet';
 import { triggerEditableComment } from '../actions/Comment';
 import { getAllThreads, getActiveThread } from '../reducers/tweetsByThread';
-import { getEditableTweet, getActiveTweet } from '../reducers/Tweets';
+import { getEditableTweet, getActiveTweet, getListOfTweetIds } from '../reducers/Tweets';
 // import { getEditableComment } from '../reducers/Comments';
 
 
@@ -16,6 +16,12 @@ class Thread extends React.Component{
   componentDidMount(){
     this.props.LoadingTweets(this.props.activeThreadId)
   }
+
+  // componentWillReceiveProps(nextProps){
+  //   if(nextProps.tweetsIds.lenght !== this.props.tweetsIds.length){
+  //     this.props.LoadingTweets(this.props.activeThreadId)
+  //   }
+  // }
 
   render(){
     // debugger
@@ -100,6 +106,7 @@ const mapStateToProps = (state) => {
     activeThreadId: getActiveThread(state.tweetsByThread),
     editableTweet: getEditableTweet(state.entities.tweets),
     activeTweet: getActiveTweet(state.entities.tweets),
+    tweetsIds: getListOfTweetIds(state.entities.tweets)
     // editableComment: getEditableComment(state.entities.comments.byId)
   }
 }

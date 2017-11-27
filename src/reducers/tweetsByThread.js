@@ -43,6 +43,17 @@ export function tweetsByThread(state = {
       }
     }
 
+    case 'LOAD_TWEET': {
+      // debugger
+      return {
+        ...state,
+        [action.id]: {
+          ...state[action.id],
+          tweets: [action.tweet, ...state[action.id].tweets]
+        }
+      }
+    }
+
     case 'CREATE_TWEET': {
       // debugger
       return {
@@ -62,6 +73,27 @@ export function tweetsByThread(state = {
           ]
         }
       }
+    }
+
+    case 'ERASE_TWEET': {
+      return {
+        ...state,
+        '1': {
+          ...state['1'],
+          tweets: state['1'].tweets.filter(id => id !== action.id)
+        },
+        '2': {
+          ...state['2'],
+          tweets: state['2'].tweets.filter(id => id !== action.id)
+        }
+      }
+      // return {
+      //   ...state,
+      //   [action.threadId]: {
+      //     ...state[action.threadId],
+      //     tweets: state[action.threadId].tweets.filter(id => id !== action.id)
+      //   }
+      // }
     }
 
     default:

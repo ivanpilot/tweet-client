@@ -57,3 +57,11 @@ export function createTweet(tweet){
     tweet
   }
 }
+
+export function eraseTweet(id, threadId = null){
+  return {
+    type: types.ERASE_TWEET,
+    id,
+    threadId
+  }
+}
