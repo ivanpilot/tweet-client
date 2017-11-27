@@ -10,16 +10,59 @@ import { apiTweet } from '../client/ApiTweet';
 import { DisplayError } from '../components/DisplayError';
 import React from 'react';
 
+// function persistTweet(tweet){
+//   return (dispatch, getState) => {
+//     return apiTweet.createTweet(tweet).then(response => {
+//       return apiTweet.fetchTweetByReactId(tweet.id)
+//     }).then(receivedTweets => {
+//       receivedTweets.map(tweet => {
+//         const tempTweet = getState().workInProgress.tweetsWIP.byId[tweet.react_id]
+//         const activeThreadId = getActiveThread(getState().tweetsByThread)
+//         if(tempTweet){
+//           dispatch(addTweet(tweet))
+//           dispatch(eraseTweet(tweet.react_id))
+//           dispatch(loadTweet(activeThreadId, tweet.id))
+//         }
+//       })
+//       return receivedTweets
+//     })
+//     .then(
+//       response => {
+//         console.log('NOW INSIDE THE CONTAINER, RESPONSE: ', response)
+//         return tweet
+//       },
+//       error => {
+//         // debugger
+//         return(
+//           <DisplayError
+//             message={`Looks like a server issue. Retry in a few sec... 'HTTP status: ${error.response.status}. Error message: ${error.response.statusText}'`}
+//             onRetry={() => persistTweet(tweet)}
+//           />
+//         )
+//       }
+//     )
+//   }
+// }
 
 function persistTweet(tweet){
   return (dispatch, getState) => {
     return apiTweet.createTweet(tweet).then(
       response => {
-        console.log('NOW INSIDE THE CONTAINER, RESPONSE: ', response)
-        return tweet
+        return apiTweet.fetchTweetByReactId(tweet.id).then(
+          reponse => {
+            return swapOldTweetForNewTweet(dispatch, getState, reponse)
+          },
+          error => {
+            return(
+              <DisplayError
+                message={`Looks like a server issue. Retry in a few sec... 'HTTP status: ${error.response.status}. Error message: ${error.response.statusText}'`}
+                onRetry={() => persistTweet(tweet)}
+              />
+            )
+          }
+        )
       },
       error => {
-        // debugger
         return(
           <DisplayError
             message={`Looks like a server issue. Retry in a few sec... 'HTTP status: ${error.response.status}. Error message: ${error.response.statusText}'`}
@@ -27,30 +70,62 @@ function persistTweet(tweet){
           />
         )
       }
-    ).then(tweet => {
-      // debugger
-      return apiTweet.fetchTweetByReactId(tweet.id)
-    })
-    .then((response) => {
-      // debugger
-      console.log('NOW INSIDE THE CONTAINER, RESPONSE: ', response)
-      return response
-    })
-    .then(response => {
-      const receivedTweets = response
-      receivedTweets.map(tweet => {
-        const tempTweet = getState().workInProgress.tweetsWIP.byId[tweet.react_id]
-        const activeThreadId = getActiveThread(getState().tweetsByThread)
-        if(tempTweet){
-          dispatch(addTweet(tweet))
-          dispatch(eraseTweet(tweet.react_id))
-          // debugger
-          dispatch(loadTweet(activeThreadId, tweet.id))
-        }
-      })
-    })
+    )
   }
 }
+
+function swapOldTweetForNewTweet(dispatch, getState, tweets){
+  tweets.map(tweet => {
+    const tempTweet = getState().workInProgress.tweetsWIP.byId[tweet.react_id]
+    const activeThreadId = getActiveThread(getState().tweetsByThread)
+    if(tempTweet){
+      dispatch(addTweet(tweet))
+      dispatch(eraseTweet(tweet.react_id))
+      dispatch(loadTweet(activeThreadId, tweet.id))
+    }
+  })
+}
+
+// function persistTweet(tweet){
+//   return (dispatch, getState) => {
+//     return apiTweet.createTweet(tweet).then(
+//       response => {
+//         console.log('NOW INSIDE THE CONTAINER, RESPONSE: ', response)
+//         return tweet
+//       },
+//       error => {
+//         // debugger
+//         return(
+//           <DisplayError
+//             message={`Looks like a server issue. Retry in a few sec... 'HTTP status: ${error.response.status}. Error message: ${error.response.statusText}'`}
+//             onRetry={() => persistTweet(tweet)}
+//           />
+//         )
+//       }
+//     ).then(tweet => {
+//       // debugger
+//       return apiTweet.fetchTweetByReactId(tweet.id)
+//     })
+//     .then((response) => {
+//       // debugger
+//       console.log('NOW INSIDE THE CONTAINER, RESPONSE: ', response)
+//       return response
+//     })
+//     .then(response => {
+//       const receivedTweets = response
+//       receivedTweets.map(tweet => {
+//         const tempTweet = getState().workInProgress.tweetsWIP.byId[tweet.react_id]
+//         const activeThreadId = getActiveThread(getState().tweetsByThread)
+//         if(tempTweet){
+//           dispatch(addTweet(tweet))
+//           dispatch(eraseTweet(tweet.react_id))
+//           // debugger
+//           dispatch(loadTweet(activeThreadId, tweet.id))
+//         }
+//       })
+//     })
+//   }
+// }
 
 function onSubmitForm(tweet, editableId, activeId){
   if(editableId){
@@ -60,7 +135,6 @@ function onSubmitForm(tweet, editableId, activeId){
     }
   } else {
     return (dispatch) => {
-      // dispatch(addTweet(tweet))
       dispatch(createTweet(tweet))
       dispatch(persistTweet(tweet))
     }

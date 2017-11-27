@@ -12,7 +12,7 @@ class ApiTweet {
     }).then(this.checkStatus)
       .then(this.parseJson)
       .then((response) => {
-        console.log(response)
+        // console.log(response)
         // debugger
         return response
       })
@@ -38,14 +38,13 @@ class ApiTweet {
       body: JSON.stringify(newTweet)
     }).then(this.checkStatus)
       .then((response) => {
-        console.log('CREATING TWEET...', response)
+        // console.log('CREATING TWEET...', response)
         return response
       })
   }
 
   fetchTweetByReactId(reactId){
     const url = this.domain + '/api/posts/search?term=' + reactId
-    // debugger
     return fetch(url, {
       headers: {
         'Content-Type':'application/json'
@@ -53,7 +52,7 @@ class ApiTweet {
     }).then(this.checkStatus)
       .then(this.parseJson)
       .then((response) => {
-        console.log('RETRIEVING LATEST TWEET', response)
+        // console.log('RETRIEVING LATEST TWEET', response)
         return response
       })
   }

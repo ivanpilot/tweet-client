@@ -10,18 +10,10 @@ import { getAllThreads, getActiveThread } from '../reducers/tweetsByThread';
 import { getEditableTweet, getActiveTweet, getListOfTweetIds } from '../reducers/Tweets';
 // import { getEditableComment } from '../reducers/Comments';
 
-
-
 class Thread extends React.Component{
   componentDidMount(){
     this.props.LoadingTweets(this.props.activeThreadId)
   }
-
-  // componentWillReceiveProps(nextProps){
-  //   if(nextProps.tweetsIds.lenght !== this.props.tweetsIds.length){
-  //     this.props.LoadingTweets(this.props.activeThreadId)
-  //   }
-  // }
 
   render(){
     // debugger
@@ -49,12 +41,9 @@ function loadTweetsForThread(threadId){
     const tweets = getState().entities.tweets.byId
     const tweetIds = getState().entities.tweets.allIds
     const tempTweets = getState().workInProgress.tweetsWIP.allIds
-    // const wallTweets = tempTweets.concat(Object.keys(tweets))
-    // const myTweets = tempTweets.concat(Object.keys(tweets).filter(id => tweets[id].author_id === 1))
     const wallTweets = tempTweets.concat(tweetIds)
-    const myTweets = tempTweets.concat(tweetIds.filter(id => tweets[id].author_id === 1))
+    const myTweets = tempTweets.concat(tweetIds.filter(id => tweets[id].author_id === 1)) // replaced bu author_id === currentUser.id
     const listOfTweets = threadName === 'Wall' ? wallTweets : myTweets
-    // debugger
     return dispatch(loadTweets(threadId, listOfTweets))
   }
 }
