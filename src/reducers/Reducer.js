@@ -18,9 +18,9 @@ export const reducer = combineReducers({
   tweetsByThread,
   errors,
   workInProgress: combineReducers({
-    errorsWIP,
     tweetsWIP,
     commentsWIP,
+    errorsWIP,
   }),
 })
 

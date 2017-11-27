@@ -5,20 +5,22 @@ export function tweet(state, action){
     case 'ADD_TWEET': {
       return {
         id: action.tweet.id,
+        react_id: action.tweet.react_id,
         title: action.tweet.title,
         body: action.tweet.body,
         comments: action.tweet.comments,
         editable: false,
         active: false,
         ownership: true, //to be changed by function testing if author_id === currentUser.id
-        author_id: action.tweet.author_id
+        author_id: action.tweet.author_id,
       }
     }
 
     case 'CREATE_TWEET': {
       debugger
       return {
-        id: action.tweet.title,
+        id: action.tweet.id,
+        react_id: action.tweet.id,
         title: action.tweet.title,
         body: action.tweet.body,
         // comments: action.tweet.comments,

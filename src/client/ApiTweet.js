@@ -21,10 +21,12 @@ class ApiTweet {
 
   createTweet(tweet){
     const url = this.domain + '/api/posts'
+    debugger
     const newTweet = {
       post:{
         title: tweet.title,
         body: tweet.body,
+        react_id: tweet.id,
         author_id: 1 //to be replace by currentUser.id
       }
     }
