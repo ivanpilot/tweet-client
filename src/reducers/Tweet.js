@@ -17,7 +17,7 @@ export function tweet(state, action){
     }
 
     case 'CREATE_TWEET': {
-      debugger
+      // debugger
       return {
         id: action.tweet.id,
         react_id: action.tweet.id,

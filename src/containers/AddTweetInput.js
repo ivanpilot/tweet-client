@@ -13,11 +13,11 @@ function persistTweet(tweet){
   return dispatch => {
     return apiTweet.createTweet(tweet).then(
       response => {
-        console.log('AND NOW, THE RESPONSE: ', response)
-        return response
+        console.log('NOW INSIDE THE CONTAINER, RESPONSE: ', response)
+        return tweet
       },
       error => {
-        debugger
+        // debugger
         return(
           <DisplayError
             message={`Looks like a server issue. Retry in a few sec... 'HTTP status: ${error.response.status}. Error message: ${error.response.statusText}'`}
@@ -25,7 +25,14 @@ function persistTweet(tweet){
           />
         )
       }
-    )//.then()
+    ).then(tweet => {
+      // debugger
+      return apiTweet.fetchTweetByReactId(tweet.id)
+    })
+    .then((response) => {
+      // debugger
+      console.log('NOW INSIDE THE CONTAINER, RESPONSE: ', response)
+    })
   }
 }
 

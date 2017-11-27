@@ -21,7 +21,7 @@ class ApiTweet {
 
   createTweet(tweet){
     const url = this.domain + '/api/posts'
-    debugger
+    // debugger
     const newTweet = {
       post:{
         title: tweet.title,
@@ -38,7 +38,22 @@ class ApiTweet {
       body: JSON.stringify(newTweet)
     }).then(this.checkStatus)
       .then((response) => {
-        console.log('HEY MAN LOOK AT THAT', response)
+        console.log('CREATING TWEET...', response)
+        return response
+      })
+  }
+
+  fetchTweetByReactId(reactId){
+    const url = this.domain + '/api/posts/search?term=' + reactId
+    // debugger
+    return fetch(url, {
+      headers: {
+        'Content-Type':'application/json'
+      }
+    }).then(this.checkStatus)
+      .then(this.parseJson)
+      .then((response) => {
+        console.log('RETRIEVING LATEST TWEET', response)
         return response
       })
   }
