@@ -9,6 +9,7 @@ function tweets(state = false, action){
   switch (action.type) {
     case 'FETCH_TWEETS_FAILURE': {
       const res = action.message.response
+      debugger
       return {
         message: res.statusText,
         status: res.status

@@ -9,28 +9,28 @@ export const tweetsWIP = combineReducers({
 
 function byId(state = {}, action){
   switch (action.type) {
-    case 'CREATE_TWEET':
-    // case 'UPDATE_TWEET': {
-      return {
-        ...state,
-        [action.tweet.id]: tweet(state[action.tweet.id], action)
-      }
-    // }
-
-    case 'ERASE_TWEET': {
-      const newState = Object.assign({}, state)
-      delete newState[action.id]
-      // debugger
-      return Object.assign({}, newState)
-    }
-    //
-    // case 'CREATE_COMMENT_TO_TWEET':
-    // case 'DELETE_COMMENT_IN_TWEET': {
+    // case 'CREATE_TWEET':
+    // // case 'UPDATE_TWEET': {
     //   return {
     //     ...state,
-    //     [action.tweetId]: tweet(state[action.tweetId], action)
+    //     [action.tweet.id]: tweet(state[action.tweet.id], action)
     //   }
+    // // }
+    //
+    // case 'ERASE_TWEET': {
+    //   const newState = Object.assign({}, state)
+    //   delete newState[action.id]
+    //   // debugger
+    //   return Object.assign({}, newState)
     // }
+    // //
+    // // case 'CREATE_COMMENT_TO_TWEET':
+    // // case 'DELETE_COMMENT_IN_TWEET': {
+    // //   return {
+    // //     ...state,
+    // //     [action.tweetId]: tweet(state[action.tweetId], action)
+    // //   }
+    // // }
 
     default:
       return state
@@ -40,14 +40,14 @@ function byId(state = {}, action){
 
 function allIds(state = [], action){
   switch (action.type) {
-    case 'CREATE_TWEET': {
-      return [action.tweet.id, ...state]
-    }
-
-    case 'ERASE_TWEET': {
-      // debugger
-      return state.filter(id => id !== action.id)
-    }
+    // case 'CREATE_TWEET': {
+    //   return [action.tweet.id, ...state]
+    // }
+    //
+    // case 'ERASE_TWEET': {
+    //   // debugger
+    //   return state.filter(id => id !== action.id)
+    // }
 
     default:
       return state

@@ -50,7 +50,7 @@ function persistTweet(tweet){
 
 function swapOldTweetForNewTweet(dispatch, getState, tweets){
   tweets.map(tweet => {
-    const tempTweet = getState().entities.tweets.byId[tweet.react_id]
+    const tempTweet = getState().workInProgress.tweetsWIP.byId[tweet.react_id]
     const activeThreadId = getActiveThread(getState().tweetsByThread)
     if(tempTweet){
       dispatch(addTweet(tweet))

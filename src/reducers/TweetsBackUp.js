@@ -10,7 +10,6 @@ export const tweets = combineReducers({
 function byId(state = {}, action){
   switch (action.type) {
     case 'ADD_TWEET':
-    case 'CREATE_TWEET':
     case 'EDIT_TWEET': {
       return {
         ...state,
@@ -18,8 +17,7 @@ function byId(state = {}, action){
       }
     }
 
-    case 'DELETE_TWEET':
-    case 'ERASE_TWEET': {
+    case 'DELETE_TWEET': {
       const newState = Object.assign({}, state)
       delete newState[action.id]
       return Object.assign({}, newState)
@@ -49,13 +47,11 @@ function byId(state = {}, action){
 
 function allIds(state = [], action){
   switch (action.type) {
-    case 'ADD_TWEET':
-    case 'CREATE_TWEET': {
+    case 'ADD_TWEET': {
       return [action.tweet.id, ...state]
     }
 
-    case 'DELETE_TWEET':
-    case 'ERASE_TWEET': {
+    case 'DELETE_TWEET': {
       return state.filter(id => id !== action.id)
     }
 
