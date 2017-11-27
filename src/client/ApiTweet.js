@@ -12,7 +12,7 @@ class ApiTweet {
     }).then(this.checkStatus)
       .then(this.parseJson)
       .then((response) => {
-        // console.log(response)
+        console.log(response)
         // debugger
         return response
       })
@@ -20,7 +20,6 @@ class ApiTweet {
   }
 
   createTweet(tweet){
-    // debugger
     const url = this.domain + '/api/posts'
     const newTweet = {
       post:{
@@ -29,7 +28,6 @@ class ApiTweet {
         author_id: 1 //to be replace by currentUser.id
       }
     }
-    // debugger
     return fetch(url, {
       method: 'POST',
       headers: {

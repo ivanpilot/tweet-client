@@ -1,4 +1,4 @@
-import uuid from 'uuid';
+// import uuid from 'uuid';
 
 export function tweet(state, action){
   switch(action.type){
@@ -18,7 +18,7 @@ export function tweet(state, action){
     case 'CREATE_TWEET': {
       debugger
       return {
-        id: uuid.v4(), //keep?
+        id: action.tweet.title,
         title: action.tweet.title,
         body: action.tweet.body,
         // comments: action.tweet.comments,

@@ -41,10 +41,14 @@ function loadTweetsForThread(threadId){
   return (dispatch, getState) => {
     const threadName = getState().tweetsByThread[threadId].name
     const tweets = getState().entities.tweets.byId
+    const tweetIds = getState().entities.tweets.allIds
     const tempTweets = getState().workInProgress.tweetsWIP.allIds
-    const wallTweets = tempTweets.concat(Object.keys(tweets))
-    const myTweets = tempTweets.concat(Object.keys(tweets).filter(id => tweets[id].author_id === 1))
+    // const wallTweets = tempTweets.concat(Object.keys(tweets))
+    // const myTweets = tempTweets.concat(Object.keys(tweets).filter(id => tweets[id].author_id === 1))
+    const wallTweets = tempTweets.concat(tweetIds)
+    const myTweets = tempTweets.concat(tweetIds.filter(id => tweets[id].author_id === 1))
     const listOfTweets = threadName === 'Wall' ? wallTweets : myTweets
+    // debugger
     return dispatch(loadTweets(threadId, listOfTweets))
   }
 }
