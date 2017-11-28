@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getEditableComment, getAllCommentsForTweet } from '../reducers/Comments';
 import { getActiveTweet } from '../reducers/Tweets';
-import { getCommentsError } from '../reducers/Errors';
+import { getFetchingCommentsError } from '../reducers/Errors';
 import { EditableComment } from '../components/EditableComment';
 import { editComment, deleteComment, triggerEditableComment, loadComments, clearComments } from '../actions/Comment';
 import { deleteCommentInTweet } from '../actions/Tweet';
@@ -141,7 +141,7 @@ const mapStateToProps = (state) => {
     comments: getAllCommentsForTweet(state.entities.comments),
     editableComment: getEditableComment(state.entities.comments),
     activeTweet: getActiveTweet(state.entities.tweets),
-    error: getCommentsError(state.errors),
+    error: getFetchingCommentsError(state.errors),
   }
 }
 

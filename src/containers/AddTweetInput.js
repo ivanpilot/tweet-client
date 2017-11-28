@@ -8,7 +8,7 @@ import { loadTweets, loadTweet } from '../actions/Thread';
 import FormTweet from '../components/FormTweet';
 import { apiTweet } from '../client/ApiTweet';
 import { DisplayError } from '../components/DisplayError';
-import { fetchTweetsFailure } from '../actions/Error';
+import { fetchTweetFailure } from '../actions/Error';
 
 
 class AddTweetInput extends React.Component {
@@ -75,7 +75,7 @@ function onSubmitForm(tweet, editableId, activeId){
 }
 
 function fetchFailure(dispatch, error){
-  dispatch(fetchTweetsFailure(error))
+  dispatch(fetchTweetFailure(error))
 }
 
 const mapStateToProps = (state) => ({

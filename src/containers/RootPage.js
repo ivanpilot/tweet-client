@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getActiveTweet } from '../reducers/Tweets';
-import { getTweetsError, getCommentsError } from '../reducers/Errors';
+import { getFetchingTweetsError, getFetchingCommentsError } from '../reducers/Errors';
 import { VerticalMenu } from '../components/VerticalMenu';
 // import { TweetContainer } from '../components/TweetContainer';
 import Thread from './Thread';
@@ -39,6 +39,7 @@ class RootPage extends React.Component {
         <div className='ui active centered inline loader' />
       )
     } else if(this.props.tweetsError){
+      debugger
       return(
         <div>
           <DisplayError
@@ -89,6 +90,7 @@ function fetchTweets() {
 
 function fetchFailure(error) {
   return (dispatch) => {
+    // debugger
     dispatch(fetchTweetsFailure(error))
   }
 }
@@ -97,8 +99,8 @@ function fetchFailure(error) {
 const mapStateToProps = (state) => {
   return {
     activeTweet: getActiveTweet(state.entities.tweets),
-    tweetsError: getTweetsError(state.errors),
-    commentError: getCommentsError(state.errors)
+    tweetsError: getFetchingTweetsError(state.errors),
+    commentError: getFetchingCommentsError(state.errors)
   }
 }
 
