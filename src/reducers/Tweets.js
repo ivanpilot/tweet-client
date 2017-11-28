@@ -74,11 +74,17 @@ export const getAllTweets = (state, listOfTweets) => {
 export const getListOfTweetIds = (state) => state.allIds
 
 export const getEditableTweet = (state) => {
-  return Object.keys(state.byId).find(id => state.byId[id].editable)
+  return state.allIds.find(id => state.byId[id].editable)
+  // return Object.keys(state.byId).find(id => state.byId[id].editable)
 }
 
 export const getActiveTweet = (state) => {
-  const tweetId = Object.keys(state.byId).find(id => state.byId[id].active)
-  const numTweetId = parseInt(tweetId, 10)
-  return numTweetId == tweetId ? numTweetId : tweetId
+  return state.allIds.find(id => state.byId[id].active)
+
+
+  // return Object.keys(state.byId).find(id => state.byId[id].active)
+
+  // const tweetId = Object.keys(state.byId).find(id => state.byId[id].active)
+  // const numTweetId = parseInt(tweetId, 10)
+  // return numTweetId == tweetId ? numTweetId : tweetId
 }

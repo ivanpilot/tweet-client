@@ -58,10 +58,6 @@ class ApiTweet {
       },
       body: JSON.stringify(updateTweet)
     }).then(this.checkStatus)
-      // .then((response) => {
-      //   console.log('UPDATING TWEET...', response)
-      //   return response
-      // })
   }
 
 

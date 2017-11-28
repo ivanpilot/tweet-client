@@ -22,17 +22,19 @@ export const Tweet = (props) => {
     )
   } else {
   return (
-    <div
-      className="ui cards"
-      onClick={() => props.onActiveClick(props.tweet.id, props.activeTweet, props.editableTweet)}
-    >
+    <div className="ui cards">
       <div className="card">
         <div className={props.tweet.active ? "content tweet-blue" : "content tweet"}>
-
-          <div className="header">
+          <div
+            className="header"
+            onClick={() => props.onActiveClick(props.tweet.id, props.activeTweet, props.editableTweet)}
+          >
             {props.tweet.title}
           </div>
-          <div className="description">
+          <div
+            className="description"
+            onClick={() => props.onActiveClick(props.tweet.id, props.activeTweet, props.editableTweet)}
+          >
             {props.tweet.body}
           </div>
           {
@@ -46,7 +48,7 @@ export const Tweet = (props) => {
                 </span>
                 <span
                   className='right floated edit icon'
-                  onClick={() => props.onEditClick(props.tweet.id, props.editableTweet)}
+                  onClick={() => props.onEditClick(props.tweet.id, props.activeTweet, props.editableTweet)}
                 >
                   <a><i className='edit icon' /></a>
                 </span>

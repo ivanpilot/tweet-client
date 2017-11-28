@@ -43,36 +43,75 @@ class EditableTweetList extends React.Component {
 }
 
 function onTrashClick(id){
+  // debugger
   return (dispatch) => {
+    // dispatch(triggerActivableTweet(id))
     dispatch(deleteTweet(id))
     // dispatch(deleteAllCommentsInTweet(id)) //should be modified once we change the state to normalized >> no need to do this in fact
   }
 }
 
-function onEditClick(id, editableId){
-  if(editableId){
+function onEditClick(id, activeId, editableId){
+  if(!activeId && !editableId){
     return (dispatch) => {
-      dispatch(triggerEditableTweet(editableId))
+      dispatch(triggerActivableTweet(id))
+      dispatch(triggerEditableTweet(id))
+    }
+  } else if(!editableId && activeId === id){
+    return (dispatch) => {
+      dispatch(triggerEditableTweet(id))
+    }
+  } else if(!editableId && activeId !== id){
+    return (dispatch) => {
+      dispatch(triggerActivableTweet(activeId))
+      dispatch(triggerActivableTweet(id))
       dispatch(triggerEditableTweet(id))
     }
   } else {
     return (dispatch) => {
+      dispatch(triggerActivableTweet(activeId))
+      dispatch(triggerEditableTweet(activeId))
+      dispatch(triggerActivableTweet(id))
       dispatch(triggerEditableTweet(id))
     }
   }
 }
 
+// function onEditClick(id, editableId){
+//   if(editableId){
+//     return (dispatch) => {
+//       dispatch(triggerEditableTweet(editableId))
+//       dispatch(triggerEditableTweet(id))
+//     }
+//   } else {
+//     return (dispatch) => {
+//       dispatch(triggerEditableTweet(id))
+//     }
+//   }
+// }
+
 function onActiveClick(id, activeId, editableId){
-  if(activeId && activeId === id && editableId === id){
+  // if(activeId && activeId === id && editableId === id){
+  //   return (dispatch) => {
+  //     null
+  //   }
+  // } else
+  // debugger
+  if(activeId && editableId && activeId === editableId){
+    debugger
     return (dispatch) => {
-      null
+      dispatch(triggerActivableTweet(activeId))
+      dispatch(triggerEditableTweet(activeId))
+      dispatch(triggerActivableTweet(id))
     }
   } else if(activeId && activeId !== id){
+    // debugger
     return (dispatch) => {
       dispatch(triggerActivableTweet(activeId))
       dispatch(triggerActivableTweet(id))
     }
   } else {
+    // debugger
     return (dispatch) => {
       dispatch(triggerActivableTweet(id))
     }
@@ -97,11 +136,9 @@ function onSubmitTweetForm(tweet){
 
 function persistTweet(tweet){
   return (dispatch) => {
-    // debugger
     apiTweet.updateTweet(tweet).then(
       response => {
         dispatch(triggerFetchingTweet(tweet.id))
-        console.log('OK DONE!!!')
       },
       error => {
         dispatch(fetchItemFailure('tweet', error, tweet.id))
