@@ -18,7 +18,7 @@ function byId(state = {}, action){
       }
     }
 
-    case 'ERASE_TWEET':
+    // case 'ERASE_TWEET':
     case 'DELETE_TWEET': {
       const newState = Object.assign({}, state)
       delete newState[action.id]
@@ -26,7 +26,8 @@ function byId(state = {}, action){
     }
 
     case 'TRIGGER_EDITABLE_TWEET':
-    case 'TRIGGER_ACTIVABLE_TWEET': {
+    case 'TRIGGER_ACTIVABLE_TWEET':
+    case 'TRIGGER_FETCHING_TWEET': {
       return {
         ...state,
         [action.id]: tweet(state[action.id], action)
@@ -54,7 +55,7 @@ function allIds(state = [], action){
       return [action.tweet.id, ...state]
     }
 
-    case 'ERASE_TWEET':
+    // case 'ERASE_TWEET':
     case 'DELETE_TWEET': {
       return state.filter(id => id !== action.id)
     }

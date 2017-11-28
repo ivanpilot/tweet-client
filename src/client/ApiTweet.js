@@ -43,6 +43,29 @@ class ApiTweet {
       })
   }
 
+  updateTweet(tweet){
+    const url = this.domain + '/api/posts/' + tweet.id
+    const updateTweet = {
+      post:{
+        title: tweet.title,
+        body: tweet.body,
+      }
+    }
+    return fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify(updateTweet)
+    }).then(this.checkStatus)
+      // .then((response) => {
+      //   console.log('UPDATING TWEET...', response)
+      //   return response
+      // })
+  }
+
+
+
   fetchTweetByReactId(reactId){
     const url = this.domain + '/api/posts/search?term=' + reactId
     return fetch(url, {

@@ -33,7 +33,13 @@ export function tweet(state, action){
         ...state,
         title: action.tweet.title,
         body: action.tweet.body,
-        isFetching: true,
+      }
+    }
+
+    case 'TRIGGER_FETCHING_TWEET': {
+      return {
+        ...state,
+        isFetching: !state.isFetching
       }
     }
 

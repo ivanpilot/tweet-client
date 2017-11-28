@@ -5,9 +5,11 @@ import { getEditableTweet, getActiveTweet } from '../reducers/Tweets';
 // import { getAllTweets } from '../selectors/Tweet';
 import { getAllTweets } from '../reducers/Tweets';
 import { getTweetsForActiveThread } from '../reducers/tweetsByThread';
-import { getFetchingTweetError } from '../reducers/Errors'
+import { getFetchingTweetError } from '../reducers/Errors';
+import { fetchItemFailure } from '../actions/Error';
 import { EditableTweet } from '../components/EditableTweet';
-import { editTweet, deleteTweet, triggerEditableTweet, triggerActivableTweet } from '../actions/Tweet';
+import { editTweet, deleteTweet, triggerEditableTweet, triggerActivableTweet, triggerFetchingTweet } from '../actions/Tweet';
+  import { apiTweet } from '../client/ApiTweet';
 import '../styles/EditableList.css';
 
 
@@ -86,8 +88,25 @@ function closeEditable(editableId){
 function onSubmitTweetForm(tweet){
   return (dispatch) => {
     dispatch(editTweet(tweet))
+    dispatch(triggerFetchingTweet(tweet.id))
     dispatch(triggerEditableTweet(tweet.id))
-    // dispatch(updateTweet(tweet))
+    dispatch(persistTweet(tweet))
+  }
+}
+
+
+function persistTweet(tweet){
+  return (dispatch) => {
+    // debugger
+    apiTweet.updateTweet(tweet).then(
+      response => {
+        dispatch(triggerFetchingTweet(tweet.id))
+        console.log('OK DONE!!!')
+      },
+      error => {
+        dispatch(fetchItemFailure('tweet', error, tweet.id))
+      }
+    )
   }
 }
 
