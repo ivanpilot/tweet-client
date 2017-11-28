@@ -10,7 +10,7 @@ import { apiTweet } from '../client/ApiTweet';
 import { normalize } from 'normalizr';
 import { normalizedTweet } from '../normalizers/Normalizr';
 import { addTweet } from '../actions/Tweet';
-import { fetchTweetsFailure } from '../actions/Error';
+import { fetchTweetsFailure, fetchItemFailure } from '../actions/Error';
 import { DisplayError } from '../components/DisplayError'
 
 
@@ -39,7 +39,7 @@ class RootPage extends React.Component {
         <div className='ui active centered inline loader' />
       )
     } else if(this.props.tweetsError){
-      debugger
+      // debugger
       return(
         <div>
           <DisplayError
@@ -91,7 +91,8 @@ function fetchTweets() {
 function fetchFailure(error) {
   return (dispatch) => {
     // debugger
-    dispatch(fetchTweetsFailure(error))
+    // dispatch(fetchTweetsFailure('tweets', error))
+    dispatch(fetchItemFailure('tweets', error))
   }
 }
 

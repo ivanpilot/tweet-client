@@ -8,15 +8,10 @@ import { loadTweets, loadTweet } from '../actions/Thread';
 import FormTweet from '../components/FormTweet';
 import { apiTweet } from '../client/ApiTweet';
 import { DisplayError } from '../components/DisplayError';
-import { fetchTweetFailure } from '../actions/Error';
+import { fetchItemFailure } from '../actions/Error';
 
 
 class AddTweetInput extends React.Component {
-
-  // handleSubmitForm = (tweet, editableId, activeId) => {
-  //   this.props.onSubmitForm(tweet, editableId, activeId)
-  // }
-
   render(){
     return(
       <FormTweet
@@ -36,10 +31,10 @@ function persistTweet(tweet){
       response => {apiTweet.fetchTweetByReactId(tweet.id)
         .then(
           response => {swapOldTweetForNewTweet(dispatch, getState, response)},
-          error => {fetchFailure(dispatch, error)}
+          error => {fetchFailure(dispatch, error, tweet.id)}
         )
       },
-      error => {fetchFailure(dispatch, error)}
+      error => {fetchFailure(dispatch, error, tweet.id)}
     )
     // .then(
     //   response => {swapOldTweetForNewTweet(dispatch, getState, response)},
@@ -68,14 +63,15 @@ function onSubmitForm(tweet, editableId, activeId){
     }
   } else {
     return (dispatch) => {
+      // debugger
       dispatch(createTweet(tweet))
       dispatch(persistTweet(tweet))
     }
   }
 }
 
-function fetchFailure(dispatch, error){
-  dispatch(fetchTweetFailure(error))
+function fetchFailure(dispatch, error, tweetId){
+  dispatch(fetchItemFailure('tweet', error, tweetId))
 }
 
 const mapStateToProps = (state) => ({

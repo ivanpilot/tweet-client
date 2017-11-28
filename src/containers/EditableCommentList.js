@@ -7,7 +7,7 @@ import { getFetchingCommentsError } from '../reducers/Errors';
 import { EditableComment } from '../components/EditableComment';
 import { editComment, deleteComment, triggerEditableComment, loadComments, clearComments } from '../actions/Comment';
 import { deleteCommentInTweet } from '../actions/Tweet';
-import { fetchCommentsFailure } from '../actions/Error';
+import { fetchItemFailure } from '../actions/Error';
 import { DisplayError } from '../components/DisplayError';
 import '../styles/EditableList.css';
 // import { client } from '../client/Client';
@@ -132,7 +132,7 @@ function loadingComments(comments){
 function handleFetchingError(error){
   return (dispatch) => {
     dispatch(clearComments())
-    dispatch(fetchCommentsFailure(error))
+    dispatch(fetchItemFailure('comments', error))
   }
 }
 

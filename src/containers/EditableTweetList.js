@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { getEditableTweet, getActiveTweet } from '../reducers/Tweets';
 import { getAllTweets } from '../selectors/Tweet';
 import { getTweetsForActiveThread } from '../reducers/tweetsByThread';
+import { getFetchingTweetError } from '../reducers/Errors'
 import { EditableTweet } from '../components/EditableTweet';
 import { editTweet, deleteTweet, triggerEditableTweet, triggerActivableTweet } from '../actions/Tweet';
 import '../styles/EditableList.css';
@@ -14,7 +15,7 @@ class EditableTweetList extends React.Component {
     if(this.props.tweets.length === 0){
       return(
         <div className="no-tweet">
-          <h3>There is no tweet for now</h3>
+          <h3>There is no tweet for now. Why not writing the first one?</h3>
         </div>
       )
     } else {
@@ -23,6 +24,7 @@ class EditableTweetList extends React.Component {
         <div className="editable-list">
           <EditableTweet
             tweets={this.props.tweets}
+            tweetError={this.props.tweetError}
             activeTweet={this.props.activeTweet}
             editableTweet={this.props.editableTweet}
             onEditClick={this.props.onEditClick}
@@ -91,7 +93,8 @@ const mapStateToProps = (state) => {
   return {
     tweets: getAllTweets(state, getTweetsForActiveThread(state.tweetsByThread)),
     activeTweet: getActiveTweet(state.entities.tweets),
-    editableTweet: getEditableTweet(state.entities.tweets)
+    editableTweet: getEditableTweet(state.entities.tweets),
+    tweetError: getFetchingTweetError(state.errors),
   }
 }
 

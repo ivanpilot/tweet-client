@@ -4,13 +4,14 @@ export const errors = combineReducers({
   fetching,
 })
 
-function failure(state, action){
-  debugger
-  return {
-    message: action.statusText,
-    status: action.status
-  }
-}
+// function failure(state, action){
+//   // debugger
+//   return {
+//     id: action.id,
+//     message: action.statusText,
+//     status: action.status
+//   }
+// }
 
 function fetching(state = {
   tweets: false,
@@ -19,18 +20,30 @@ function fetching(state = {
   comment: false
 }, action){
   switch (action.type) {
-    case 'FETCH_TWEETS_FAILURE':
-    case 'FETCH_TWEET_FAILURE':
-    case 'FETCH_COMMENTS_FAILURE':
-    case 'FETCH_COMMENT_FAILURE': {
+    // case 'FETCH_TWEETS_FAILURE':
+    // case 'FETCH_TWEET_FAILURE':
+    // case 'FETCH_COMMENTS_FAILURE':
+    // case 'FETCH_COMMENT_FAILURE':
+    case 'FETCH_ITEM_FAILURE': {
       return {
         ...state,
-        [action.object]: failure(state, action.message.response)
+        // [action.object]: failure(state, action.message.response)
+        [action.item]: {
+          id: action.id,
+          message: action.message.response.statusText,
+          status: action.message.response.status
+        }
+
       }
     }
 
     default:
-      return state
+      return {
+        tweets: false,
+        tweet: false,
+        comments: false,
+        comment: false
+      }
   }
 }
 
@@ -92,8 +105,7 @@ function fetching(state = {
 //   }
 // }
 
-export const getFetchingCommentsError = (state) => state.fetchingCmments
-export const getFetchingTweetsError = (state) => {
-  // debugger
-  return state.fetchingTweets
-}
+export const getFetchingTweetsError = (state) => state.fetching.tweets
+export const getFetchingTweetError = (state) => state.fetching.tweet
+export const getFetchingCommentsError = (state) => state.fetching.comments
+export const getFetchingCommentError = (state) => state.fetching.comment
