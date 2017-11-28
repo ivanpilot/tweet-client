@@ -60,6 +60,16 @@ class ApiTweet {
     }).then(this.checkStatus)
   }
 
+  deleteTweet(id){
+    const url = this.domain + '/api/posts/' + id
+    return fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type':'application/json'
+      },
+    }).then(this.checkStatus)
+  }
+
 
 
   fetchTweetByReactId(reactId){

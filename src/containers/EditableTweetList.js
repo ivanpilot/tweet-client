@@ -44,7 +44,16 @@ class EditableTweetList extends React.Component {
 
 function onTrashClick(id){
   return (dispatch) => {
-    dispatch(deleteTweet(id))
+    dispatch(destroyTweet(id))
+  }
+}
+
+function destroyTweet(id){
+  return (dispatch) => {
+    apiTweet.deleteTweet(id).then(
+      response => {dispatch(deleteTweet(id))},
+      error => {dispatch(fetchItemFailure('tweet', error, id))}
+    )
   }
 }
 
@@ -105,12 +114,12 @@ function onSubmitTweetForm(tweet){
     dispatch(editTweet(tweet))
     dispatch(triggerFetchingTweet(tweet.id))
     dispatch(triggerEditableTweet(tweet.id))
-    dispatch(persistTweet(tweet))
+    dispatch(updateTweet(tweet))
   }
 }
 
 
-function persistTweet(tweet){
+function updateTweet(tweet){
   return (dispatch) => {
     apiTweet.updateTweet(tweet).then(
       response => {
