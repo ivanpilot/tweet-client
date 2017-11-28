@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getEditableTweet, getActiveTweet } from '../reducers/Tweets';
-import { getAllTweets } from '../selectors/Tweet';
+// import { getAllTweets } from '../selectors/Tweet';
+import { getAllTweets } from '../reducers/Tweets';
 import { getTweetsForActiveThread } from '../reducers/tweetsByThread';
 import { getFetchingTweetError } from '../reducers/Errors'
 import { EditableTweet } from '../components/EditableTweet';

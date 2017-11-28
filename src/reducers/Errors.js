@@ -19,7 +19,6 @@ function fetching(state = {
           message: action.message.response.statusText,
           status: action.message.response.status
         }
-
       }
     }
 

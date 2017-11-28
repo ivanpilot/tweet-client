@@ -64,11 +64,11 @@ function allIds(state = [], action){
   }
 }
 
-// export const getAllTweets = (state, listOfTweets) => {
-//   return listOfTweets.reduce((result, tweetId) => {
-//     return [...result, state.byId[tweetId]]
-//   }, [])
-// }
+export const getAllTweets = (state, listOfTweets) => {
+  return listOfTweets.reduce((result, tweetId) => {
+    return [...result, state.entities.tweets.byId[tweetId]]
+  }, [])
+}
 
 export const getListOfTweetIds = (state) => state.allIds
 

@@ -40,9 +40,9 @@ function loadTweetsForThread(threadId){
     const threadName = getState().tweetsByThread[threadId].name
     const tweets = getState().entities.tweets.byId
     const tweetIds = getState().entities.tweets.allIds
-
-    const wallTweets = tweetIds
-    const myTweets = tweetIds.filter(id => tweets[id].author_id === 1) // replaced bu author_id === currentUser.id
+    const tempTweets = getState().workInProgress.tweetsWIP.allIds
+    const wallTweets = tempTweets.concat(tweetIds)
+    const myTweets = tempTweets.concat(tweetIds.filter(id => tweets[id].author_id === 1)) // replaced bu author_id === currentUser.id
     const listOfTweets = threadName === 'Wall' ? wallTweets : myTweets
     return dispatch(loadTweets(threadId, listOfTweets))
   }
