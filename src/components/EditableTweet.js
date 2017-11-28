@@ -10,7 +10,6 @@ export const EditableTweet = (props) => {
   return props.tweets.map((tweet, index) => {
     // debugger
     if(props.tweetError && props.tweetError.id === tweet.react_id){
-      
       return(
         <div>
           <DisplayError

@@ -10,19 +10,6 @@ import { apiTweet } from '../client/ApiTweet';
 import { DisplayError } from '../components/DisplayError';
 import { fetchItemFailure } from '../actions/Error';
 
-
-class AddTweetInput extends React.Component {
-  render(){
-    return(
-      <FormTweet
-        editableTweet={this.props.editableTweet}
-        activeTweet={this.props.activableTweet}
-        onSubmitForm={this.props.onSubmitForm}
-      />
-    )
-  }
-}
-
 // the only good way to put it
 function persistTweet(tweet){
   return (dispatch, getState) => {
@@ -59,7 +46,9 @@ function onSubmitForm(tweet, editableId, activeId){
   if(editableId){
     return (dispatch) => {
       dispatch(triggerEditableTweet(editableId))
-      dispatch(addTweet(tweet))
+      // dispatch(addTweet(tweet))
+      dispatch(createTweet(tweet))
+      dispatch(persistTweet(tweet))
     }
   } else {
     return (dispatch) => {
@@ -85,7 +74,7 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
-export default connect(
+export const AddTweetInput = connect(
   mapStateToProps,
   mapDispatchToProps,
-) (AddTweetInput)
+) (FormTweet)

@@ -90,8 +90,6 @@ function fetchTweets() {
 
 function fetchFailure(error) {
   return (dispatch) => {
-    // debugger
-    // dispatch(fetchTweetsFailure('tweets', error))
     dispatch(fetchItemFailure('tweets', error))
   }
 }

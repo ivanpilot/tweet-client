@@ -1,5 +1,5 @@
 import React from 'react';
-import AddTweetInput from '../containers/AddTweetInput';
+import { AddTweetInput } from '../containers/AddTweetInput';
 import { AddCommentInput } from '../containers/AddCommentInput';
 import '../styles/VerticalMenu.css';
 
