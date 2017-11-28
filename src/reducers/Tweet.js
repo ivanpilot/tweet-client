@@ -10,6 +10,7 @@ export function tweet(state, action){
         title: action.tweet.title,
         body: action.tweet.body,
         comments: action.tweet.comments,
+        isFetching: false,
         editable: false,
         active: false,
         ownership: true, //to be changed by function testing if author_id === currentUser.id
@@ -25,6 +26,7 @@ export function tweet(state, action){
         title: action.tweet.title,
         body: action.tweet.body,
         // comments: action.tweet.comments,
+        isFetching: true,
         editable: false, //keep?
         active: false, //keep?
         ownership: true, //keep?
