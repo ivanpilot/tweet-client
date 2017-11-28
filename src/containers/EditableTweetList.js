@@ -87,6 +87,7 @@ function onSubmitTweetForm(tweet){
   return (dispatch) => {
     dispatch(editTweet(tweet))
     dispatch(triggerEditableTweet(tweet.id))
+    // dispatch(updateTweet(tweet))
   }
 }
 

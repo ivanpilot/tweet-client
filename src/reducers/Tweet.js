@@ -3,7 +3,6 @@
 export function tweet(state, action){
   switch(action.type){
     case 'ADD_TWEET': {
-      // debugger
       return {
         id: action.tweet.id,
         react_id: action.tweet.react_id,
@@ -19,17 +18,12 @@ export function tweet(state, action){
     }
 
     case 'CREATE_TWEET': {
-      // debugger
       return {
         id: action.tweet.id,
         react_id: action.tweet.id,
         title: action.tweet.title,
         body: action.tweet.body,
-        // comments: action.tweet.comments,
         isFetching: true,
-        editable: false, //keep?
-        active: false, //keep?
-        ownership: true, //keep?
         author_id: 1 //to be changed by replacing currentUser.id
       }
     }
@@ -39,6 +33,7 @@ export function tweet(state, action){
         ...state,
         title: action.tweet.title,
         body: action.tweet.body,
+        isFetching: true,
       }
     }
 

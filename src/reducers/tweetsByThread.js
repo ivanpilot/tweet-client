@@ -75,7 +75,8 @@ export function tweetsByThread(state = {
       }
     }
 
-    case 'ERASE_TWEET': {
+    case 'ERASE_TWEET': 
+    case 'DELETE_TWEET': {
       return {
         ...state,
         '1': {

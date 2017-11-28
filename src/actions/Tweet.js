@@ -7,6 +7,13 @@ export function addTweet(tweet){
   }
 }
 
+export function createTweet(tweet){
+  return {
+    type: types.CREATE_TWEET,
+    tweet
+  }
+}
+
 export function editTweet(tweet){
   return {
     type: types.EDIT_TWEET,
@@ -18,6 +25,14 @@ export function deleteTweet(id){
   return {
     type: types.DELETE_TWEET,
     id: id
+  }
+}
+
+export function eraseTweet(id, threadId = null){
+  return {
+    type: types.ERASE_TWEET,
+    id,
+    threadId
   }
 }
 
@@ -48,20 +63,5 @@ export function deleteCommentInTweet(commentId, tweetId){
     type: types.DELETE_COMMENT_IN_TWEET,
     commentId: commentId,
     tweetId: tweetId
-  }
-}
-
-export function createTweet(tweet){
-  return {
-    type: types.CREATE_TWEET,
-    tweet
-  }
-}
-
-export function eraseTweet(id, threadId = null){
-  return {
-    type: types.ERASE_TWEET,
-    id,
-    threadId
   }
 }

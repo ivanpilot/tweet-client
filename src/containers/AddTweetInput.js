@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getEditableTweet, getActiveTweet } from '../reducers/Tweets';
 import { getActiveThread } from '../reducers/tweetsByThread';
-import { addTweet, triggerEditableTweet, createTweet, eraseTweet } from '../actions/Tweet';
+import { addTweet, triggerEditableTweet, createTweet, eraseTweet, deleteTweet } from '../actions/Tweet';
 import { loadTweets, loadTweet } from '../actions/Thread';
 import FormTweet from '../components/FormTweet';
 import { apiTweet } from '../client/ApiTweet';
@@ -36,7 +36,8 @@ function swapOldTweetForNewTweet(dispatch, getState, tweets){
     const activeThreadId = getActiveThread(getState().tweetsByThread)
     if(tempTweet){
       dispatch(addTweet(tweet))
-      dispatch(eraseTweet(tweet.react_id))
+      // dispatch(eraseTweet(tweet.react_id))
+      dispatch(deleteTweet(tweet.react_id))
       dispatch(loadTweet(activeThreadId, tweet.id))
     }
   })
