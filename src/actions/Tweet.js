@@ -60,7 +60,7 @@ export function triggerFetchingTweet(id){
 export function addCommentToTweet(comment){
   return {
     type: types.ADD_COMMENT_TO_TWEET,
-    tweetId: comment.post_id,
+    tweetId: comment.activeTweetId,
     commentId: comment.id
   }
 }

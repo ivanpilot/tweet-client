@@ -36,13 +36,6 @@ export function triggerEditableComment(id){
   }
 }
 
-export function loadComments(comments){
-  return {
-    type: types.LOAD_COMMENTS,
-    comments
-  }
-}
-
 export function clearComments(){
   return {
     type: types.CLEAR_COMMENTS,

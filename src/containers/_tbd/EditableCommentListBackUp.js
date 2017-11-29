@@ -9,12 +9,10 @@ import { editComment, deleteComment, triggerEditableComment, loadComments, clear
 import { deleteCommentInTweet } from '../actions/Tweet';
 import { fetchItemFailure } from '../actions/Error';
 import { DisplayError } from '../components/DisplayError';
-import '../styles/EditableList.css';
-// import { client } from '../client/Client';
 import { apiComment } from '../client/ApiComment';
 import { normalize } from 'normalizr';
 import { normalizedComment } from '../normalizers/Normalizr';
-
+import '../styles/EditableList.css';
 
 class EditableCommentList extends React.Component {
   state = {
@@ -42,22 +40,6 @@ class EditableCommentList extends React.Component {
       }
     )
   }
-
-
-  // fetchComments = (tweetId) => {
-  //   return apiComment.fetchComments(tweetId, (comments) => {
-  //     const normalizedData = normalize(comments, normalizedComment)
-  //     return this.props.loadingComments(normalizedData)
-  //   }).then(
-  //     response => {
-  //       this.setState({loading: false})
-  //     },
-  //     error => {
-  //       this.setState({loading: false})
-  //       this.props.handleFetchingError(error)
-  //     }
-  //   )
-  // }
 
   render(){
     // debugger
