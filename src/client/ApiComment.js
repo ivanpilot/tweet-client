@@ -51,7 +51,6 @@ class ApiComment {
   }
 
   updateComment(comment){
-    debugger
     const url = this.domain + `/api/posts/${comment.activeTweetId}/comments/${comment.id}`
     const updateComment = {
       comment: {
@@ -71,6 +70,15 @@ class ApiComment {
       })
   }
 
+  deleteComment(id, activeTweetId){
+    const url = this.domain + `/api/posts/${activeTweetId}/comments/${id}`
+    return fetch(url, {
+      method: 'DELETE',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+    }).then(this.checkStatus)
+  }
 
   parseJson(response){
     return response.json();
@@ -80,7 +88,6 @@ class ApiComment {
     if(response.status >= 200 && response.status < 300){
       return response
     } else {
-      // debugger
       const error = new Error();
       error.response = response;
       throw error

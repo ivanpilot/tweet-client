@@ -91,8 +91,21 @@ class EditableCommentList extends React.Component {
 
 function onTrashClick(id, activeId){
   return (dispatch) => {
-    dispatch(deleteCommentInTweet(id, activeId))
-    dispatch(deleteComment(id))
+    dispatch(destroyComment(id, activeId))
+  }
+}
+
+function destroyComment(id, activeId){
+  return (dispatch) => {
+    apiComment.deleteComment(id, activeId).then(
+      response => {
+        dispatch(deleteCommentInTweet(id, activeId))
+        dispatch(deleteComment(id))
+      },
+      error => {
+        dispatch(fetchItemFailure('comment', error, id))
+      }
+    )
   }
 }
 
