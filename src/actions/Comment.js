@@ -35,6 +35,13 @@ export function triggerEditableComment(id){
   }
 }
 
+export function triggerFetchingComment(id){
+  return {
+    type: types.TRIGGER_FETCHING_COMMENT,
+    id
+  }
+}
+
 export function clearComments(){
   return {
     type: types.CLEAR_COMMENTS,

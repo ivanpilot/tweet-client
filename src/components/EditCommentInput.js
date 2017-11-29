@@ -8,6 +8,7 @@ return(
       comment={props.comment}
       closeEditable={props.closeEditable}
       onSubmitForm={props.onSubmitForm}
+      activeTweet={props.activeTweet}
     />
   </div>
 )

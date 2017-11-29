@@ -45,7 +45,28 @@ class ApiComment {
       body: JSON.stringify(newComment)
     }).then(this.checkStatus)
       .then((response) => {
-        console.log('CREATING COMMENT...', response)
+        // console.log('CREATING COMMENT...', response)
+        return response
+      })
+  }
+
+  updateComment(comment){
+    debugger
+    const url = this.domain + `/api/posts/${comment.activeTweetId}/comments/${comment.id}`
+    const updateComment = {
+      comment: {
+        description: comment.description,
+      }
+    }
+    return fetch(url, {
+      method: 'PUT',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updateComment)
+    }).then(this.checkStatus)
+      .then((response) => {
+        console.log('UPDATING COMMENT...', response)
         return response
       })
   }

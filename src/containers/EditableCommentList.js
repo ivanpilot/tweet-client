@@ -5,7 +5,7 @@ import { getEditableComment, getAllCommentsForTweet } from '../reducers/Comments
 import { getActiveTweet } from '../reducers/Tweets';
 import { getFetchingCommentsError, getFetchingCommentError } from '../reducers/Errors';
 import { EditableComment } from '../components/EditableComment';
-import { addComment, editComment, deleteComment, triggerEditableComment, loadComments, clearComments } from '../actions/Comment';
+import { addComment, editComment, deleteComment, triggerEditableComment, triggerFetchingComment, clearComments } from '../actions/Comment';
 import { deleteCommentInTweet } from '../actions/Tweet';
 import { fetchItemFailure } from '../actions/Error';
 import { DisplayError } from '../components/DisplayError';
@@ -118,7 +118,22 @@ function closeEditable(editableId){
 function onSubmitCommentForm(comment){
   return (dispatch) => {
     dispatch(editComment(comment))
+    dispatch(triggerFetchingComment(comment.id)) //TBD
     dispatch(triggerEditableComment(comment.id))
+    dispatch(updateComment(comment)) //TBD
+  }
+}
+
+function updateComment(comment){
+  return (dispatch) => {
+    apiComment.updateComment(comment).then(
+      response => {
+        dispatch(triggerFetchingComment(comment.id))
+      },
+      error => {
+        dispatch(fetchItemFailure('comment', error, comment.id))
+      }
+    )
   }
 }
 

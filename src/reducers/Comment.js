@@ -47,6 +47,13 @@ export function comment(state, action){
       }
     }
 
+    case 'TRIGGER_FETCHING_COMMENT': {
+      return {
+        ...state,
+        isFetching: !state.isFetching
+      }
+    }
+
     // case 'LOAD_COMMENTS': {
     //   return {
     //     ...state,

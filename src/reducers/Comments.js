@@ -23,7 +23,8 @@ function byId(state = {}, action){
       return Object.assign({}, newState)
     }
 
-    case 'TRIGGER_EDITABLE_COMMENT': {
+    case 'TRIGGER_EDITABLE_COMMENT':
+    case 'TRIGGER_FETCHING_COMMENT': {
       return {
         ...state,
         [action.id]: comment(state[action.id], action)

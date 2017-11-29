@@ -26,6 +26,7 @@ export const EditableComment = (props) => {
                 <div className='editable-comment'>
                   <EditCommentInput
                     comment={comment}
+                    activeTweet={props.activeTweet}
                     onSubmitForm={props.onSubmitForm}
                     closeEditable={props.closeEditable}
                   />
