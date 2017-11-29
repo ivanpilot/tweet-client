@@ -3,7 +3,7 @@ class ApiComment {
     this.domain = 'http://localhost:3000'
   }
 
-  loadRawComments(postId, success){
+  fetchComments(postId, success){
     const url = this.domain + `/api/posts/${postId}/comments`
     // debugger
     return fetch(url, {

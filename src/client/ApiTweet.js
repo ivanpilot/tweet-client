@@ -12,8 +12,6 @@ class ApiTweet {
     }).then(this.checkStatus)
       .then(this.parseJson)
       .then((response) => {
-        // console.log(response)
-        // debugger
         return response
       })
       .then(success)

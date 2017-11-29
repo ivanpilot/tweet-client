@@ -29,7 +29,7 @@ class EditableCommentList extends React.Component {
   }
 
   fetchComments = (tweetId) => {
-    return apiComment.loadRawComments(tweetId, (comments) => {
+    return apiComment.fetchComments(tweetId, (comments) => {
       const normalizedData = normalize(comments, normalizedComment)
       return this.props.loadingComments(normalizedData)
     }).then(

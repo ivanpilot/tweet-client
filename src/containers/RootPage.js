@@ -22,6 +22,10 @@ class RootPage extends React.Component {
 
   componentDidMount(){
     this.setState({isFetching: true})
+    this.fetchingTweets()
+  }
+
+  fetchingTweets = () => {
     this.props.fetchTweets().then(
       response => {
         this.setState({isFetching: false})
@@ -30,7 +34,7 @@ class RootPage extends React.Component {
         this.setState({isFetching: false})
         this.props.fetchFailure(error)
       }
-    );
+    )
   }
 
   render(){
@@ -44,15 +48,7 @@ class RootPage extends React.Component {
         <div>
           <DisplayError
             message={`Looks like a server issue. Retry in a few sec... 'HTTP status: ${this.props.tweetsError.status}. Error message: ${this.props.tweetsError.message}'`}
-            onRetry={() => this.props.fetchTweets().then(
-              response => {
-                this.setState({isFetching: false})
-              },
-              error => {
-                this.setState({isFetching: false})
-                this.props.fetchFailure(error)
-              }
-            )}
+            onRetry={this.fetchingTweets}
           />
         </div>
       )
