@@ -30,17 +30,17 @@ function byId(state = {}, action){
       }
     }
 
-    case 'LOAD_COMMENTS': {
-      const entities = action.comments.entities
-      if(Object.keys(entities).length === 0){
-        return {}
-      } else {
-        const rawComments = entities.comments;
-        return Object.keys(rawComments).reduce((result, id) => {
-          return Object.assign({}, result, Object.assign({}, {[id]: comment(rawComments[id], action)}))
-        }, {})
-      }
-    }
+    // case 'LOAD_COMMENTS': {
+    //   const entities = action.comments.entities
+    //   if(Object.keys(entities).length === 0){
+    //     return {}
+    //   } else {
+    //     const rawComments = entities.comments;
+    //     return Object.keys(rawComments).reduce((result, id) => {
+    //       return Object.assign({}, result, Object.assign({}, {[id]: comment(rawComments[id], action)}))
+    //     }, {})
+    //   }
+    // }
 
     case 'CLEAR_COMMENTS': {
       return {}
@@ -62,9 +62,9 @@ function allIds(state = [], action){
       return state.filter(id => id !== action.id)
     }
 
-    case 'LOAD_COMMENTS': {
-      return action.comments.result
-    }
+    // case 'LOAD_COMMENTS': {
+    //   return action.comments.result
+    // }
 
     case 'CLEAR_COMMENTS': {
       return []

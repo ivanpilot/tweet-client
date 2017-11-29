@@ -5,8 +5,8 @@ import { getEditableComment, getAllCommentsForTweet } from '../reducers/Comments
 import { getActiveTweet } from '../reducers/Tweets';
 import { getFetchingCommentsError } from '../reducers/Errors';
 import { EditableComment } from '../components/EditableComment';
-import { addComment, editComment, deleteComment, triggerEditableComment, loadComments, clearComments } from '../actions/Comment';
-import { addCommentToTweet, deleteCommentInTweet } from '../actions/Tweet';
+import { editComment, deleteComment, triggerEditableComment, loadComments, clearComments } from '../actions/Comment';
+import { deleteCommentInTweet } from '../actions/Tweet';
 import { fetchItemFailure } from '../actions/Error';
 import { DisplayError } from '../components/DisplayError';
 import '../styles/EditableList.css';
@@ -24,13 +24,15 @@ class EditableCommentList extends React.Component {
   componentWillReceiveProps(nextProps){
     if(nextProps.activeTweet && nextProps.activeTweet !== this.props.activeTweet){ //comparison to avoid infinite loop
       this.setState({loading: true});
-      this.props.clearingComments();
-      this.fetchingComments(nextProps.activeTweet);
+      this.fetchComments(nextProps.activeTweet)
     }
   }
 
-  fetchingComments = (tweetId) => {
-    this.props.fetchComments(tweetId).then(
+  fetchComments = (tweetId) => {
+    return apiComment.fetchComments(tweetId, (comments) => {
+      const normalizedComments = normalize(comments, normalizedComment)
+      return this.props.loadingComments(normalizedComments)
+    }).then(
       response => {
         this.setState({loading: false})
       },
@@ -40,6 +42,22 @@ class EditableCommentList extends React.Component {
       }
     )
   }
+
+
+  // fetchComments = (tweetId) => {
+  //   return apiComment.fetchComments(tweetId, (comments) => {
+  //     const normalizedData = normalize(comments, normalizedComment)
+  //     return this.props.loadingComments(normalizedData)
+  //   }).then(
+  //     response => {
+  //       this.setState({loading: false})
+  //     },
+  //     error => {
+  //       this.setState({loading: false})
+  //       this.props.handleFetchingError(error)
+  //     }
+  //   )
+  // }
 
   render(){
     // debugger
@@ -58,7 +76,7 @@ class EditableCommentList extends React.Component {
         <div>
           <DisplayError
             message={`Looks like a server issue. Retry in a few sec... 'HTTP status: ${this.props.error.status}. Error message: ${this.props.error.message}'`}
-            onRetry={() => this.fetchingComments(this.props.activeTweet)}
+            onRetry={() => this.fetchComments(this.props.activeTweet)}
           />
         </div>
       )
@@ -121,22 +139,9 @@ function onSubmitCommentForm(comment){
   }
 }
 
-
-function fetchComments(tweetId){
-  return dispatch => {
-    return apiComment.fetchComments(tweetId, (comments) => {
-      const normalizedComments = normalize(comments, normalizedComment)
-      const newComments = normalizedComments.entities.comments
-      Object.keys(newComments).map(newComment => {
-        return dispatch(addComment(newComments[newComment]))
-      })
-    })
-  }
-}
-
-function clearingComments(){
+function loadingComments(comments){
   return (dispatch) => {
-    dispatch(clearComments())
+    dispatch(loadComments(comments))
   }
 }
 
@@ -162,8 +167,7 @@ const mapDispatchToProps = (dispatch) => {
     onEditClick,
     closeEditable,
     onSubmitCommentForm,
-    fetchComments,
-    clearingComments,
+    loadingComments,
     handleFetchingError,
   }, dispatch)
 }

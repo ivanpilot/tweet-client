@@ -27,7 +27,7 @@ export function comment(state, action){
         react_id: action.comment.id,
         description: action.comment.description,
         post_id: action.comment.activeTweetId,
-        author_id: 1, //to be changed by replacing currentUser.id
+        commenter_id: 1, //to be changed by replacing currentUser.id
         isFetching: true,
       }
     }
@@ -47,12 +47,12 @@ export function comment(state, action){
       }
     }
 
-    case 'LOAD_COMMENTS': {
-      return {
-        ...state,
-        editable: false,
-        ownership: true,
-      }
-    }
+    // case 'LOAD_COMMENTS': {
+    //   return {
+    //     ...state,
+    //     editable: false,
+    //     ownership: true,
+    //   }
+    // }
   }
 }

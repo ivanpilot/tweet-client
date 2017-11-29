@@ -36,6 +36,7 @@ function byId(state = {}, action){
 
     case 'ADD_COMMENT_TO_TWEET':
     case 'DELETE_COMMENT_IN_TWEET': {
+      debugger
       return {
         ...state,
         [action.tweetId]: tweet(state[action.tweetId], action)
