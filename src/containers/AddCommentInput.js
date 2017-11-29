@@ -14,7 +14,7 @@ function persistComment(comment){
   return (dispatch) => {
     apiComment.createComment(comment).then(
       response => {
-        console.log('COMMENT HAS BEEN ADDED')
+        console.log('COMMENT HAS BEEN CREATED ... HOLY SHIT')
       },
       error => {
         fetchItemFailure('comment', error, comment.id)
@@ -27,13 +27,14 @@ function onSubmitForm(comment, editableId){
   if(editableId){
     return (dispatch) => {
       dispatch(triggerEditableComment(editableId))
-      dispatch(addComment(comment))
+      dispatch(createComment(comment))
       dispatch(addCommentToTweet(comment))
     }
   } else {
     return (dispatch) => {
       dispatch(createComment(comment))
       dispatch(addCommentToTweet(comment))
+      dispatch(persistComment(comment))
     }
   }
 }

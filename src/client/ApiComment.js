@@ -17,7 +17,6 @@ class ApiComment {
 
   createComment(comment){
     const url = this.domain + `/api/posts/${comment.activeTweetId}/comments`
-    debugger
     const newComment = {
       comment: {
         react_id: comment.id,
@@ -26,6 +25,17 @@ class ApiComment {
         commenter_id: 1 //to b replaced with currentUser.id
       }
     }
+    return fetch(url, {
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newComment)
+    }).then(this.checkStatus)
+      .then((response) => {
+        console.log('CREATING COMMENT...', response)
+        return response
+      })
   }
 
 
