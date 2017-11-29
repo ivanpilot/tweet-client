@@ -6,3 +6,7 @@
 .ui.cards > .card .comment-blue {
   background-color: #CEF6FF;
 }
+
+.ui.cards > .card .comment-saving {
+  background-color: #ffedcc;
+}
