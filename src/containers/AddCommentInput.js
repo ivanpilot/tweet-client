@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getActiveTweet } from '../reducers/Tweets';
 import { getEditableComment } from '../reducers/Comments';
-import { addComment, createComment, triggerEditableComment } from '../actions/Comment';
-import { addCommentToTweet } from '../actions/Tweet';
+import { addComment, createComment, deleteComment, triggerEditableComment } from '../actions/Comment';
+import { createCommentToTweet, addCommentToTweet, deleteCommentInTweet } from '../actions/Tweet';
 import { fetchItemFailure } from '../actions/Error';
 import FormComment from '../components/FormComment';
 import { apiComment } from '../client/ApiComment';
@@ -14,10 +14,23 @@ function persistComment(comment){
   return (dispatch) => {
     apiComment.createComment(comment).then(
       response => {
-        console.log('COMMENT HAS BEEN CREATED ... HOLY SHIT')
+        apiComment.fetchComment(comment).then(
+          response => {
+            const newComment = response
+            dispatch(addComment(newComment))
+            dispatch(addCommentToTweet(newComment))
+            dispatch(deleteCommentInTweet(comment.id, comment.activeTweetId))
+            dispatch(deleteComment(comment.id))
+          },
+          error => {
+            debugger
+            dispatch(fetchItemFailure('comment', error, comment.id))
+          }
+        )
       },
       error => {
-        fetchItemFailure('comment', error, comment.id)
+        debugger
+        dispatch(fetchItemFailure('comment', error, comment.id))
       }
     )
   }
@@ -28,31 +41,18 @@ function onSubmitForm(comment, editableId){
     return (dispatch) => {
       dispatch(triggerEditableComment(editableId))
       dispatch(createComment(comment))
-      dispatch(addCommentToTweet(comment))
+      dispatch(createCommentToTweet(comment))
     }
   } else {
     return (dispatch) => {
       dispatch(createComment(comment))
-      dispatch(addCommentToTweet(comment))
+      dispatch(createCommentToTweet(comment))
       dispatch(persistComment(comment))
     }
   }
 }
 
-// function onSubmitForm(comment, editableId){
-//   if(editableId){
-//     return (dispatch) => {
-//       dispatch(triggerEditableComment(editableId))
-//       dispatch(addComment(comment))
-//       dispatch(addCommentToTweet(comment))
-//     }
-//   } else {
-//     return (dispatch) => {
-//       dispatch(addComment(comment))
-//       dispatch(addCommentToTweet(comment))
-//     }
-//   }
-// }
+
 
 const mapStateToProps = (state) => ({
   activeTweet: getActiveTweet(state.entities.tweets),

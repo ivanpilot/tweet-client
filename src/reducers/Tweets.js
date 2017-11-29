@@ -35,6 +35,7 @@ function byId(state = {}, action){
     }
 
     case 'ADD_COMMENT_TO_TWEET':
+    case 'CREATE_COMMENT_TO_TWEET':
     case 'DELETE_COMMENT_IN_TWEET': {
       return {
         ...state,

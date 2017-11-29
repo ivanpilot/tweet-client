@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getEditableComment, getAllCommentsForTweet } from '../reducers/Comments';
 import { getActiveTweet } from '../reducers/Tweets';
-import { getFetchingCommentsError } from '../reducers/Errors';
+import { getFetchingCommentsError, getFetchingCommentError } from '../reducers/Errors';
 import { EditableComment } from '../components/EditableComment';
 import { addComment, editComment, deleteComment, triggerEditableComment, loadComments, clearComments } from '../actions/Comment';
-import { addCommentToTweet, deleteCommentInTweet } from '../actions/Tweet';
+import { deleteCommentInTweet } from '../actions/Tweet';
 import { fetchItemFailure } from '../actions/Error';
 import { DisplayError } from '../components/DisplayError';
 import '../styles/EditableList.css';
@@ -52,7 +52,7 @@ class EditableCommentList extends React.Component {
       return(
         null
       )
-    } else if(this.props.activeTweet && this.props.error){
+    } else if(this.props.activeTweet && this.props.commentsError){
       // debugger
       return(
         <div>
@@ -75,6 +75,7 @@ class EditableCommentList extends React.Component {
         <div className="editable-list">
           <EditableComment
             comments={this.props.comments}
+            commentError={this.props.commentError}
             editableComment={this.props.editableComment}
             activeTweet={this.props.activeTweet}
             onEditClick={this.props.onEditClick}
@@ -152,7 +153,8 @@ const mapStateToProps = (state) => {
     comments: getAllCommentsForTweet(state.entities.comments),
     editableComment: getEditableComment(state.entities.comments),
     activeTweet: getActiveTweet(state.entities.tweets),
-    error: getFetchingCommentsError(state.errors),
+    commentsError: getFetchingCommentsError(state.errors),
+    commentError: getFetchingCommentError(state.errors),
   }
 }
 

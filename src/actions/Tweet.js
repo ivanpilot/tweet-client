@@ -57,10 +57,18 @@ export function triggerFetchingTweet(id){
   }
 }
 
+export function createCommentToTweet(comment){
+  return {
+    type: types.CREATE_COMMENT_TO_TWEET,
+    tweetId: comment.activeTweetId,
+    commentId: comment.id
+  }
+}
+
 export function addCommentToTweet(comment){
   return {
     type: types.ADD_COMMENT_TO_TWEET,
-    tweetId: comment.activeTweetId,
+    tweetId: comment.post_id,
     commentId: comment.id
   }
 }

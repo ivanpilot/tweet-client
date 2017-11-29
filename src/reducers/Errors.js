@@ -12,6 +12,7 @@ function fetching(state = {
 }, action){
   switch (action.type) {
     case 'FETCH_ITEM_FAILURE': {
+      // debugger
       return {
         ...state,
         [action.item]: {

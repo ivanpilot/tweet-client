@@ -21,11 +21,10 @@ export function editComment(comment){
   }
 }
 
-export function deleteComment(id, activeTweetId){
+export function deleteComment(id){
   return {
     type: types.DELETE_COMMENT,
     id,
-    activeTweetId
   }
 }
 

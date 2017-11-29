@@ -15,6 +15,18 @@ class ApiComment {
       .then(success)
   }
 
+  fetchComment(comment, success){
+    const url = this.domain + `/api/posts/${comment.activeTweetId}/comments/search?term=${comment.id}`
+    return fetch(url, {
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }).then(this.checkStatus)
+      .then(this.parseJson)
+      .then(success)
+  }
+
+
   createComment(comment){
     const url = this.domain + `/api/posts/${comment.activeTweetId}/comments`
     const newComment = {

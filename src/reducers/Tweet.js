@@ -57,7 +57,8 @@ export function tweet(state, action){
       }
     }
 
-    case 'ADD_COMMENT_TO_TWEET': {
+    case 'ADD_COMMENT_TO_TWEET':
+    case 'CREATE_COMMENT_TO_TWEET': {
       // debugger
       return {
         ...state,

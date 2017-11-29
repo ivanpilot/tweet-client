@@ -17,7 +17,7 @@ export function comment(state, action){
         commenter_id: action.comment.commenter_id,
         isFetching: false,
         editable: false,
-        ownership: true //to be changed by function testing if author_id === currentUser.id
+        ownership: true //to be changed by function testing if commenter_id === currentUser.id
       }
     }
 
