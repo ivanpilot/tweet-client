@@ -42,6 +42,7 @@ function onSubmitForm(comment, editableId){
       dispatch(triggerEditableComment(editableId))
       dispatch(createComment(comment))
       dispatch(createCommentToTweet(comment))
+      dispatch(persistComment(comment))
     }
   } else {
     return (dispatch) => {
