@@ -18,6 +18,7 @@ class ApiTweet {
   }
 
   createTweet(tweet){
+    // debugger
     const url = this.domain + '/api/posts'
     // debugger
     const newTweet = {

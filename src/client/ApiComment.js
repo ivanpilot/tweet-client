@@ -15,6 +15,19 @@ class ApiComment {
       .then(success)
   }
 
+  createComment(comment){
+    const url = this.domain + `/api/posts/${comment.activeTweetId}/comments`
+    debugger
+    const newComment = {
+      comment: {
+        react_id: comment.id,
+        description: comment.description,
+        post_id: comment.activeTweetId,
+        commenter_id: 1 //to b replaced with currentUser.id
+      }
+    }
+  }
+
 
   parseJson(response){
     return response.json();

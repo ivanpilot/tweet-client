@@ -1,15 +1,37 @@
 export function comment(state, action){
   switch (action.type) {
     case 'ADD_COMMENT': {
+      // return {
+      //   id: action.comment.id,
+      //   description: action.comment.description,
+      //   post_id: action.comment.activeTweetId,
+      //   editable: false,
+      //   commenter_id: 1, // for now
+      //   ownership: true // do we keep?
+      // }
       return {
         id: action.comment.id,
+        react_id: action.comment.react_id,
         description: action.comment.description,
-        post_id: action.comment.activeTweetId,
+        post_id: action.comment.post_id,
+        commenter_id: action.comment.commenter_id,
+        isFetching: false,
         editable: false,
-        commenter_id: 1, // for now
-        ownership: true // do we keep?
+        ownership: true //to be changed by function testing if author_id === currentUser.id
       }
     }
+
+    case 'CREATE_COMMENT': {
+      return {
+        id: action.comment.id,
+        react_id: action.comment.id,
+        description: action.comment.description,
+        post_id: action.comment.activeTweetId,
+        author_id: 1, //to be changed by replacing currentUser.id
+        isFetching: true,
+      }
+    }
+
 
     case 'EDIT_COMMENT': {
       return {

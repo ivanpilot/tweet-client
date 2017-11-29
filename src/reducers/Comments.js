@@ -9,6 +9,7 @@ export const comments = combineReducers({
 function byId(state = {}, action){
   switch (action.type) {
     case 'ADD_COMMENT':
+    case 'CREATE_COMMENT':
     case 'EDIT_COMMENT': {
       return {
         ...state,
@@ -52,7 +53,8 @@ function byId(state = {}, action){
 
 function allIds(state = [], action){
   switch (action.type) {
-    case 'ADD_COMMENT': {
+    case 'ADD_COMMENT':
+    case 'CREATE_COMMENT': {
       return [action.comment.id, ...state]
     }
 

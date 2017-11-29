@@ -3,36 +3,43 @@ import * as types from './ActionTypes';
 export function addComment(comment){
   return {
     type: types.ADD_COMMENT,
-    comment: comment,
+    comment
+  }
+}
+
+export function createComment(comment){
+  return {
+    type: types.CREATE_COMMENT,
+    comment
   }
 }
 
 export function editComment(comment){
   return {
     type: types.EDIT_COMMENT,
-    comment: comment,
+    comment
   }
 }
 
-export function deleteComment(id, activeId){
+export function deleteComment(id, activeTweetId){
   return {
     type: types.DELETE_COMMENT,
-    id: id,
-    activeTweetId: activeId
+    id,
+    activeTweetId
   }
 }
 
 export function triggerEditableComment(id){
   return {
     type: types.TRIGGER_EDITABLE_COMMENT,
-    id: id
+    id
   }
 }
 
 export function loadComments(comments){
   return {
     type: types.LOAD_COMMENTS,
-    comments: comments
+    comments
   }
 }
 
@@ -45,6 +52,6 @@ export function clearComments(){
 export function deleteAllCommentsInTweet(tweetId){
   return {
     type: types.DELETE_ALL_COMMENTS_IN_TWEET,
-    tweetId: tweetId
+    tweetId
   }
 }
