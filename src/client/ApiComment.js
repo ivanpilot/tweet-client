@@ -37,7 +37,7 @@ class ApiComment {
         react_id: comment.id,
         description: comment.description,
         post_id: comment.activeTweetId,
-        commenter_id: client.getCurrentUserId() //to b replaced with currentUser.id
+        commenter_id: client.getCurrentUser().id //to b replaced with currentUser.id
       }
     }
     return fetch(url, {

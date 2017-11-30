@@ -13,8 +13,9 @@ export function tweet(state, action){
         isFetching: false,
         editable: false,
         active: false,
-        ownership: action.tweet.author_id === client.getCurrentUserId(), //to be changed by function testing if author_id === currentUser.id
+        ownership: action.tweet.author_id === client.getCurrentUser().id, //to be changed by function testing if author_id === currentUser.id
         author_id: action.tweet.author_id,
+        author_name: client.getCurrentUser().username,
       }
     }
 
@@ -25,7 +26,8 @@ export function tweet(state, action){
         title: action.tweet.title,
         body: action.tweet.body,
         isFetching: true,
-        author_id: client.getCurrentUserId() //to be changed by replacing currentUser.id
+        author_id: client.getCurrentUser().id, //to be changed by replacing currentUser.id
+        author_name: client.getCurrentUser().username,
       }
     }
 

@@ -9,9 +9,10 @@ export function comment(state, action){
         description: action.comment.description,
         post_id: action.comment.post_id,
         commenter_id: action.comment.commenter_id,
+        commenter_name: client.getCurrentUser().username,
         isFetching: false,
         editable: false,
-        ownership: action.comment.commenter_id === client.getCurrentUserId() //to be changed by function testing if commenter_id === currentUser.id
+        ownership: action.comment.commenter_id === client.getCurrentUser().id //to be changed by function testing if commenter_id === currentUser.id
       }
     }
 
@@ -21,7 +22,8 @@ export function comment(state, action){
         react_id: action.comment.id,
         description: action.comment.description,
         post_id: action.comment.activeTweetId,
-        commenter_id: client.getCurrentUserId(), //to be changed by replacing currentUser.id
+        commenter_id: client.getCurrentUser().id, //to be changed by replacing currentUser.id
+        commenter_name: client.getCurrentUser().username,
         isFetching: true,
       }
     }

@@ -35,7 +35,6 @@ class FormLogin extends React.Component{
     if(this.validate()) return;
 
     this.props.onSubmitForm(user);
-    console.log("email = " + this.state.user.email + " | password = " + this.state.user.password)
     this.setState({
       user: {
         email: '',

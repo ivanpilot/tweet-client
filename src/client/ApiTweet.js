@@ -14,10 +14,10 @@ class ApiTweet {
       }
     }).then(this.checkStatus)
       .then(this.parseJson)
-      .then((response) => {
-        console.log('FETCH TWEETS ...: ', response)
-        return response
-      })
+      // .then((response) => {
+      //   console.log('FETCH TWEETS ...: ', response)
+      //   return response
+      // })
       .then(success)
   }
 
@@ -28,7 +28,7 @@ class ApiTweet {
         title: tweet.title,
         body: tweet.body,
         react_id: tweet.id,
-        author_id: client.getCurrentUserId() //to be replace by currentUser.id
+        author_id: client.getCurrentUser().id //to be replace by currentUser.id
       }
     }
     return fetch(url, {

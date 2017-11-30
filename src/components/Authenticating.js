@@ -9,12 +9,19 @@ class Authenticating extends React.Component{
     shouldRedirect: false
   }
 
+  // onSubmitForm = (user) => {
+  //   this.setState({loginInProgress: true})
+  //   client.login(user).then(() => {
+  //     client.setCurrentUser()
+  //     this.setState({shouldRedirect: true})
+  //   });
+  // }
+
   onSubmitForm = (user) => {
     this.setState({loginInProgress: true})
-    client.login(user).then(() => {
-      client.setCurrentUserId()
-      this.setState({shouldRedirect: true})
-    });
+    client.login(user)
+    .then(() => client.setCurrentUser())
+    .then(() => this.setState({shouldRedirect: true}))
   }
 
   redirectPath = () => {

@@ -3,9 +3,9 @@ class Client {
     this.useLocalStorage = (typeof localStorage !== 'undefined');
     if(this.useLocalStorage){
       this.token = localStorage.getItem('Authorization')
+      this.currentUser = localStorage.getItem('User')
     }
     this.route = 'http://localhost:3000'
-    this.currentUserId = localStorage.getItem('userId')
   }
 
   setToken(token) {
@@ -22,7 +22,7 @@ class Client {
     return this.token
   }
 
-  setCurrentUserId(){
+  setCurrentUser(){
     const url = this.route + '/currentuser'
     return fetch(url, {
       headers: {
@@ -34,25 +34,24 @@ class Client {
     .then(this.parseJson)
     .then((response) => {
       if (this.useLocalStorage) {
-        localStorage.setItem('userId', response.id);
+        localStorage.setItem('User', JSON.stringify(response.user));
       }
     })
   }
 
-  getCurrentUserId(){
-    // debugger
-    // return this.currentUserId.id
+  getCurrentUser(){
     if (this.useLocalStorage) {
-      this.currentUserId = localStorage.getItem('userId');
+      this.currentUser = JSON.parse(localStorage.getItem('User'));
     }
-    return parseInt(this.currentUserId, 10)
+    return this.currentUser
   }
 
   removeToken() {
     this.token = null;
-
+    this.currentUser = null
     if (this.useLocalStorage) {
       localStorage.removeItem('Authorization');
+      localStorage.removeItem('User');
     }
   }
 
