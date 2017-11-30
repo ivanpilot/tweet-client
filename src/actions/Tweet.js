@@ -28,6 +28,12 @@ export function deleteTweet(id){
   }
 }
 
+export function clearTweets(){
+  return {
+    type: types.CLEAR_TWEETS,
+  }
+}
+
 export function triggerEditableTweet(id){
   return {
     type: types.TRIGGER_EDITABLE_TWEET,

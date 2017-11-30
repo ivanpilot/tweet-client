@@ -8,7 +8,7 @@ import Thread from './Thread';
 import { apiTweet } from '../client/ApiTweet';
 import { normalize } from 'normalizr';
 import { normalizedTweet } from '../normalizers/Normalizr';
-import { addTweet } from '../actions/Tweet';
+import { addTweet, clearTweets } from '../actions/Tweet';
 import { fetchItemFailure } from '../actions/Error';
 import { DisplayError } from '../components/DisplayError'
 
@@ -20,6 +20,7 @@ class RootPage extends React.Component {
   }
 
   componentDidMount(){
+    this.props.clearingTweets()
     this.setState({isFetching: true})
     this.fetchingTweets()
   }
@@ -27,9 +28,11 @@ class RootPage extends React.Component {
   fetchingTweets = () => {
     this.props.fetchTweets().then(
       response => {
+        // debugger
         this.setState({isFetching: false})
       },
       error => {
+        // debugger
         this.setState({isFetching: false})
         this.props.fetchFailure(error)
       }
@@ -88,6 +91,11 @@ function fetchFailure(error) {
   }
 }
 
+function clearingTweets(){
+  return (dispatch) => {
+    dispatch(clearTweets())
+  }
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -100,7 +108,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     fetchTweets,
-    fetchFailure
+    fetchFailure,
+    clearingTweets
   }, dispatch)
 }
 

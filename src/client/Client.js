@@ -5,7 +5,7 @@ class Client {
       this.token = localStorage.getItem('Authorization')
     }
     this.route = 'http://localhost:3000'
-    this.currentUserId = null
+    this.currentUserId = localStorage.getItem('userId')
   }
 
   setToken(token) {
@@ -33,12 +33,19 @@ class Client {
     .then(this.checkStatus)
     .then(this.parseJson)
     .then((response) => {
-      return this.currentUserId = response
+      if (this.useLocalStorage) {
+        localStorage.setItem('userId', response.id);
+      }
     })
   }
 
   getCurrentUserId(){
-    return this.currentUserId.id
+    // debugger
+    // return this.currentUserId.id
+    if (this.useLocalStorage) {
+      this.currentUserId = localStorage.getItem('userId');
+    }
+    return parseInt(this.currentUserId, 10)
   }
 
   removeToken() {

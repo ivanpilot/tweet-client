@@ -42,6 +42,10 @@ function byId(state = {}, action){
       }
     }
 
+    case 'CLEAR_TWEETS': {
+      return {}
+    }
+
     default:
       return state
   }
@@ -57,6 +61,10 @@ function allIds(state = [], action){
 
     case 'DELETE_TWEET': {
       return state.filter(id => id !== action.id)
+    }
+
+    case 'CLEAR_TWEETS': {
+      return []
     }
 
     default:
