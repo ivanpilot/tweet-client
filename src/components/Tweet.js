@@ -2,8 +2,6 @@ import React from 'react';
 import '../styles/Tweet.css'
 
 export const Tweet = (props) => {
-  // debugger
-  // if(props.tweet.id === props.tweet.react_id){
   if(props.tweet.isFetching){
     return(
       <div className="ui cards">

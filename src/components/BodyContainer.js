@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
-// import { PrivateRoute } from './PrivateRoute'
 import RootPage from '../containers/RootPage';
 import Authenticating from './Authenticating';
 import Logout from './Logout';

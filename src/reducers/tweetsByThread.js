@@ -33,7 +33,6 @@ export function tweetsByThread(state = {
     }
 
     case 'LOAD_TWEETS': {
-      // debugger
       return {
         ...state,
         [action.id]: {
@@ -44,7 +43,6 @@ export function tweetsByThread(state = {
     }
 
     case 'LOAD_TWEET': {
-      // debugger
       return {
         ...state,
         [action.id]: {
@@ -55,7 +53,6 @@ export function tweetsByThread(state = {
     }
 
     case 'CREATE_TWEET': {
-      // debugger
       return {
         ...state,
         '1': {
@@ -75,7 +72,6 @@ export function tweetsByThread(state = {
       }
     }
 
-    // case 'ERASE_TWEET': 
     case 'DELETE_TWEET': {
       return {
         ...state,
@@ -88,13 +84,6 @@ export function tweetsByThread(state = {
           tweets: state['2'].tweets.filter(id => id !== action.id)
         }
       }
-      // return {
-      //   ...state,
-      //   [action.threadId]: {
-      //     ...state[action.threadId],
-      //     tweets: state[action.threadId].tweets.filter(id => id !== action.id)
-      //   }
-      // }
     }
 
     default:
@@ -117,6 +106,5 @@ export const getActiveThread = (state) => {
 
 export const getTweetsForActiveThread = (state) => {
   const activeThreadId = getActiveThread(state)
-  // debugger
   return state[activeThreadId].tweets
 }

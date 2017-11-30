@@ -5,10 +5,8 @@ import { Tabs } from '../components/Tabs';
 import { TweetContainer } from '../components/TweetContainer';
 import { triggerThread, loadTweets } from '../actions/Thread';
 import { triggerEditableTweet, triggerActivableTweet } from '../actions/Tweet';
-import { triggerEditableComment } from '../actions/Comment';
 import { getAllThreads, getActiveThread } from '../reducers/tweetsByThread';
 import { getEditableTweet, getActiveTweet, getListOfTweetIds } from '../reducers/Tweets';
-// import { getEditableComment } from '../reducers/Comments';
 
 class Thread extends React.Component{
   componentDidMount(){
@@ -16,7 +14,6 @@ class Thread extends React.Component{
   }
 
   render(){
-    // debugger
     return(
       <div>
         <Tabs
@@ -96,7 +93,6 @@ const mapStateToProps = (state) => {
     editableTweet: getEditableTweet(state.entities.tweets),
     activeTweet: getActiveTweet(state.entities.tweets),
     tweetsIds: getListOfTweetIds(state.entities.tweets)
-    // editableComment: getEditableComment(state.entities.comments.byId)
   }
 }
 

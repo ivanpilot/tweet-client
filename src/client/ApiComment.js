@@ -5,7 +5,6 @@ class ApiComment {
 
   fetchComments(postId, success){
     const url = this.domain + `/api/posts/${postId}/comments`
-    // debugger
     return fetch(url, {
       headers:{
         'Content-Type': 'application/json'
@@ -44,10 +43,6 @@ class ApiComment {
       },
       body: JSON.stringify(newComment)
     }).then(this.checkStatus)
-      .then((response) => {
-        // console.log('CREATING COMMENT...', response)
-        return response
-      })
   }
 
   updateComment(comment){
@@ -64,10 +59,6 @@ class ApiComment {
       },
       body: JSON.stringify(updateComment)
     }).then(this.checkStatus)
-      .then((response) => {
-        console.log('UPDATING COMMENT...', response)
-        return response
-      })
   }
 
   deleteComment(id, activeTweetId){
@@ -93,7 +84,6 @@ class ApiComment {
       throw error
     }
   }
-
 }
 
 export const apiComment = new ApiComment();

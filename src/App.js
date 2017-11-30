@@ -21,25 +21,4 @@ class App extends Component {
     )
   }
 }
-
 export default App;
-
-// export const App = (props) => (
-//   <div>
-//     <div className='ui grid container'>
-//       <Navbar />
-//     </div>
-//     {
-//       (1 === 1) ? (
-//         <div className='ui active centered inline loader' ></div>
-//       ) : (
-//         <div className='ui divider'></div>
-//         <div className='ui grid container'>
-//           <div className='ui sixteen wide column'>
-//             <BodyContainer />
-//           </div>
-//         </div>
-//       )
-//     }
-//   </div>
-// )

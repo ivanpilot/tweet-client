@@ -18,9 +18,7 @@ class ApiTweet {
   }
 
   createTweet(tweet){
-    // debugger
     const url = this.domain + '/api/posts'
-    // debugger
     const newTweet = {
       post:{
         title: tweet.title,
@@ -36,10 +34,6 @@ class ApiTweet {
       },
       body: JSON.stringify(newTweet)
     }).then(this.checkStatus)
-      .then((response) => {
-        // console.log('CREATING TWEET...', response)
-        return response
-      })
   }
 
   updateTweet(tweet){
@@ -69,8 +63,6 @@ class ApiTweet {
     }).then(this.checkStatus)
   }
 
-
-
   fetchTweetByReactId(reactId){
     const url = this.domain + '/api/posts/search?term=' + reactId
     return fetch(url, {
@@ -79,10 +71,6 @@ class ApiTweet {
       }
     }).then(this.checkStatus)
       .then(this.parseJson)
-      .then((response) => {
-        // console.log('RETRIEVING LATEST TWEET', response)
-        return response
-      })
   }
 
   parseJson(response){
@@ -95,11 +83,9 @@ class ApiTweet {
     } else {
       const error = new Error();
       error.response = response;
-      // debugger
       throw error
     }
   }
-
 }
 
 export const apiTweet = new ApiTweet();

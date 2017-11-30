@@ -4,13 +4,9 @@ import { EditTweetInput } from './EditTweetInput';
 import { DisplayError } from './DisplayError';
 import '../styles/EditableTweet.css';
 
-
 export const EditableTweet = (props) => {
-  // debugger
   return props.tweets.map((tweet, index) => {
-    // debugger
     if(props.tweetError && ((props.tweetError.id === tweet.react_id) || (props.tweetError.id === tweet.id))){
-      // debugger
       return(
         <div>
           <DisplayError
@@ -50,6 +46,3 @@ export const EditableTweet = (props) => {
     }
   })
 }
-
-// offEditableTweetMode={props.offEditableTweetMode}
-// onSubmitForm={props.onSubmitForm}

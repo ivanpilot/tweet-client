@@ -27,7 +27,6 @@ class Authenticating extends React.Component{
   }
 
   render(){
-    // debugger
     if(this.props.location.pathname === '/login'){
       return(
         <Login

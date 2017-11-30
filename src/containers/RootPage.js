@@ -4,13 +4,12 @@ import { bindActionCreators } from 'redux';
 import { getActiveTweet } from '../reducers/Tweets';
 import { getFetchingTweetsError, getFetchingCommentsError } from '../reducers/Errors';
 import { VerticalMenu } from '../components/VerticalMenu';
-// import { TweetContainer } from '../components/TweetContainer';
 import Thread from './Thread';
 import { apiTweet } from '../client/ApiTweet';
 import { normalize } from 'normalizr';
 import { normalizedTweet } from '../normalizers/Normalizr';
 import { addTweet } from '../actions/Tweet';
-import { fetchTweetsFailure, fetchItemFailure } from '../actions/Error';
+import { fetchItemFailure } from '../actions/Error';
 import { DisplayError } from '../components/DisplayError'
 
 
@@ -43,7 +42,6 @@ class RootPage extends React.Component {
         <div className='ui active centered inline loader' />
       )
     } else if(this.props.tweetsError){
-      // debugger
       return(
         <div>
           <DisplayError
@@ -76,7 +74,7 @@ function fetchTweets() {
   return (dispatch) => {
     return apiTweet.fetchTweets((tweets) => {
       const normalizedTweets = normalize(tweets, normalizedTweet)
-      const newTweets = normalizedTweets.entities.tweets
+      const newTweets = normalizedTweets.entities.tweets || {}
       Object.keys(newTweets).map(newTweet => {
         return dispatch(addTweet(newTweets[newTweet]))
       })

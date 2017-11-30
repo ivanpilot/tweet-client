@@ -28,14 +28,6 @@ export function deleteTweet(id){
   }
 }
 
-// export function eraseTweet(id, threadId = null){
-//   return {
-//     type: types.ERASE_TWEET,
-//     id,
-//     threadId
-//   }
-// }
-
 export function triggerEditableTweet(id){
   return {
     type: types.TRIGGER_EDITABLE_TWEET,

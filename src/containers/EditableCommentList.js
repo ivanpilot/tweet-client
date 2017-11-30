@@ -10,7 +10,6 @@ import { deleteCommentInTweet } from '../actions/Tweet';
 import { fetchItemFailure } from '../actions/Error';
 import { DisplayError } from '../components/DisplayError';
 import '../styles/EditableList.css';
-// import { client } from '../client/Client';
 import { apiComment } from '../client/ApiComment';
 import { normalize } from 'normalizr';
 import { normalizedComment } from '../normalizers/Normalizr';
@@ -24,16 +23,12 @@ class EditableCommentList extends React.Component {
   componentWillReceiveProps(nextProps){
     if(nextProps.activeTweet && nextProps.activeTweet !== this.props.activeTweet){ //comparison to avoid infinite loop
       this.setState({loading: true});
-      // debugger
       this.props.clearingComments();
-      // debugger
       this.fetchingComments(nextProps.activeTweet);
-
     }
   }
 
   fetchingComments = (tweetId) => {
-    // debugger
     this.props.fetchComments(tweetId).then(
       response => {
         this.setState({loading: false})
@@ -47,18 +42,15 @@ class EditableCommentList extends React.Component {
   }
 
   render(){
-    // debugger
     if(this.state.loading){
       return(
         <div className='ui active centered inline loader' />
       )
     } else if(!this.props.activeTweet || !this.props.comments){
-      // debugger
       return(
         null
       )
     } else if(this.props.activeTweet && this.props.commentsError){
-      // debugger
       return(
         <div>
           <DisplayError
@@ -68,14 +60,12 @@ class EditableCommentList extends React.Component {
         </div>
       )
     } else if(this.props.activeTweet && this.props.comments.length === 0){
-      // debugger
       return(
         <div className="no-comment">
           <p>Be the first to write a comment...</p>
         </div>
       )
     } else {
-      // debugger
       return(
         <div className="editable-list">
           <EditableComment

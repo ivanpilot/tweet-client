@@ -37,7 +37,6 @@ class FormComment extends React.Component{
       id: id,
       activeTweetId: activeTweet || this.props.activeTweet,
     };
-    // debugger
     if(this.validate()) return;
     this.props.onSubmitForm(comment, this.props.editableComment); //second argument when Form rendered from AddCommentInput
     this.setState({

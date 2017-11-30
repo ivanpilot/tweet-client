@@ -1,4 +1,3 @@
-// import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getActiveTweet } from '../reducers/Tweets';
@@ -52,7 +51,6 @@ function onSubmitForm(comment, editableId){
     }
   }
 }
-
 
 
 const mapStateToProps = (state) => ({

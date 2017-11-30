@@ -1,5 +1,3 @@
-// import uuid from 'uuid';
-
 export function tweet(state, action){
   switch(action.type){
     case 'ADD_TWEET': {
@@ -59,7 +57,6 @@ export function tweet(state, action){
 
     case 'ADD_COMMENT_TO_TWEET':
     case 'CREATE_COMMENT_TO_TWEET': {
-      // debugger
       return {
         ...state,
         comments: [action.commentId, ...state.comments]
@@ -72,6 +69,9 @@ export function tweet(state, action){
         comments: state.comments.filter(id => id !== action.commentId)
       }
     }
+
+    default:
+      return state
 
   }
 }

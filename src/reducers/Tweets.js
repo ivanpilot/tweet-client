@@ -18,7 +18,6 @@ function byId(state = {}, action){
       }
     }
 
-    // case 'ERASE_TWEET':
     case 'DELETE_TWEET': {
       const newState = Object.assign({}, state)
       delete newState[action.id]
@@ -56,7 +55,6 @@ function allIds(state = [], action){
       return [action.tweet.id, ...state]
     }
 
-    // case 'ERASE_TWEET':
     case 'DELETE_TWEET': {
       return state.filter(id => id !== action.id)
     }

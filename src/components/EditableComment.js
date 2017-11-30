@@ -7,9 +7,7 @@ import '../styles/EditableComment.css';
 
 export const EditableComment = (props) => {
   return props.comments.map((comment, index) => {
-    // debugger
     if(props.commentError && ((props.commentError.id === comment.react_id) || (props.commentError.id === comment.id))){
-      // debugger
       return(
         <div>
           <DisplayError
