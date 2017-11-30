@@ -33,9 +33,6 @@ function fetching(state = {
 }
 
 export const getFetchingTweetsError = (state) => state.fetching.tweets
-export const getFetchingTweetError = (state) => {
-  // debugger
-  return state.fetching.tweet
-}
+export const getFetchingTweetError = (state) => state.fetching.tweet
 export const getFetchingCommentsError = (state) => state.fetching.comments
 export const getFetchingCommentError = (state) => state.fetching.comment

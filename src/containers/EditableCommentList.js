@@ -24,18 +24,23 @@ class EditableCommentList extends React.Component {
   componentWillReceiveProps(nextProps){
     if(nextProps.activeTweet && nextProps.activeTweet !== this.props.activeTweet){ //comparison to avoid infinite loop
       this.setState({loading: true});
+      // debugger
       this.props.clearingComments();
+      // debugger
       this.fetchingComments(nextProps.activeTweet);
+
     }
   }
 
   fetchingComments = (tweetId) => {
+    // debugger
     this.props.fetchComments(tweetId).then(
       response => {
         this.setState({loading: false})
       },
       error => {
         this.setState({loading: false})
+        debugger
         this.props.handleFetchingError(error)
       }
     )
@@ -155,7 +160,7 @@ function fetchComments(tweetId){
   return dispatch => {
     return apiComment.fetchComments(tweetId, (comments) => {
       const normalizedComments = normalize(comments, normalizedComment)
-      const newComments = normalizedComments.entities.comments
+      const newComments = normalizedComments.entities.comments || {} // in case there is no comment yet
       Object.keys(newComments).map(newComment => {
         return dispatch(addComment(newComments[newComment]))
       })
