@@ -2,27 +2,43 @@ class Client {
   constructor(){
     this.useLocalStorage = (typeof localStorage !== 'undefined');
     if(this.useLocalStorage){
-      this.token = localStorage.getItem  ('Authorization')
+      this.token = localStorage.getItem('Authorization')
     }
     this.route = 'http://localhost:3000'
+    this.currentUserId = null
   }
 
   setToken(token) {
     this.token = token;
-    // debugger
     if (this.useLocalStorage) {
       localStorage.setItem('Authorization', this.token);
     }
   }
 
-  currentUser() {
-    // if (this.useLocalStorage) {
-    //   this.token = localStorage.getItem('Authorization');
-    // }
-    // return JSON.parse(this.token)
-    return{
-      id: 1
+  getToken() {
+    if (this.useLocalStorage) {
+      this.token = localStorage.getItem('Authorization');
     }
+    return this.token
+  }
+
+  setCurrentUserId(){
+    const url = this.route + '/currentuser'
+    return fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': this.getToken()
+      }
+    })
+    .then(this.checkStatus)
+    .then(this.parseJson)
+    .then((response) => {
+      return this.currentUserId = response
+    })
+  }
+
+  getCurrentUserId(){
+    return this.currentUserId.id
   }
 
   removeToken() {
@@ -36,7 +52,6 @@ class Client {
   login(user) {
     const path = Object.keys(user).length === 2 ? '/auth/login' : '/signup'
     const url = this.route + path
-    // debugger
     return fetch(url, {
       method: 'POST',
       headers: {
@@ -56,32 +71,12 @@ class Client {
     this.removeToken();
   }
 
-  displayResponse(response){
-    console.log(response);
-  }
-
-  loadData(success){
-    const url = 'http://localhost:3000/api/posts'
-    fetch(url, {
-      headers:{
-        'Content-Type': 'application/json'
-      }
-    }).then(this.checkStatus)
-      .then(this.parseJson)
-      .then(success)
-      // .then((json) => {
-      //   console.log(json)
-      // })
-  }
-
   checkStatus(response){
     if(response.status >= 200 && response.status < 300){
       return response
     } else {
-      const error = new Error(`HTTP Error ${response.statusText}`);
-      error.status = response.statusText;
+      const error = new Error();
       error.response = response;
-      console.log(error);
       throw error
     }
   }

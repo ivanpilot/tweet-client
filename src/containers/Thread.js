@@ -7,6 +7,7 @@ import { triggerThread, loadTweets } from '../actions/Thread';
 import { triggerEditableTweet, triggerActivableTweet } from '../actions/Tweet';
 import { getAllThreads, getActiveThread } from '../reducers/tweetsByThread';
 import { getEditableTweet, getActiveTweet, getListOfTweetIds } from '../reducers/Tweets';
+import { client } from '../client/Client';
 
 class Thread extends React.Component{
   componentDidMount(){
@@ -39,7 +40,7 @@ function loadTweetsForThread(threadId){
     const tweetIds = getState().entities.tweets.allIds
 
     const wallTweets = tweetIds
-    const myTweets = tweetIds.filter(id => tweets[id].author_id === 1) // replaced bu author_id === currentUser.id
+    const myTweets = tweetIds.filter(id => tweets[id].author_id === client.getCurrentUserId()) // replaced bu author_id === currentUser.id
     const listOfTweets = threadName === 'Wall' ? wallTweets : myTweets
     return dispatch(loadTweets(threadId, listOfTweets))
   }

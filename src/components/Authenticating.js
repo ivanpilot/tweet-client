@@ -11,13 +11,10 @@ class Authenticating extends React.Component{
 
   onSubmitForm = (user) => {
     this.setState({loginInProgress: true})
-    client.login(user).then(() => (
+    client.login(user).then(() => {
+      client.setCurrentUserId()
       this.setState({shouldRedirect: true})
-    ));
-  }
-
-  clientIsLoggedIn = () => {
-    return client.isLoggedIn()
+    });
   }
 
   redirectPath = () => {

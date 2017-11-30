@@ -1,3 +1,5 @@
+import { client } from '../client/Client';
+
 export function comment(state, action){
   switch (action.type) {
     case 'ADD_COMMENT': {
@@ -9,7 +11,7 @@ export function comment(state, action){
         commenter_id: action.comment.commenter_id,
         isFetching: false,
         editable: false,
-        ownership: true //to be changed by function testing if commenter_id === currentUser.id
+        ownership: action.comment.commenter_id === client.getCurrentUserId() //to be changed by function testing if commenter_id === currentUser.id
       }
     }
 
@@ -19,7 +21,7 @@ export function comment(state, action){
         react_id: action.comment.id,
         description: action.comment.description,
         post_id: action.comment.activeTweetId,
-        commenter_id: 1, //to be changed by replacing currentUser.id
+        commenter_id: client.getCurrentUserId(), //to be changed by replacing currentUser.id
         isFetching: true,
       }
     }

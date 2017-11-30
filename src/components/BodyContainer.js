@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
+import { PrivateRoute } from './PrivateRoute';
 import RootPage from '../containers/RootPage';
 import Authenticating from './Authenticating';
 import Logout from './Logout';
@@ -12,11 +13,11 @@ class BodyContainer extends React.Component {
     return(
       <div className="body-container">
         <Switch>
-          <Route exact path='/tweets' component={RootPage} />
-          <Route exact path='/boo' component={Boo} />
+          <PrivateRoute exact path='/tweets' component={RootPage} />
+          <PrivateRoute exact path='/boo' component={Boo} />
           <Route exact path='/login' component={Authenticating} />
           <Route exact path='/signup' component={Authenticating} />
-          <Route exact path='/logout' component={Logout} />
+          <PrivateRoute exact path='/logout' component={Logout} />
           <Route exact path='/' render={() => (
             <Redirect to='/tweets' />
           )} />

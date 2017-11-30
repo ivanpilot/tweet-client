@@ -1,3 +1,5 @@
+import { client } from './Client';
+
 class ApiTweet {
   constructor(){
     this.domain = 'http://localhost:3000'
@@ -7,7 +9,8 @@ class ApiTweet {
     const url = this.domain + '/api/posts'
     return fetch(url, {
       headers:{
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': client.getToken()
       }
     }).then(this.checkStatus)
       .then(this.parseJson)
@@ -24,13 +27,14 @@ class ApiTweet {
         title: tweet.title,
         body: tweet.body,
         react_id: tweet.id,
-        author_id: 1 //to be replace by currentUser.id
+        author_id: client.getCurrentUserId() //to be replace by currentUser.id
       }
     }
     return fetch(url, {
       method: 'POST',
       headers: {
-        'Content-Type':'application/json'
+        'Content-Type':'application/json',
+        'Authorization': client.getToken()
       },
       body: JSON.stringify(newTweet)
     }).then(this.checkStatus)
@@ -47,7 +51,8 @@ class ApiTweet {
     return fetch(url, {
       method: 'PUT',
       headers: {
-        'Content-Type':'application/json'
+        'Content-Type':'application/json',
+        'Authorization': client.getToken()
       },
       body: JSON.stringify(updateTweet)
     }).then(this.checkStatus)
@@ -58,7 +63,8 @@ class ApiTweet {
     return fetch(url, {
       method: 'DELETE',
       headers: {
-        'Content-Type':'application/json'
+        'Content-Type':'application/json',
+        'Authorization': client.getToken()
       },
     }).then(this.checkStatus)
   }
@@ -67,7 +73,8 @@ class ApiTweet {
     const url = this.domain + '/api/posts/search?term=' + reactId
     return fetch(url, {
       headers: {
-        'Content-Type':'application/json'
+        'Content-Type':'application/json',
+        'Authorization': client.getToken()
       }
     }).then(this.checkStatus)
       .then(this.parseJson)

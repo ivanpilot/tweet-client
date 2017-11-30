@@ -1,3 +1,5 @@
+import { client } from './Client';
+
 class ApiComment {
   constructor(){
     this.domain = 'http://localhost:3000'
@@ -7,7 +9,8 @@ class ApiComment {
     const url = this.domain + `/api/posts/${postId}/comments`
     return fetch(url, {
       headers:{
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': client.getToken()
       }
     }).then(this.checkStatus)
       .then(this.parseJson)
@@ -18,7 +21,8 @@ class ApiComment {
     const url = this.domain + `/api/posts/${comment.activeTweetId}/comments/search?term=${comment.id}`
     return fetch(url, {
       headers:{
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': client.getToken()
       }
     }).then(this.checkStatus)
       .then(this.parseJson)
@@ -33,13 +37,14 @@ class ApiComment {
         react_id: comment.id,
         description: comment.description,
         post_id: comment.activeTweetId,
-        commenter_id: 1 //to b replaced with currentUser.id
+        commenter_id: client.getCurrentUserId() //to b replaced with currentUser.id
       }
     }
     return fetch(url, {
       method: 'POST',
       headers:{
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': client.getToken()
       },
       body: JSON.stringify(newComment)
     }).then(this.checkStatus)
@@ -55,7 +60,8 @@ class ApiComment {
     return fetch(url, {
       method: 'PUT',
       headers:{
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': client.getToken()
       },
       body: JSON.stringify(updateComment)
     }).then(this.checkStatus)
@@ -66,7 +72,8 @@ class ApiComment {
     return fetch(url, {
       method: 'DELETE',
       headers:{
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': client.getToken()
       },
     }).then(this.checkStatus)
   }

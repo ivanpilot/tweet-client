@@ -1,3 +1,5 @@
+import { client } from '../client/Client';
+
 export function tweet(state, action){
   switch(action.type){
     case 'ADD_TWEET': {
@@ -10,7 +12,7 @@ export function tweet(state, action){
         isFetching: false,
         editable: false,
         active: false,
-        ownership: true, //to be changed by function testing if author_id === currentUser.id
+        ownership: action.tweet.author_id === client.getCurrentUserId(), //to be changed by function testing if author_id === currentUser.id
         author_id: action.tweet.author_id,
       }
     }
@@ -22,7 +24,7 @@ export function tweet(state, action){
         title: action.tweet.title,
         body: action.tweet.body,
         isFetching: true,
-        author_id: 1 //to be changed by replacing currentUser.id
+        author_id: client.getCurrentUserId() //to be changed by replacing currentUser.id
       }
     }
 
