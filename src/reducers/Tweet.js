@@ -13,9 +13,9 @@ export function tweet(state, action){
         isFetching: false,
         editable: false,
         active: false,
-        ownership: action.tweet.author_id === client.getCurrentUser().id, //to be changed by function testing if author_id === currentUser.id
-        author_id: action.tweet.author_id,
-        author_name: client.getCurrentUser().username,
+        ownership: action.tweet.author.id === client.getCurrentUser().id, //to be changed by function testing if author_id === currentUser.id
+        author_id: action.tweet.author.id,
+        author_name: action.tweet.author.username,
       }
     }
 

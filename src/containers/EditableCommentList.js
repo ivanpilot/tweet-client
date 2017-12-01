@@ -151,6 +151,7 @@ function fetchComments(tweetId){
     return apiComment.fetchComments(tweetId, (comments) => {
       const normalizedComments = normalize(comments, normalizedComment)
       const newComments = normalizedComments.entities.comments || {} // in case there is no comment yet
+      // debugger
       Object.keys(newComments).map(newComment => {
         return dispatch(addComment(newComments[newComment]))
       })

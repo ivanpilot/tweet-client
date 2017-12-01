@@ -18,6 +18,7 @@ export const Comment = (props) => {
       <div className="ui cards">
         <div className="card">
           <div className="content comment-blue">
+            <div className="meta">Written by: {props.comment.commenter_name}</div>
             <div className="description ">{props.comment.description}</div>
             {
               (props.comment.ownership) ? (

@@ -22,13 +22,14 @@ export const Tweet = (props) => {
   return (
     <div className="ui cards">
       <div className="card">
-        <div className={props.tweet.active ? "content tweet-blue" : "content tweet"}>
+        <div className={props.tweet.active ? ("content tweet-blue") : (!props.tweet.ownership ? "content not-mine " : "content tweet")}>
           <div
             className="header"
             onClick={() => props.onActiveClick(props.tweet.id, props.activeTweet, props.editableTweet)}
           >
             {props.tweet.title}
           </div>
+          <div className="meta">Written by: {props.tweet.author_name}</div>
           <div
             className="description"
             onClick={() => props.onActiveClick(props.tweet.id, props.activeTweet, props.editableTweet)}
