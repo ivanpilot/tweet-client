@@ -37,6 +37,7 @@ function swapOldTweetForNewTweet(dispatch, getState, tweets){
       dispatch(deleteTweet(tweet.react_id))
       dispatch(loadTweet(activeThreadId, tweet.id))
     }
+    return null
   })
 }
 

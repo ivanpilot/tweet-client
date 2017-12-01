@@ -9,8 +9,8 @@ function connect(state = false, action){
   switch (action.type) {
     case 'CONNECT_FAILURE':
       return {
-        message: action.message.response.statusText,
-        status: action.message.response.status
+        message: action.message.response.statusText// || action.message,
+        status: action.message.response.status// || action.status
       }
     default:
       return false
