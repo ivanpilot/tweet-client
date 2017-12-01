@@ -14,12 +14,15 @@ export const Login = (props) => {
     return(
       <div className='enclosing-frame'>
         <div className='title-frame'>
-          <h1><span className='title'>The Fake Tweeter</span></h1>
+          <h1><span className='title'>Tweeter</span></h1>
         </div>
         { props.loginInProgress ? (
           <div className='ui active centered inline loader' />
         ) : (
           <div className='signup'>
+            {props.connectError ? (
+              <h1>Invalid Credentials, please try again</h1>
+            ) : (null)}
             <h1>Login </h1>
             <FormLogin
               onSubmitForm={props.onSubmitForm}

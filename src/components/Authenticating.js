@@ -1,7 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Login } from './Login';
 import { SignUp } from './SignUp';
 import { client } from '../client/Client';
+import { connectFailure } from '../actions/Error';
+import { getConnectError } from '../reducers/Errors';
+import { DisplayError } from './DisplayError';
 
 class Authenticating extends React.Component{
   state = {
@@ -9,19 +14,31 @@ class Authenticating extends React.Component{
     shouldRedirect: false
   }
 
-  // onSubmitForm = (user) => {
-  //   this.setState({loginInProgress: true})
-  //   client.login(user).then(() => {
-  //     client.setCurrentUser()
-  //     this.setState({shouldRedirect: true})
-  //   });
-  // }
-
   onSubmitForm = (user) => {
     this.setState({loginInProgress: true})
-    client.login(user)
-    .then(() => client.setCurrentUser())
-    .then(() => this.setState({shouldRedirect: true}))
+    this.connectingUser(user)
+    // client.login(user).then(
+    //   response => {
+    //     client.setCurrentUser()
+    //     this.setState({shouldRedirect: true})
+    //   },
+    //   error => {
+    //     this.props.connectionFailure(error)
+    //   }
+    // )
+  }
+
+  connectingUser = (user) => {
+    client.login(user).then(
+      response => {
+        client.setCurrentUser()
+        this.setState({shouldRedirect: true})
+      },
+      error => {
+        this.setState({loginInProgress: false})
+        this.props.connectionFailure(error)
+      }
+    )
   }
 
   redirectPath = () => {
@@ -31,19 +48,31 @@ class Authenticating extends React.Component{
   }
 
   render(){
-    if(this.props.location.pathname === '/login'){
+    // debugger
+    if(this.props.connectError && !this.props.connectError.status === 401){
+      debugger
       return(
-        <Login
+        <div>
+          <DisplayError
+            message={`Looks like a server issue. Retry in a few sec... 'HTTP status: ${this.props.connectError.status}. Error message: ${this.props.connectError.message}'`}
+            onRetry={() => this.connectingUser()}
+          />
+        </div>
+      )
+    } else if (!this.props.connectError && this.props.location.pathname === '/signup'){
+      return(
+        <SignUp
           onSubmitForm={this.onSubmitForm}
-          redirectPath={this.redirectPath()}
           loginInProgress={this.state.loginInProgress}
           shouldRedirect={this.state.shouldRedirect}
         />
       )
-    } else if (this.props.location.pathname === '/signup'){
+    } else if (this.props.location.pathname === '/login'){
       return(
-        <SignUp
+        <Login
+          connectError={this.props.connectError}
           onSubmitForm={this.onSubmitForm}
+          redirectPath={this.redirectPath()}
           loginInProgress={this.state.loginInProgress}
           shouldRedirect={this.state.shouldRedirect}
         />
@@ -52,4 +81,26 @@ class Authenticating extends React.Component{
   }
 }
 
-export default Authenticating
+
+function connectionFailure(error){
+  return (dispatch) => {
+    dispatch(connectFailure(error))
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    connectError: getConnectError(state.errors)
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    connectionFailure,
+  }, dispatch)
+}
+
+export default connect (
+  mapStateToProps,
+  mapDispatchToProps
+)(Authenticating)

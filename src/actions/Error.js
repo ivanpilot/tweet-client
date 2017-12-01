@@ -8,3 +8,10 @@ export function fetchItemFailure(item, message, id = null){
     id
   }
 }
+
+export function connectFailure(message){
+  return {
+    type: types.CONNECT_FAILURE,
+    message,
+  }
+}

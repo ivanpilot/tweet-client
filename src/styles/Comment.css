@@ -7,6 +7,10 @@
   background-color: #CEF6FF;
 }
 
+.ui.cards > .card .comment-not-mine {
+  background-color: #EED9D9;
+}
+
 .ui.cards > .card .comment-saving {
   background-color: #ffedcc;
 }

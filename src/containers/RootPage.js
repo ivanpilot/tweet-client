@@ -28,11 +28,9 @@ class RootPage extends React.Component {
   fetchingTweets = () => {
     this.props.fetchTweets().then(
       response => {
-        // debugger
         this.setState({isFetching: false})
       },
       error => {
-        // debugger
         this.setState({isFetching: false})
         this.props.fetchFailure(error)
       }

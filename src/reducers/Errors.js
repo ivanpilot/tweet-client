@@ -1,8 +1,21 @@
 import { combineReducers } from 'redux';
 
 export const errors = combineReducers({
+  connect,
   fetching,
 })
+
+function connect(state = false, action){
+  switch (action.type) {
+    case 'CONNECT_FAILURE':
+      return {
+        message: action.message.response.statusText,
+        status: action.message.response.status
+      }
+    default:
+      return false
+  }
+}
 
 function fetching(state = {
   tweets: false,
@@ -32,6 +45,10 @@ function fetching(state = {
   }
 }
 
+export const getConnectError = (state) => {
+  // debugger
+  return state.connect
+}
 export const getFetchingTweetsError = (state) => state.fetching.tweets
 export const getFetchingTweetError = (state) => state.fetching.tweet
 export const getFetchingCommentsError = (state) => state.fetching.comments

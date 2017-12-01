@@ -1,0 +1,83 @@
+import React from 'react';
+import { Login } from './Login';
+import { SignUp } from './SignUp';
+import { client } from '../client/Client';
+import { connectFailure } from '../actions/Error';
+
+function connectionFailure(error){
+  debugger
+  return (dispatch) => {
+    debugger
+    dispatch(connectFailure(error))
+  }
+}
+
+
+class Authenticating extends React.Component{
+  state = {
+    loginInProgress: false,
+    shouldRedirect: false
+  }
+
+  // onSubmitForm = (user) => {
+  //   this.setState({loginInProgress: true})
+  //   client.login(user).then(() => {
+  //     client.setCurrentUser()
+  //     this.setState({shouldRedirect: true})
+  //   });
+  // }
+
+  // onSubmitForm = (user) => {
+  //   this.setState({loginInProgress: true})
+  //   client.login(user)
+  //   .then(() => client.setCurrentUser())
+  //   .then(() => this.setState({shouldRedirect: true}))
+  // }
+
+  onSubmitForm = (user) => {
+    this.setState({loginInProgress: true})
+    client.login(user).then(
+      response => {
+        client.setCurrentUser()
+        this.setState({shouldRedirect: true})
+      },
+      error => {
+        console.log('ERROR IS: ', error)
+
+        connectionFailure(error)
+      }
+    )
+    // .then(() => client.setCurrentUser())
+    // .then(() => this.setState({shouldRedirect: true}))
+  }
+
+
+  redirectPath = () => {
+    const locationState = this.props.location.state;
+    const pathname = (locationState && locationState.from && locationState.from.pathname)
+    return pathname || '/tweets';
+  }
+
+  render(){
+    if(this.props.location.pathname === '/login'){
+      return(
+        <Login
+          onSubmitForm={this.onSubmitForm}
+          redirectPath={this.redirectPath()}
+          loginInProgress={this.state.loginInProgress}
+          shouldRedirect={this.state.shouldRedirect}
+        />
+      )
+    } else if (this.props.location.pathname === '/signup'){
+      return(
+        <SignUp
+          onSubmitForm={this.onSubmitForm}
+          loginInProgress={this.state.loginInProgress}
+          shouldRedirect={this.state.shouldRedirect}
+        />
+      )
+    }
+  }
+}
+
+export default Authenticating
