@@ -1,3 +1,5 @@
+import * as api from './ApiRoute';
+
 class Client {
   constructor(){
     this.useLocalStorage = (typeof localStorage !== 'undefined');
@@ -5,7 +7,7 @@ class Client {
       this.token = localStorage.getItem('Authorization')
       this.currentUser = localStorage.getItem('User')
     }
-    this.route = 'http://localhost:3000'
+    this.route = api.API_ROUTE
   }
 
   setToken(token) {

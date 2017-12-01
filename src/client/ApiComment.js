@@ -1,8 +1,9 @@
+import * as api from './ApiRoute';
 import { client } from './Client';
 
 class ApiComment {
   constructor(){
-    this.domain = 'http://localhost:3000'
+    this.domain = api.API_ROUTE
   }
 
   fetchComments(postId, success){
