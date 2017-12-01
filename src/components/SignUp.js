@@ -14,7 +14,7 @@ export const SignUp = (props) => {
     return(
       <div className='enclosing-frame'>
         <div className='title-frame'>
-          <h1><span className='title'>Tweeter</span></h1>
+          <h1><span className='title'>Tweetter</span></h1>
         </div>
         { props.loginInProgress ? (
           <div className='ui active centered inline loader' />

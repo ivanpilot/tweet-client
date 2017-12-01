@@ -42,7 +42,7 @@ class Login extends React.Component{
       return(
         <div className='enclosing-frame'>
           <div className='title-frame'>
-            <h1><span className='title'>The Fake Tweeter</span></h1>
+            <h1><span className='title'>Tweetter</span></h1>
           </div>
           { this.state.loginInProgress ? (
             <div className='ui active centered inline loader' />
@@ -61,22 +61,3 @@ class Login extends React.Component{
 }
 
 export default Login
-
-//
-// export const Login = (props) => (
-//   <div>
-//     { client.isLoggedIn() ? (
-//       <Redirect to='/' />
-//     ) : (
-//       <div className='enclosing-frame'>
-//         <div className='title-frame'>
-//           <h1><span className='title'>The Fake Tweeter</span></h1>
-//         </div>
-//         <div className='signup'>
-//           <h1>Login </h1>
-//           <FormLogin />
-//         </div>
-//       </div>
-//     )}
-//   </div>
-// )

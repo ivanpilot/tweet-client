@@ -10,7 +10,7 @@ export const Navbar = (props) => (
       className="item"
       to='/'
     >
-      Fake Tweeter
+      Tweetter
     </Link>
     { client.isLoggedIn() ?
       (
