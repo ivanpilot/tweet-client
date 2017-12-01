@@ -1,7 +1,7 @@
 export function tweetsByThread(state = {
   '1': {
     id: '1',
-    name: 'My Tweets',
+    name: 'Wall',
     isFetching: false,
     didInvalidate: false,
     lastUpdated: Date.now(),
@@ -10,7 +10,7 @@ export function tweetsByThread(state = {
   },
   '2': {
     id: '2',
-    name: 'Wall',
+    name: 'My Tweets',
     isFetching: false,
     didInvalidate: false,
     lastUpdated: Date.now(),
