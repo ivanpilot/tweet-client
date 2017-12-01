@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Login } from './Login';
-import { SignUp } from './SignUp';
+import { Login } from '../components/Login';
+import { SignUp } from '../components/SignUp';
 import { client } from '../client/Client';
 import { connectFailure } from '../actions/Error';
 import { getConnectError } from '../reducers/Errors';
-import { DisplayError } from './DisplayError';
+import { DisplayError } from '../components/DisplayError';
 
 class Authenticating extends React.Component{
   state = {
@@ -17,15 +17,6 @@ class Authenticating extends React.Component{
   onSubmitForm = (user) => {
     this.setState({loginInProgress: true})
     this.connectingUser(user)
-    // client.login(user).then(
-    //   response => {
-    //     client.setCurrentUser()
-    //     this.setState({shouldRedirect: true})
-    //   },
-    //   error => {
-    //     this.props.connectionFailure(error)
-    //   }
-    // )
   }
 
   connectingUser = (user) => {
@@ -48,7 +39,6 @@ class Authenticating extends React.Component{
   }
 
   render(){
-    // debugger
     if(this.props.connectError && !this.props.connectError.status === 401){
       debugger
       return(

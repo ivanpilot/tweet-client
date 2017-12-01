@@ -17,15 +17,9 @@ export const Navbar = (props) => (
         <div className="right menu">
           <NavLink
             className="ui item"
-            to='/houston'
+            to='/eyeme'
           >
-            Houston
-          </NavLink>
-          <NavLink
-            className="ui item"
-            to='/boo'
-          >
-            Boo
+            Eye Me
           </NavLink>
           <Link
             className="ui item"

@@ -1,0 +1,19 @@
+.eye {
+  background: url('../images/eye.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 600px;
+  width: 100%;
+}
+
+/*.eye_message {
+  text-align: center;
+}
+
+.eye p {
+  font-size:14px;
+  color: #FFF;
+  padding-top: 270px;
+  padding-left: 300px;
+}*/
