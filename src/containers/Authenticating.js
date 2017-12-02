@@ -39,8 +39,7 @@ class Authenticating extends React.Component{
   }
 
   render(){
-    if(this.props.connectError && !this.props.connectError.status === 401){
-      debugger
+    if(this.props.connectError && this.props.connectError.status !== 401){
       return(
         <div>
           <DisplayError

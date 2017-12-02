@@ -5,7 +5,6 @@ import { client } from '../client/Client';
 export const PrivateRoute = ({component, ...rest}) => {
   return (
     <Route {...rest} render={(props) => {
-      // debugger
       return (
       client.isLoggedIn() ? (
         React.createElement(component, props)

@@ -85,7 +85,6 @@ class Client {
     } else {
       const error = new Error();
       error.response = response;
-      // debugger
       throw error
     }
   }

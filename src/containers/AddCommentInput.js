@@ -22,13 +22,11 @@ function persistComment(comment){
             dispatch(deleteComment(comment.id))
           },
           error => {
-            debugger
             dispatch(fetchItemFailure('comment', error, comment.id))
           }
         )
       },
       error => {
-        debugger
         dispatch(fetchItemFailure('comment', error, comment.id))
       }
     )

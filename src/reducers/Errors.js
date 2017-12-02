@@ -45,10 +45,7 @@ function fetching(state = {
   }
 }
 
-export const getConnectError = (state) => {
-  // debugger
-  return state.connect
-}
+export const getConnectError = (state) => return state.connect
 export const getFetchingTweetsError = (state) => state.fetching.tweets
 export const getFetchingTweetError = (state) => state.fetching.tweet
 export const getFetchingCommentsError = (state) => state.fetching.comments

@@ -3,7 +3,6 @@ import { client } from '../client/Client';
 export function tweet(state, action){
   switch(action.type){
     case 'ADD_TWEET': {
-      // debugger
       return {
         id: action.tweet.id,
         react_id: action.tweet.react_id,
