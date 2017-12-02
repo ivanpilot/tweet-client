@@ -22,8 +22,7 @@ class Authenticating extends React.Component{
   connectingUser = (user) => {
     client.login(user).then(
       response => {
-        client.setCurrentUser()
-        this.setState({shouldRedirect: true})
+        client.setCurrentUser().then(() => this.setState({shouldRedirect: true}))
       },
       error => {
         this.setState({loginInProgress: false})
