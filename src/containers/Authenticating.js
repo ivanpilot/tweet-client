@@ -28,6 +28,7 @@ class Authenticating extends React.Component{
       error => {
         this.setState({loginInProgress: false})
         this.props.connectionFailure(error)
+        return;
       }
     )
   }
