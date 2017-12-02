@@ -28,7 +28,6 @@ class Authenticating extends React.Component{
       error => {
         this.setState({loginInProgress: false})
         this.props.connectionFailure(error)
-        return;
       }
     )
   }
@@ -49,20 +48,20 @@ class Authenticating extends React.Component{
           />
         </div>
       )
-    } else if (!this.props.connectError && this.props.location.pathname === '/signup'){
-      return(
-        <SignUp
-          onSubmitForm={this.onSubmitForm}
-          loginInProgress={this.state.loginInProgress}
-          shouldRedirect={this.state.shouldRedirect}
-        />
-      )
     } else if (this.props.location.pathname === '/login'){
       return(
         <Login
           connectError={this.props.connectError}
           onSubmitForm={this.onSubmitForm}
           redirectPath={this.redirectPath()}
+          loginInProgress={this.state.loginInProgress}
+          shouldRedirect={this.state.shouldRedirect}
+        />
+      )
+    } else if (this.props.location.pathname === '/signup'){
+      return(
+        <SignUp
+          onSubmitForm={this.onSubmitForm}
           loginInProgress={this.state.loginInProgress}
           shouldRedirect={this.state.shouldRedirect}
         />
