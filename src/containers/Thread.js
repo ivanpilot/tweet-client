@@ -40,6 +40,7 @@ function loadTweetsForThread(threadId){
     const tweetIds = getState().entities.tweets.allIds
 
     const wallTweets = tweetIds
+    debugger
     const myTweets = tweetIds.filter(id => tweets[id].author_id === client.getCurrentUser().id) // replaced bu author_id === currentUser.id
     const listOfTweets = threadName === 'Wall' ? wallTweets : myTweets
     return dispatch(loadTweets(threadId, listOfTweets))
