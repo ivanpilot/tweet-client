@@ -16,7 +16,6 @@ class ApiTweet {
     }).then(this.checkStatus)
       .then(this.parseJson)
       .then((response) => {
-        console.log('FETCH TWEETS ...: ', response)
         return response
       })
       .then(success)
