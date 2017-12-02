@@ -37,7 +37,7 @@ class FormSignUp extends React.Component{
 
   onSubmitForm = () => {
     const user = this.state.user;
-    if(this.validate()) return;
+    if(this.validate()) return; //to check if creates error
 
     this.props.onSubmitForm(user);
     console.log("email = " + this.state.user.email + " | password = " + this.state.user.password)
